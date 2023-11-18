@@ -19,7 +19,7 @@ class ModifierSetsController extends Controller
     /**
      * Constructor
      *
-     * @param  ProductUtils  $product
+     * @param  ProductUtils  $product 
      * @return void
      */
     public function __construct(ProductUtil $productUtil)

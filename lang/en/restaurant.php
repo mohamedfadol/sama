@@ -120,7 +120,7 @@ return [
     'category_name' => 'Category Name',
     'mng_kitchen' => 'Kitchens Management',
     'new_order_coming' => 'New Order Coming ...',
-    'kitchen_name' => 'Kitchen Name',
+    'no_kitchen_found' => 'no kitchen found',
     'kitchen_name' => 'Kitchen Name',
     'kitchen_name' => 'Kitchen Name',
 

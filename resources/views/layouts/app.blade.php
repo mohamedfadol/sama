@@ -110,11 +110,6 @@
               <source src="{{ asset('/audio/warning.ogg?v=' . $asset_v) }}" type="audio/ogg">
               <source src="{{ asset('/audio/warning.mp3?v=' . $asset_v) }}" type="audio/mpeg">
             </audio>
-
-            <audio id="new-order">
-              <source src="{{ asset('/audio/warning.ogg?v=' . $asset_v) }}" type="audio/ogg">
-              <source src="{{ asset('/audio/ordercome.mp3?v=' . $asset_v) }}" type="audio/mpeg">
-            </audio>
         </div>
  
         @if(!empty($__additional_html))

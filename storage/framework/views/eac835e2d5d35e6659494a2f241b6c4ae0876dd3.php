@@ -19,15 +19,18 @@
 <section class="content">
     <?php $__env->startComponent('components.widget', ['class' => 'box-primary']); ?>
         <?php $__env->slot('tool'); ?>
+        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('restaurant.create')): ?>
             <div class="box-tools">
                 <button type="button" class="btn btn-block btn-primary btn-modal" 
                     data-href="<?php echo e(action([\App\Http\Controllers\Restaurant\KitchenController::class, 'create']), false); ?>" 
                     data-container=".creat_kitchen_modal">
                     <i class="fa fa-plus"></i> <?php echo app('translator')->get( 'messages.add' ); ?></button>
             </div>
+        <?php endif; ?>
         <?php $__env->endSlot(); ?>  
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="home_kitchen_table">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('restaurant.view')): ?>
+                <table class="table table-bordered table-striped" id="home_kitchen_ta">
                     <thead>
                         <tr>
                             <th><?php echo app('translator')->get('restaurant.kitchen_name'); ?></th>
@@ -36,6 +39,7 @@
                         </tr>
                     </thead> 
                 </table>
+                <?php endif; ?>
             </div> 
     <?php echo $__env->renderComponent(); ?>
 
@@ -69,7 +73,7 @@
                         if(result.success == true){
                             $('div.creat_kitchen_modal').modal('hide');
                             toastr.success(result.msg);
-                            home_kitchen_table.ajax.reload();
+                            home_kitchen_ta.ajax.reload();
                         } else {
                             toastr.error(result.msg);
                         }
@@ -78,18 +82,19 @@
             });
 
             //Brands table
-            var home_kitchen_table = $('#home_kitchen_table').DataTable({
+            var home_kitchen_ta = $('#home_kitchen_ta').DataTable({
                     processing: true,
                     serverSide: true,
                     ajax: '/kitchen-home',
                     columnDefs: [ {
+                        // "targets": [0],
                         // "targets": [1,2, 3],
                         "orderable": false,
-                        "searchable": false
+                        "searchable": false 
                     } ],
                     columns: [ 
                         { data: 'name', name: 'name'  },
-                        { data: 'category.name', name: 'category'},
+                        { data: 'category.name', name: 'category' },
                         { data: 'action', name: 'action'}
                     ],
                 });
@@ -113,7 +118,7 @@
                                 if(result.success == true){
                                     $('div.creat_kitchen_modal').modal('hide');
                                     toastr.success(result.msg);
-                                    home_kitchen_table.ajax.reload();
+                                    home_kitchen_ta.ajax.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
@@ -143,7 +148,7 @@
                             success: function(result){
                                 if(result.success == true){
                                     toastr.success(result.msg);
-                                    home_kitchen_table.ajax.reload();
+                                    home_kitchen_ta.ajax.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }

@@ -58,6 +58,30 @@
                 }
             </script>
         
+        
+        <audio id="newOrder">
+            <source src="{{asset('audio/ordercome.mp3')}}" type="audio/mpeg">
+        </audio>
+
+        <script src="{{asset('js/notifications.js')}}"></script>
+        <!-- Modal -->
+        <div class="modal fade notify" id="notifyModel" tabindex="-1" role="dialog" aria-labelledby="notifyModelLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="notifyModelLabel">{{ __('restaurant.new_order_coming') }}</h5>
+                </div>
+                <div class="modal-body">
+                    <!-- <input name="mo" id="mo" class="form-control"> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onClick="window.location.href=window.location.href" class="btn btn-primary btn-block">Ok</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
             <!-- Content Wrapper. Contains page content -->
             <div class="container-fluid">
              @include('layouts.partials.header-restaurant')
@@ -98,29 +122,6 @@
         aria-labelledby="gridSystemModalLabel"></div>
 
         
-        <audio id="newOrder">
-            <source src="{{asset('audio/ordercome.mp3')}}" type="audio/mpeg">
-        </audio>
-
-        <script src="{{asset('js/notifications.js')}}"></script>
-        <!-- Modal -->
-        <div class="modal fade notify" id="notifyModel" tabindex="-1" role="dialog" aria-labelledby="notifyModelLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center" id="notifyModelLabel">{{ __('restaurant.new_order_coming') }}</h5>
-                </div>
-                <div class="modal-body">
-                    <!-- <input name="mo" id="mo" class="form-control"> -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" onClick="window.location.href=window.location.href" class="btn btn-primary btn-block">Ok</button>
-                </div>
-                </div>
-            </div>
-        </div>
-
-
 
     </body>
 </html>

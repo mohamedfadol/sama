@@ -110,11 +110,6 @@
               <source src="<?php echo e(asset('/audio/warning.ogg?v=' . $asset_v), false); ?>" type="audio/ogg">
               <source src="<?php echo e(asset('/audio/warning.mp3?v=' . $asset_v), false); ?>" type="audio/mpeg">
             </audio>
-
-            <audio id="new-order">
-              <source src="<?php echo e(asset('/audio/warning.ogg?v=' . $asset_v), false); ?>" type="audio/ogg">
-              <source src="<?php echo e(asset('/audio/ordercome.mp3?v=' . $asset_v), false); ?>" type="audio/mpeg">
-            </audio>
         </div>
  
         <?php if(!empty($__additional_html)): ?>

@@ -1,5 +1,3 @@
-
-
 function playAudio() {
     var audio = document.getElementById("newOrder");
     
@@ -9,8 +7,6 @@ function playAudio() {
     function pauseAudio() {
         audio.pause();
     } 
-
-
 // Subscribe to the channel we specified in our Laravel Event
 var channel = pusher.subscribe('new-orders');
 // Bind a function to a Event (the full Laravel class)

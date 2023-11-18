@@ -112,4 +112,5 @@ return [
     'mng_kitchen' => 'إدارة المطابخ',
     'id' => 'المعرف',
     'new_order_coming' => 'طلب جديد قادم ...',
+    'no_kitchen_found' => 'لا توجد مطابخ',
 ];

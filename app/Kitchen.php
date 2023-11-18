@@ -23,7 +23,7 @@ class Kitchen extends Model
      */
     protected $casts = [];
 
-    public function category() {
+    public function category() { 
         return $this->belongsTo(Category::class);
     }
     /**

@@ -8,7 +8,7 @@
     <h1>@lang( 'lang_v1.types_of_service' ) @show_tooltip(__('lang_v1.types_of_service_help_long'))
     </h1>
 </section>
-
+ 
 <!-- Main content -->
 <section class="content">
     @component('components.widget', ['class' => 'box-primary'])

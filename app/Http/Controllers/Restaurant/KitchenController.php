@@ -53,12 +53,11 @@ class KitchenController extends Controller
     }
 
 
-    public function home() {
-        $business_id = request()->session()->get('user.business_id');
+    public function home(Request $request) {
         if (request()->ajax()) {
             $business_id = request()->session()->get('user.business_id');
-            $kitchens = Kitchen::where('business_id', $business_id)->with('category');
-            return \Datatables::of($kitchens)
+            $kitchens = Kitchen::with('category')->where('business_id', $business_id);
+            return Datatables::of($kitchens)
                 ->addColumn(
                     'action',
                     ' 
