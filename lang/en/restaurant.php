@@ -119,6 +119,7 @@ return [
     'home_kitchen' => 'Home Kitchens',
     'category_name' => 'Category Name',
     'mng_kitchen' => 'Kitchens Management',
+    'new_order_coming' => 'New Order Coming ...',
     'kitchen_name' => 'Kitchen Name',
     'kitchen_name' => 'Kitchen Name',
     'kitchen_name' => 'Kitchen Name',

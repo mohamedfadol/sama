@@ -111,4 +111,5 @@ return [
     'category_name' => 'إسم الصنف',
     'mng_kitchen' => 'إدارة المطابخ',
     'id' => 'المعرف',
+    'new_order_coming' => 'طلب جديد قادم ...',
 ];

@@ -27,9 +27,7 @@
         <meta name="csrf-token" content="<?php echo e(csrf_token(), false); ?>">
 
         <title><?php echo $__env->yieldContent('title'); ?> - <?php echo e(Session::get('business.name'), false); ?></title>
-        
         <?php echo $__env->make('layouts.partials.css', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
         <?php echo $__env->yieldContent('css'); ?>
     </head>
 
@@ -112,8 +110,13 @@
               <source src="<?php echo e(asset('/audio/warning.ogg?v=' . $asset_v), false); ?>" type="audio/ogg">
               <source src="<?php echo e(asset('/audio/warning.mp3?v=' . $asset_v), false); ?>" type="audio/mpeg">
             </audio>
-        </div>
 
+            <audio id="new-order">
+              <source src="<?php echo e(asset('/audio/warning.ogg?v=' . $asset_v), false); ?>" type="audio/ogg">
+              <source src="<?php echo e(asset('/audio/ordercome.mp3?v=' . $asset_v), false); ?>" type="audio/mpeg">
+            </audio>
+        </div>
+ 
         <?php if(!empty($__additional_html)): ?>
             <?php echo $__additional_html; ?>
 

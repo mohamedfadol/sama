@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    base_path = "{{url('/')}}";
+    base_path = "{{url('/')}}"; 
     //used for push notification
     APP = {};
     APP.PUSHER_APP_KEY = '{{config('broadcasting.connections.pusher.key')}}';

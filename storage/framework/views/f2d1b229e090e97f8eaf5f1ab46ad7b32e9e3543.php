@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    base_path = "<?php echo e(url('/'), false); ?>";
+    base_path = "<?php echo e(url('/'), false); ?>"; 
     //used for push notification
     APP = {};
     APP.PUSHER_APP_KEY = '<?php echo e(config('broadcasting.connections.pusher.key'), false); ?>';

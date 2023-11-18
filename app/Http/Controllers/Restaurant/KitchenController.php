@@ -55,13 +55,9 @@ class KitchenController extends Controller
 
     public function home() {
         $business_id = request()->session()->get('user.business_id');
-        // $kitchens = Kitchen::with('category')->where('business_id', $business_id)->get();
-
         if (request()->ajax()) {
             $business_id = request()->session()->get('user.business_id');
-
             $kitchens = Kitchen::where('business_id', $business_id)->with('category');
-
             return \Datatables::of($kitchens)
                 ->addColumn(
                     'action',
@@ -75,13 +71,11 @@ class KitchenController extends Controller
                 ->escapeColumns(['action'])
                 ->make(true);
         }
-
         return view('restaurant.kitchen.home');
     }
     
 
     public function create(Request $request){
-
         $business_id = request()->session()->get('user.business_id');
         $categories = Category::where('business_id' , $business_id)->get(['id','name','business_id']);
         $locations = BusinessLocation::forDropdown($business_id);

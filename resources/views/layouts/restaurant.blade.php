@@ -17,10 +17,36 @@
 
         <title>@yield('title') - {{ Session::get('business.name') }}</title> 
 
+        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+        <script>
+
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+
+            var pusher = new Pusher('be6bac61ce5c670ed4b2', {
+            cluster: 'eu'
+            });
+
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+            alert(JSON.stringify(data));
+            });
+        </script>
         @include('layouts.partials.css')
 
         @yield('css')
         @yield('js')
+
+        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+        <script>
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+            var pusher = new Pusher('be6bac61ce5c670ed4b2', {cluster: 'eu'});
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+            alert(JSON.stringify(data));
+            });
+        </script>
     </head>
 
     <body class="hold-transition lockscreen">
@@ -70,6 +96,31 @@
         <script src="{{ asset('js/restaurant.js?v=' . $asset_v) }}"></script>
         <div class="modal fade view_modal" tabindex="-1" role="dialog" 
         aria-labelledby="gridSystemModalLabel"></div>
-    </body>
 
+        
+        <audio id="newOrder">
+            <source src="{{asset('audio/ordercome.mp3')}}" type="audio/mpeg">
+        </audio>
+
+        <script src="{{asset('js/notifications.js')}}"></script>
+        <!-- Modal -->
+        <div class="modal fade notify" id="notifyModel" tabindex="-1" role="dialog" aria-labelledby="notifyModelLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="notifyModelLabel">{{ __('restaurant.new_order_coming') }}</h5>
+                </div>
+                <div class="modal-body">
+                    <!-- <input name="mo" id="mo" class="form-control"> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onClick="window.location.href=window.location.href" class="btn btn-primary btn-block">Ok</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
 </html>

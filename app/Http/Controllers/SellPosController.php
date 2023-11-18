@@ -27,42 +27,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use App\User;
+use App\Media;
 use App\Brands;
-use App\Business;
-use App\BusinessLocation;
-use App\Category;
+use App\Account;
 use App\Contact;
+use App\Product;
+use App\TaxRate;
+use App\Business;
+use App\Category;
+use App\Warranty;
+use App\Variation;
+use Stripe\Charge;
+use Stripe\Stripe;
+use App\Transaction;
+use Razorpay\Api\Api;
 use App\CustomerGroup;
 use App\InvoiceLayout;
 use App\InvoiceScheme;
-use App\Media;
-use App\Product;
-use App\SellingPriceGroup;
-use App\TaxRate;
-use App\Transaction;
-use App\TransactionPayment;
-use App\TransactionSellLine;
 use App\TypesOfService;
-use App\User;
-use App\Utils\BusinessUtil;
-use App\Utils\CashRegisterUtil;
-use App\Utils\ContactUtil;
+use App\BusinessLocation;
 use App\Utils\ModuleUtil;
-use App\Utils\NotificationUtil;
+use App\SellingPriceGroup;
+use App\Utils\ContactUtil;
 use App\Utils\ProductUtil;
-use App\Utils\TransactionUtil;
-use App\Variation;
-use App\Warranty;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use App\TransactionPayment;
+use App\Utils\BusinessUtil;
 use Illuminate\Support\Str;
-use Razorpay\Api\Api;
-use Stripe\Charge;
-use Stripe\Stripe;
-use Yajra\DataTables\Facades\DataTables;
+use App\TransactionSellLine;
+use Illuminate\Http\Request;
+use App\Events\NewOrdersEvent;
+use App\Utils\TransactionUtil;
+use App\Utils\CashRegisterUtil;
+use App\Utils\NotificationUtil;
+use Illuminate\Support\Facades\DB;
 use App\Events\SellCreatedOrModified;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class SellPosController extends Controller
 {
@@ -627,7 +628,8 @@ class SellPosController extends Controller
                 if ($print_invoice) {
                     $receipt = $this->receiptContent($business_id, $input['location_id'], $transaction->id, null, false, true, $invoice_layout_id);
                 }
-
+                    $msgs = 'hi mohamed';
+                    event(new NewOrdersEvent($msgs));
                 $output = ['success' => 1, 'msg' => $msg, 'receipt' => $receipt];
 
                 if (! empty($whatsapp_link)) {

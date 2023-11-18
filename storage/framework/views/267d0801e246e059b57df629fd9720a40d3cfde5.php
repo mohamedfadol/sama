@@ -6,7 +6,7 @@
     </div> -->
     <!-- Default to the left -->
     <small>
-    	<?php echo e(config('app.name', 'ultimatePOS'), false); ?> - V<?php echo e(config('author.app_version'), false); ?> | Copyright &copy; <?php echo e(date('Y'), false); ?> All rights reserved.
+    	<?php echo e(config('app.name', 'Mohamed-Fadol'), false); ?> - V<?php echo e(config('author.app_version'), false); ?> | Copyright &copy; <?php echo e(date('Y'), false); ?> All rights reserved.
     </small>
     <div class="btn-group pull-right">
       	<button type="button" class="btn btn-success btn-xs toggle-font-size" data-size="s"><i class="fa fa-font"></i> <i class="fa fa-minus"></i></button>
