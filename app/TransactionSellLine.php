@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TransactionSellLine extends Model
@@ -36,6 +37,24 @@ class TransactionSellLine extends Model
             ->where('children_type', 'modifier');
     }
 
+    /**
+     * The kitchens that belong to the.
+     */
+    public function complete_orders()
+    {
+        return $this->belongsToMany(\App\Kitchen::class, 'order_complete', 'line_id', 'kitchen_id')->withPivot('status')->withTimestamps();
+    }
+
+    /**
+     * Get all of the kitchens for the TransactionSellLine
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function kitchens(): HasMany
+    {
+        return $this->hasMany(\App\Kitchen::class, 'kitchen_id');
+    }
+    
     public function sell_line_purchase_lines()
     {
         return $this->hasMany(\App\TransactionSellLinesPurchaseLines::class, 'sell_line_id');

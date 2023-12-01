@@ -391,7 +391,6 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::get('/purchase-return/create', [CombinedPurchaseReturnController::class, 'create']);
     Route::get('/purchase-return/add/{id}', [PurchaseReturnController::class, 'add']);
     Route::resource('/purchase-return', PurchaseReturnController::class)->except('create');
-
     Route::get('/discount/activate/{id}', [DiscountController::class, 'activate']);
     Route::post('/discount/mass-deactivate', [DiscountController::class, 'massDeactivate']);
     Route::resource('discount', DiscountController::class);
@@ -430,7 +429,6 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
         Route::post('/product-modifiers/{id}/update', [Restaurant\ProductModifierSetController::class, 'update']);
         Route::get('/product-modifiers/product-row/{product_id}', [Restaurant\ProductModifierSetController::class, 'product_row']);
         Route::get('/add-selected-modifiers', [Restaurant\ProductModifierSetController::class, 'add_selected_modifiers']);
-
         Route::get('/kitchen', [Restaurant\KitchenController::class, 'index']);
         
         Route::get('/kitchen-hole-view-page', [Restaurant\KitchenController::class, 'viewPage'])->name('kitchen.hole.view.page');
@@ -438,6 +436,8 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
         Route::get('/kitchen/back-to-kitchen/{id}', [Restaurant\KitchenController::class, 'backToKitchen']);
         Route::get('/kitchen/order-back-to-kitchen', [Restaurant\KitchenController::class, 'orderBackToKitchen'])->name('kitchen.order.back.to-kitchen');
         Route::get('/kitchen/kitchen-order-recevied', [Restaurant\KitchenController::class, 'orderRecevied'])->name('kitchen.order.recevied');
+        // Route::get('/kitchen/make-order-done/{id}', [Restaurant\KitchenController::class, 'markOrderCompleteDone'])->name('make.order.done');
+        // Route::get('/kitchen/make-order-not-done/{id}', [Restaurant\KitchenController::class, 'markOrderCompleteNotDone'])->name('make.order.not.done');
         Route::post('/refresh-orders-list', [Restaurant\KitchenController::class, 'refreshOrdersList']);
         Route::post('/refresh-line-orders-list', [Restaurant\KitchenController::class, 'refreshLineOrdersList']);
 

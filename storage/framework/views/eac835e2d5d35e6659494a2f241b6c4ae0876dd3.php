@@ -81,7 +81,7 @@
                 });
             });
 
-            //Brands table
+            //kitchen table
             var home_kitchen_ta = $('#home_kitchen_ta').DataTable({
                     processing: true,
                     serverSide: true,

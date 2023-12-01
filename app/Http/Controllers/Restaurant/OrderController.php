@@ -75,31 +75,26 @@ class OrderController extends Controller
     public function markAsServed($id)
     {
         // if (!auth()->user()->can('sell.update')) {
-        //     abort(403, 'Unauthorized action.');
+        //     abort(403, 'Unauthorized action.');res_line_order_status
         // }
+        \Log::alert($id);
         try {
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
 
             $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
-                        ->where('transaction_id', $id);
+                        ->where('transaction_sell_lines.id', $id);
 
             if ($this->restUtil->is_service_staff($user_id)) {
                 $query->where('res_waiter_id', $user_id);
             }
-
             $query->update(['res_line_order_status' => 'served']);
-
-            $output = ['success' => 1,
-                'msg' => trans('restaurant.order_successfully_marked_served'),
-            ];
+            $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_served')];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
 
-            $output = ['success' => 0,
-                'msg' => trans('messages.something_went_wrong'),
-            ];
+            $output = ['success' => 0, 'msg' => trans('messages.something_went_wrong')];
         }
 
         return $output;
@@ -129,7 +124,6 @@ class OrderController extends Controller
             }
 
             $query->update(['res_line_order_status' => 'delivered']);
-
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_delivered'),
             ];

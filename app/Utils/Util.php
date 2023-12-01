@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
-class Util
+class Util 
 {
     /**
      * This function unformats a number and returns them in plain eng format
@@ -684,7 +684,7 @@ class Util
         //If app environment is demo return null
         if (config('app.env') == 'demo') {
             return null;
-        }
+        } 
 
         $uploaded_file_name = null;
         if ($request->hasFile($file_name) && $request->file($file_name)->isValid()) {

@@ -13,9 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('transaction_sell_lines', function (Blueprint $table) {
+        Schema::create('order_complete', function (Blueprint $table) {
+            $table->id();
+            $table->string('status')->default('not_done');
+            $table->integer('business_id')->unsigned();
+            $table->foreign('business_id')->references('id')->on('business')->onDelete('cascade');
             $table->integer('kitchen_id')->unsigned();
             $table->foreign('kitchen_id')->references('id')->on('kitchens')->onDelete('cascade');
+            $table->integer('line_id')->unsigned();
+            $table->foreign('line_id')->references('id')->on('transaction_sell_lines')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('transaction_sell_lines', function (Blueprint $table) {
-            $table->dropColumn('kitchen_id');
-        });
+        Schema::dropIfExists('order_complete');
     }
 };

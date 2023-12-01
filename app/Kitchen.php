@@ -9,7 +9,7 @@ class Kitchen extends Model
 {
     use HasFactory;
     protected $table = 'kitchens';
-        /**
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array
@@ -24,8 +24,21 @@ class Kitchen extends Model
     protected $casts = [];
 
     public function category() { 
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(\App\Category::class);
     }
+
+    public function sell_lines() {
+        return $this->belongsTo(\App\TransactionSellLine::class, 'kitchen_id');    
+    }
+
+    /**
+     * The kitchens that belong to the.
+     */
+    public function complete_orders()
+    {
+        return $this->belongsToMany(\App\TransactionSellLine::class, 'order_complete', 'kitchen_id', 'line_id')->withPivot('status')->withTimestamps();
+    }
+
     /**
      * Return list of types of service for a business
      *
@@ -34,7 +47,7 @@ class Kitchen extends Model
      */
     public static function forDropdown($business_id)
     {
-        $types_of_service = Kitchen::where('business_id', $business_id)
+        $types_of_service = \App\Kitchen::where('business_id', $business_id)
                     ->pluck('name', 'id');
 
         return $types_of_service;

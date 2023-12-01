@@ -785,10 +785,8 @@ class SellController extends Controller
         // }
 
         $business_id = request()->session()->get('user.business_id');
-        $taxes = TaxRate::where('business_id', $business_id)
-                            ->pluck('name', 'id');
-        $query = Transaction::where('business_id', $business_id)
-                    ->where('id', $id)
+        $taxes = TaxRate::where('business_id', $business_id)->pluck('name', 'id');
+        $query = Transaction::where('business_id', $business_id)->where('id', $id)
                     ->with(['contact', 'sell_lines' => function ($q) {
                         $q->whereNull('parent_sell_line_id');
                     }, 'sell_lines.product', 'sell_lines.product.unit', 'sell_lines.product.second_unit', 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restaurant;
 use App\Kitchen;
 use App\Category;
 use App\Utils\Util;
+use App\CompleteOrder;
 use App\BusinessLocation;
 use App\SellingPriceGroup;
 use App\TransactionSellLine;
@@ -45,10 +46,7 @@ class KitchenController extends Controller
     public function index()
     {
         $business_id = request()->session()->get('user.business_id');
-        // $orders = $this->restUtil->getAllOrders($business_id, ['line_order_status' => 'received'],1);
-        // dd($orders);
         $kitchens = Kitchen::where('business_id', $business_id)->get();
-        // dd($kitchens);
         return view('restaurant.kitchen.index', compact('kitchens'));
     }
 
@@ -236,7 +234,7 @@ class KitchenController extends Controller
             $business_id = request()->session()->get('user.business_id');
             $sl = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
-                        ->where('transaction_id', $id)
+                        ->where('transaction_sell_lines.id', $id)
                         ->where(function ($q) {
                             $q->whereNull('res_line_order_status')
                                 ->orWhere('res_line_order_status', 'received')
@@ -266,7 +264,6 @@ class KitchenController extends Controller
      */
     public function markAsDeliveried($id)
     {
-        dd('dd');
         try {
             $business_id = request()->session()->get('user.business_id');
             $sl = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
@@ -343,6 +340,61 @@ class KitchenController extends Controller
         $ervedOrders = $this->restUtil->getAllOrdersRerved($business_id, ['line_order_status' => 'served']);
         
         return view('restaurant.partials.hole_view', compact('orders','ervedOrders'));
+    }
+
+
+    /**
+     * Marks an order as done
+     *
+     * @return json $output
+     */
+    public function markOrderCompleteDone($id)
+    {
+        // dd($id);
+        try {
+            $business_id = request()->session()->get('user.business_id');
+            CompleteOrder::where('line_id', $id)
+                                ->where('business_id', $business_id)
+                                ->update(['status' => 'done']);
+
+            $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_done'),
+            ];
+        } catch (\Exception $e) {
+            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+
+            $output = ['success' => 0,
+                'msg' => trans('messages.something_went_wrong'),
+            ];
+        }
+
+        return $output;
+    }
+
+        /**
+     * Marks an order as done
+     *
+     * @return json $output
+     */
+    public function markOrderCompleteNotDone($id)
+    {
+        try {
+            $business_id = request()->session()->get('user.business_id');
+            CompleteOrder::where('id', $id)
+                                ->where('business_id', $business_id)
+                                ->update(['status' => 'done']);
+
+            $output = ['success' => 1,
+                'msg' => trans('restaurant.order_successfully_marked_done'),
+            ];
+        } catch (\Exception $e) {
+            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+
+            $output = ['success' => 0,
+                'msg' => trans('messages.something_went_wrong'),
+            ];
+        }
+
+        return $output;
     }
 
     /**

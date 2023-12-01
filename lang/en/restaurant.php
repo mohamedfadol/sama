@@ -121,6 +121,9 @@ return [
     'mng_kitchen' => 'Kitchens Management',
     'new_order_coming' => 'New Order Coming ...',
     'no_kitchen_found' => 'no kitchen found',
+    'status' => 'Status',
+    'done' => 'Done',
+    'not_done' => 'Not Done',
     'kitchen_name' => 'Kitchen Name',
     'kitchen_name' => 'Kitchen Name',
 

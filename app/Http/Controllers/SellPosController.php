@@ -628,7 +628,7 @@ class SellPosController extends Controller
                 if ($print_invoice) {
                     $receipt = $this->receiptContent($business_id, $input['location_id'], $transaction->id, null, false, true, $invoice_layout_id);
                 }
-                    $msgs = 'hi mohamed';
+                    $msgs = 'New Order Coming ...';
                     event(new NewOrdersEvent($msgs));
                 $output = ['success' => 1, 'msg' => $msg, 'receipt' => $receipt];
 
@@ -743,7 +743,7 @@ class SellPosController extends Controller
             'decimal_separator' => $business_details->decimal_separator,
         ];
         $receipt_details->currency = $currency_details;
-
+ 
         if ($is_package_slip) {
             $output['html_content'] = view('sale_pos.receipts.packing_slip', compact('receipt_details'))->render();
 

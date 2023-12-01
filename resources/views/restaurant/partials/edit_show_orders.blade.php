@@ -50,7 +50,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
             
         @endphp
 	<div class="col-md-3 col-xs-6 order_div" >
-       
+    
 		<div class="small-box 
             @if($order_status == 'returned') light-orang white @endif @if($order_status == 'served') bg-gray @else light-gray white @endif ">
             <div class="inner text-center" style="text-align: -webkit-center;">
@@ -77,6 +77,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         <th>{{ __('sale.product') }}</th>
                         <th>{{ __('sale.qty') }}</th>
                         <th>{{ __('restaurant.notes') }}</th>
+                        <th>{{ __('restaurant.status') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,31 +86,33 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <td>{{ $sell_line->product->name }}</td>
                             <td>{{ $sell_line->quantity }}</td>
                             <td>{{ $sell_line->sell_line_note }}</td>
+                            <td style="padding: 2px;">
+                                @if ($sell_line->res_line_order_status  != 'cooked')     
+                                    <span class="btn btn-danger" style="padding: 2px;"><i class="fa fa-check"></i> @lang('restaurant.not_done')</span>
+                                @else
+                                    <span class="btn btn-primary" style="padding: 2px;"><i class="fa fa-check"></i> @lang('restaurant.done')</span>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
-            </table> 
+            </table>  
             </div>
-                <div class='share-button'>
-                    @if ($order_status  != 'served')     
-                        <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_served_btn" 
-                            data-href="{{action([\App\Http\Controllers\Restaurant\OrderController::class, 'markAsServed'], [$order->id])}}">
-                                <i class="fa fa-check-square-o"></i> @lang('restaurant.order_as_served')</a> 
-                     
-                    @else
+            <div class='share-button'>
+                @if (is_null($sell_line->res_line_order_status) || empty($sell_line->res_line_order_status))     
+                    <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_served_btn" 
+                        data-href="{{action([\App\Http\Controllers\Restaurant\OrderController::class, 'markAsServed'], [$sell_line->id])}}">
+                            <i class="fa fa-check"></i> @lang('restaurant.order_as_served')</a> 
+                @elseif($sell_line->res_line_order_status  != 'cooked')
                     <a href="#" class="btn btn-sm small-box-footer bg-yellow mark_as_cooked_btn" 
-                        data-href="{{action([\App\Http\Controllers\Restaurant\KitchenController::class, 'markAsCooked'], [$order->id])}}">
-                            <i class="fa fa-check-square-o white"></i> @lang('restaurant.mark_cooked')</a>
-                    @endif
-                    
-                    
+                        data-href="{{action([\App\Http\Controllers\Restaurant\KitchenController::class, 'markAsCooked'], [$sell_line->id])}}">
+                            <i class="fa fa-check white"></i> @lang('restaurant.mark_cooked')</a>
+                @endif
                     <a href="#" class="btn btn-sm small-box-footer bg-info text-white btn-modal" 
                         data-href="{{ action([\App\Http\Controllers\SellController::class, 'show'], [$order->id])}}" 
                             data-container=".view_modal">@lang('restaurant.order_details') 
                                 <i class="fa fa-arrow-circle-right"></i></a>  
-
-                    
-                </div>
+            </div>
          </div>
 	</div>
 	@if($loop->iteration % 4 == 0)
@@ -128,22 +131,29 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 </div>
 @endforelse
 
+<script> 
+     
+        var startTimeInSeconds = (10 * 3600) - (58 * 60);
+        // Function to format seconds into HH:mm:ss
+        function formatTime(seconds) {
+            var hours = Math.floor(seconds / 3600);
+            var minutes = Math.floor((seconds % 3600) / 60);
+            var remainingSeconds = seconds % 60;
+            return pad(minutes) + ':' + pad(remainingSeconds);
+        }
 
- 
-<script>
-    function updateClockTime() {
-        // Get all elements with the class "clock-time"
-        const clockElements = document.querySelectorAll('.clock-time');
-        // Update the time for each element
-        clockElements.forEach((element) => {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            element.textContent = timeString;
-        });
-    }
-    // Update the clock time every second
-    setInterval(updateClockTime, 1000);
-    // Call the function immediately to set the initial time
-    updateClockTime();
+        // Function to pad single-digit numbers with a leading zero
+        function pad(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        // Update the counter every second
+        var interval = setInterval(function() {
+        $('.clock-time').text(formatTime(startTimeInSeconds));
+        startTimeInSeconds++;
+        }, 1000);
+    // }
+    
 </script>
+ 
  

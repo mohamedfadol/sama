@@ -49,9 +49,9 @@ class RestaurantUtil extends Util
             if ($filter['line_order_status'] == 'received') {
                 $query->whereHas('sell_lines', function ($q) {
                     $q->whereNull('res_line_order_status')
-                      ->orWhere('res_line_order_status', 'received')
-                      ->orWhere('res_line_order_status', 'returned')
-                      ->orWhere('res_line_order_status', 'served');
+                        ->orWhere('res_line_order_status','received')
+                        ->orWhere('res_line_order_status','returned')
+                        ->orWhere('res_line_order_status','served');
                 }, '>=', 1);
             }
 

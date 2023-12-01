@@ -60,6 +60,8 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <th>{{ __('sale.product') }}</th>
                             <th>{{ __('sale.qty') }}</th>
                             <th>{{ __('restaurant.notes') }}</th>
+                        <th>{{ __('restaurant.status') }}</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -68,6 +70,13 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                 <td>{{ $sell_line->product->name }}</td>
                                 <td>{{ $sell_line->quantity }}</td>
                                 <td>{{ $sell_line->sell_line_note }}</td>
+                                <td style="padding: 2px;">
+                                    @if ($sell_line->res_line_order_status  != 'cooked')     
+                                        <span class="btn btn-danger" style="padding: 2px;" ><i class="fa fa-check"></i> @lang('restaurant.not_done')</span>
+                                    @else
+                                        <span class="btn btn-primary" style="padding: 2px;" ><i class="fa fa-check"></i> @lang('restaurant.done')</span>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -76,11 +85,11 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                 <div class='share-button'>
                     <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_received_btn" 
                         data-href="{{action([\App\Http\Controllers\Restaurant\OrderController::class, 'markAsReceived'], [$order->id])}}">
-                            <i class="fa fa-check-square-o"></i> @lang('restaurant.order_as_received')</a> 
+                            <i class="fa fa-check"></i> @lang('restaurant.order_as_received')</a> 
                     
                     <a href="#" class="btn btn-sm small-box-footer bg-yellow back_to_kitchen_btn" 
                         data-href="{{action([\App\Http\Controllers\Restaurant\KitchenController::class, 'backToKitchen'], [$order->id])}}">
-                            <i class="fa fa-check-square-o"></i> @lang('restaurant.order_back_to_kitchen')</a>
+                            <i class="fa fa-check"></i> @lang('restaurant.order_back_to_kitchen')</a>
                      
                     <a href="#" class="btn btn-sm small-box-footer bg-info text-white btn-modal" 
                         data-href="{{ action([\App\Http\Controllers\SellController::class, 'show'], [$order->id])}}" 
