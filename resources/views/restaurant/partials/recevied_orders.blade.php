@@ -1,4 +1,4 @@
-@extends('layouts.restaurant')
+@extends('layouts.restaurant_notify')
 @section('title', __( 'restaurant.received_orders' ))
 
 @section('content')

@@ -28,7 +28,7 @@ class Kitchen extends Model
     }
 
     public function sell_lines() {
-        return $this->belongsTo(\App\TransactionSellLine::class, 'kitchen_id');    
+        return $this->hasMany(\App\TransactionSellLine::class, 'kitchen_id');    
     }
 
     /**

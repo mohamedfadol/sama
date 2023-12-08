@@ -25,9 +25,9 @@ class RestaurantUtil extends Util
         $query = Transaction::leftJoin('contacts', 'transactions.contact_id', '=', 'contacts.id')
                 ->leftjoin('business_locations AS bl','transactions.location_id','=','bl.id')
                 ->leftjoin('res_tables AS rt','transactions.res_table_id','=','rt.id')
-                ->leftjoin('transaction_sell_lines AS tsl','transactions.id','=','tsl.transaction_id')
+                // ->leftjoin('transaction_sell_lines AS tsl','transactions.id','=','tsl.transaction_id')
                 ->where('transactions.business_id', $business_id)
-                ->where('tsl.kitchen_id', $kitchen_id)
+                // ->where('tsl.kitchen_id', $kitchen_id)
                 
                 ->where('transactions.type', 'sell')
                 ->where('transactions.status', 'final');
@@ -47,9 +47,10 @@ class RestaurantUtil extends Util
 
         if (! empty($filter['line_order_status'])) {
             if ($filter['line_order_status'] == 'received') {
-                $query->whereHas('sell_lines', function ($q) {
+                $query->whereHas('sell_lines', function ($q) use($kitchen_id){
                     $q->whereNull('res_line_order_status')
-                        ->orWhere('res_line_order_status','received')
+                    ->where('kitchen_id', $kitchen_id)
+                    // ->orWhere('res_line_order_status', '!=', 'cooked')
                         ->orWhere('res_line_order_status','returned')
                         ->orWhere('res_line_order_status','served');
                 }, '>=', 1);
@@ -84,9 +85,8 @@ class RestaurantUtil extends Util
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) use($kitchen_id){
-            $q->whereNull('parent_sell_line_id')
-            ->where('kitchen_id','=', $kitchen_id)
-            ->orWhereNull('kitchen_id')
+            $q->where('kitchen_id','=', $kitchen_id)
+            // ->orWhereNull('kitchen_id')
             ;}, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
@@ -128,6 +128,7 @@ class RestaurantUtil extends Util
         if (! empty($filter['line_order_status'])) {
             if ($filter['line_order_status'] == 'received' || $filter['line_order_status'] == 'cooked') {
                 $query->whereHas('sell_lines', function ($q) {
+                    
                     $q->where('res_line_order_status','received')
                       ->orWhere('res_line_order_status', 'cooked');
                 }, '>=', 1);
@@ -144,7 +145,9 @@ class RestaurantUtil extends Util
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
-            $q->whereNull('parent_sell_line_id');}, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+            $q->where('res_line_order_status','cooked')
+                ->orWhere('res_line_order_status','!=', 'cooked');
+        }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }

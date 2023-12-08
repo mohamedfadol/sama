@@ -53,6 +53,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
@@ -63,6 +64,35 @@
             });
 
 
+            $(document).on('click', 'a.mark_as_cooked_btn_not', function(e){
+                e.preventDefault();
+                swal({
+                  title: LANG.sure,
+                  icon: "info",
+                  buttons: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        var _this = $(this);
+                        var href = _this.data('href');
+                        $.ajax({
+                            method: "GET",
+                            url: href,
+                            dataType: "json",
+                            success: function(result){
+                                if(result.success == true){
+                                    toastr.success(result.msg);
+                                    _this.closest('.order_div').remove();
+                                    location.reload();
+                                } else {
+                                    toastr.error(result.msg);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            
             $(document).on('click', 'a.back_to_kitchen_btn', function(e){
                 e.preventDefault();
                 swal({
@@ -81,6 +111,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
@@ -121,4 +152,4 @@
         });
     </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.restaurant', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/kitchen/ketchen_home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.restaurant_notify', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/kitchen/ketchen_home.blade.php ENDPATH**/ ?>

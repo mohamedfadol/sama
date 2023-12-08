@@ -186,4 +186,4 @@
         });
     </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.restaurant', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/recevied_orders.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.restaurant_notify', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/recevied_orders.blade.php ENDPATH**/ ?>

@@ -16,37 +16,10 @@
         <meta name="csrf-token" content="<?php echo e(csrf_token(), false); ?>">
 
         <title><?php echo $__env->yieldContent('title'); ?> - <?php echo e(Session::get('business.name'), false); ?></title> 
-
-        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-        <script>
-
-            // Enable pusher logging - don't include this in production
-            Pusher.logToConsole = true;
-
-            var pusher = new Pusher('be6bac61ce5c670ed4b2', {
-            cluster: 'eu'
-            });
-
-            var channel = pusher.subscribe('my-channel');
-            channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-            });
-        </script>
         <?php echo $__env->make('layouts.partials.css', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <?php echo $__env->yieldContent('css'); ?>
         <?php echo $__env->yieldContent('js'); ?>
-
-        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-        <script>
-            // Enable pusher logging - don't include this in production
-            Pusher.logToConsole = true;
-            var pusher = new Pusher('be6bac61ce5c670ed4b2', {cluster: 'eu'});
-            var channel = pusher.subscribe('my-channel');
-            channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-            });
-        </script>
     </head>
 
     <body class="hold-transition lockscreen">
@@ -57,30 +30,6 @@
                     body.className += " sidebar-collapse";
                 }
             </script>
-        
-        
-        <audio id="newOrder">
-            <source src="<?php echo e(asset('audio/ordercome.mp3'), false); ?>" type="audio/mpeg">
-        </audio>
-
-        <script src="<?php echo e(asset('js/notifications.js'), false); ?>"></script>
-        <!-- Modal -->
-        <div class="modal fade notify" id="notifyModel" tabindex="-1" role="dialog" aria-labelledby="notifyModelLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center" id="notifyModelLabel"><?php echo e(__('restaurant.new_order_coming'), false); ?></h5>
-                </div>
-                <div class="modal-body">
-                    <!-- <input name="mo" id="mo" class="form-control"> -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" onClick="window.location.href=window.location.href" class="btn btn-primary btn-block">Ok</button>
-                </div>
-                </div>
-            </div>
-        </div>
-
 
             <!-- Content Wrapper. Contains page content -->
             <div class="container-fluid">

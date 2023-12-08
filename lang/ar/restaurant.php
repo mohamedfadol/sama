@@ -114,6 +114,6 @@ return [
     'new_order_coming' => 'طلب جديد قادم ...',
     'no_kitchen_found' => 'لا توجد مطابخ',
     'status' => 'حالة المطبخ',
-    'done' => 'تم',
-    'not_done' => 'لا',
+    'done' => 'تم الطبخ',
+    'not_done' => 'لم يطبخ',
 ];

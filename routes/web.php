@@ -436,8 +436,8 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
         Route::get('/kitchen/back-to-kitchen/{id}', [Restaurant\KitchenController::class, 'backToKitchen']);
         Route::get('/kitchen/order-back-to-kitchen', [Restaurant\KitchenController::class, 'orderBackToKitchen'])->name('kitchen.order.back.to-kitchen');
         Route::get('/kitchen/kitchen-order-recevied', [Restaurant\KitchenController::class, 'orderRecevied'])->name('kitchen.order.recevied');
-        // Route::get('/kitchen/make-order-done/{id}', [Restaurant\KitchenController::class, 'markOrderCompleteDone'])->name('make.order.done');
-        // Route::get('/kitchen/make-order-not-done/{id}', [Restaurant\KitchenController::class, 'markOrderCompleteNotDone'])->name('make.order.not.done');
+        Route::get('/kitchen/make-order-done/{id}', [Restaurant\KitchenController::class, 'markOrderCompleteDone']);
+        Route::get('/kitchen/make-order-not-done/{id}', [Restaurant\KitchenController::class, 'markOrderCompleteNotDone']);
         Route::post('/refresh-orders-list', [Restaurant\KitchenController::class, 'refreshOrdersList']);
         Route::post('/refresh-line-orders-list', [Restaurant\KitchenController::class, 'refreshLineOrdersList']);
 

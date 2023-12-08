@@ -58,6 +58,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
@@ -86,6 +87,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
@@ -126,4 +128,4 @@
         });
     </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.restaurant', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/kitchen/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.restaurant_notify', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/kitchen/index.blade.php ENDPATH**/ ?>

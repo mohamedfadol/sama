@@ -1,5 +1,5 @@
 <style>
-table tbody {display: block;max-height: 150px;overflow-y: scroll;}
+table tbody {}
 table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 .clock {font-weight: bold;}
 .small-box p {font-size: 13px;}
@@ -48,7 +48,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 	<div class="col-md-3 col-xs-6 order_div">
 		<div class="small-box bg-gray">
             <div class="inner">
-            	<table class="table no-margin no-border table-slim" style="width: 100%;">
+            	<table class="table no-margin table-bordered table-slim" style="width: 100%;">
                     <thead>
                         <tr>
                             <td><?php echo e(__('restaurant.table_no'), false); ?><?php echo e($order->table_name, false); ?> </td>
@@ -65,11 +65,19 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $__currentLoopData = $order->sell_lines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sell_line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $order->sell_lines->whereNull('parent_sell_line_id'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sell_line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr> 
                                 <td><?php echo e($sell_line->product->name, false); ?></td>
                                 <td><?php echo e($sell_line->quantity, false); ?></td>
-                                <td><?php echo e($sell_line->sell_line_note, false); ?></td>
+                                <td>
+                                    <?php echo e($sell_line->sell_line_note, false); ?>  ,
+
+                                    <?php $__empty_2 = true; $__currentLoopData = $order->sell_lines->whereNotNull('parent_sell_line_id')->where('parent_sell_line_id',$sell_line->id); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_2 = false; ?>
+                                        <span><?php echo e($line->product->name, false); ?></span>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_2): ?>
+                                        
+                                    <?php endif; ?>
+                                </td>
                                 <td style="padding: 2px;">
                                     <?php if($sell_line->res_line_order_status  != 'cooked'): ?>     
                                         <span class="btn btn-danger" style="padding: 2px;" ><i class="fa fa-check"></i> <?php echo app('translator')->get('restaurant.not_done'); ?></span>
@@ -81,7 +89,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
             	</table> 
-            </div>
+            </div> 
                 <div class='share-button'>
                     <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_received_btn" 
                         data-href="<?php echo e(action([\App\Http\Controllers\Restaurant\OrderController::class, 'markAsReceived'], [$order->id]), false); ?>">
@@ -95,7 +103,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         data-href="<?php echo e(action([\App\Http\Controllers\SellController::class, 'show'], [$order->id]), false); ?>" 
                             data-container=".view_modal"><?php echo app('translator')->get('restaurant.order_details'); ?> 
                                 <i class="fa fa-arrow-circle-right"></i></a>  
-                </div>
+                </div> 
          </div>
 	</div>
 	<?php if($loop->iteration % 4 == 0): ?>
@@ -117,19 +125,24 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 
  
 <script>
-    function updateClockTime() {
-        // Get all elements with the class "clock-time"
-        const clockElements = document.querySelectorAll('.clock-time');
-        // Update the time for each element
-        clockElements.forEach((element) => {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            element.textContent = timeString;
-        });
-    }
-    // Update the clock time every second
-    setInterval(updateClockTime, 1000);
-    // Call the function immediately to set the initial time
-    updateClockTime();
+        var startTimeInSeconds = (10 * 3600);
+        // Function to format seconds into HH:mm:ss
+        function formatTime(seconds) {
+            var hours = Math.floor(seconds / 3600);
+            var minutes = Math.floor((seconds % 3600) / 60);
+            var remainingSeconds = seconds % 60;
+            return pad(minutes) + ':' + pad(remainingSeconds);
+        }
+
+        // Function to pad single-digit numbers with a leading zero
+        function pad(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        // Update the counter every second
+        var interval = setInterval(function() {
+        $('.clock-time').text(formatTime(startTimeInSeconds));
+        startTimeInSeconds++;
+        }, 1000);
 </script>
  <?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/recevied_orders_details.blade.php ENDPATH**/ ?>

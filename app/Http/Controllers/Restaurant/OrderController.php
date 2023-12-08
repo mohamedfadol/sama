@@ -77,11 +77,10 @@ class OrderController extends Controller
         // if (!auth()->user()->can('sell.update')) {
         //     abort(403, 'Unauthorized action.');res_line_order_status
         // }
-        \Log::alert($id);
+        // \Log::alert($id);
         try {
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
-
             $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
                         ->where('transaction_sell_lines.id', $id);
@@ -90,6 +89,13 @@ class OrderController extends Controller
                 $query->where('res_waiter_id', $user_id);
             }
             $query->update(['res_line_order_status' => 'served']);
+
+            $modefiers =  TransactionSellLine::
+            leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+                        ->where('t.business_id', $business_id)
+                        ->where('parent_sell_line_id', '=',  $id)
+                        ->update(['res_line_order_status' => 'served']);
+
             $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_served')];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());

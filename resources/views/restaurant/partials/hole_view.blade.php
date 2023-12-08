@@ -1,4 +1,4 @@
-@extends('layouts.restaurant')
+@extends('layouts.restaurant_notify')
 @section('css')
     <style>
 
@@ -10,15 +10,15 @@
 <!-- Main content -->
 <section class="content min-height-90hv no-print">
 <div class="row col-lg-12 text-center" style="border: 1px solid #947f7f;">
-    <h3 style="text-transform:uppercase;margin-top: 8px;"><span>{{env('APP_NAME')}}</span></h3>
+    <h3 style="text-transform:uppercase;margin-top: 5px;"><span>{{env('APP_NAME')}}</span></h3>
 </div>
 
 <div class="row col-lg-12" style="border: 1px solid #947f7f;">
-    <div class="col-lg-6"><h3 style="float: left;">
-    <img src="{{asset('uploads/business_logos/'.session()->get('business')->logo)}}" 
-        style="width=50" height="50" alt="upload logo"></h3></div>
+    <div class="col-lg-6">
+        <img src="{{asset('uploads/business_logos/'.session()->get('business')->logo)}}" style="width=50; float: inline-start;" height="50" alt="{{env('APP_NAME')}}">
+    </div>
 
-    <div class="col-lg-6"><h3 style="float: right; text-transform:uppercase;"> {{session()->get('business')->name}} </h3></div>
+    <div class="col-lg-6"><h3 style="float: inline-end; text-transform:uppercase;"> {{session()->get('business')->name}} </h3></div>
 </div>
 <div class="row">
     <div class="col-md-12 text-center">
@@ -61,6 +61,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
@@ -89,6 +90,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }

@@ -316,7 +316,7 @@ class TransactionUtil extends Util
 
                                 $category_id = Product::find($product['transaction_sell_lines_id'])->category_id ?? null;
                                 $kitchen_id = Kitchen::where('category_id', $category_id)->first()->id ?? null;
-                                    dd($kitchen_id);
+                                //     dd($kitchen_id);
                                 if (! empty($product['modifier_price'][$key])) {
                                     $this_price = $uf_data ? $this->num_uf($product['modifier_price'][$key]) : $product['modifier_price'][$key];
                                     $modifier_quantity = isset($product['modifier_quantity'][$key]) ? $product['modifier_quantity'][$key] : 1;
@@ -452,30 +452,28 @@ class TransactionUtil extends Util
         if (! empty($lines_formatted)) { 
             $transaction->sell_lines()->saveMany($lines_formatted);
             $business_id = request()->session()->get('user.business_id');
+
             $ids = collect([]);
-            foreach ($lines_formatted as $key => $value) {
-                DB::table('order_complete')->insert([
-                    'business_id' => $business_id,
-                    'kitchen_id' => $value->kitchen_id ?? null,
-                    'line_id' => $value->id,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
-                $ids->push($value->id);
-            }
-            \Log::debug($ids);
+            
+
             //Add corresponding modifier sell lines if exists
             if ($this->isModuleEnabled('modifiers')) {
                 foreach ($lines_formatted as $key => $value) {
                     if (! empty($modifiers_array[$key])) {
                         foreach ($modifiers_array[$key] as $modifier) {
+
+                            $category_id = Product::find($value->product_id)->category_id ?? null;
+                            $kitchen_id = Kitchen::where('category_id', $category_id)->first()->id ?? null;
+
+                            $ids->push($value->id);
                             $modifier['parent_sell_line_id'] = $value->id;  
+                            $modifier['kitchen_id'] = $kitchen_id;  
                             $modifiers_formatted[] = new TransactionSellLine($modifier);
                         }
                     }
                 }
             }
-
+            \Log::debug($ids);
             //Combo product lines.
             //$products_value = array_values($products);
             foreach ($lines_formatted as $key => $value) {

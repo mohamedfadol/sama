@@ -12,13 +12,14 @@ var channel = pusher.subscribe('new-orders');
 // Bind a function to a Event (the full Laravel class)
 channel.bind('App\\Events\\NewOrdersEvent', function (data) {
         $('#notifyModel').modal('show');
-        playAudio();
+        // playAudio();
+        setTimeout($('#notifyModel').modal('hide'), 3000);   
+        window.location.reload();
         $('#notifyModel').on('show.bs.modal', function () {
         modal = $(this);
         modal.find('.modal-body').html('hiss');
-        
-
       });
+      
 });
 
 

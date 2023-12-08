@@ -1,4 +1,4 @@
-@extends('layouts.restaurant')
+@extends('layouts.restaurant_notify')
 @section('title', __( 'restaurant.kitchen' ))
 
 @section('content')
@@ -53,6 +53,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
@@ -81,6 +82,7 @@
                                 if(result.success == true){
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
+                                    location.reload();
                                 } else {
                                     toastr.error(result.msg);
                                 }
