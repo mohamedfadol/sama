@@ -29,21 +29,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 <?php $__empty_1 = true; $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 
         <?php
-            $count_sell_line = count($order->sell_lines);
-            $count_cooked = count($order->sell_lines->where('res_line_order_status', 'cooked'));
-            $count_served = count($order->sell_lines->where('res_line_order_status', 'served'));
-            $count_received= count($order->sell_lines->where('res_line_order_status', 'received'));
-            $order_status =  'received';
-            if($count_cooked == $count_sell_line) {
-                    $order_status =  'cooked';
-            } else if($count_served == $count_sell_line) {
-                    $order_status =  'served';
-            } else if ($count_served > 0 && $count_served < $count_sell_line) {
-                    $order_status =  'partial_served';
-            } else if ($count_cooked > 0 && $count_cooked < $count_sell_line) {
-                    $order_status =  'partial_cooked';
-            }
-            
+            $status =  $order->lineDetails->where('transaction_id', $order->id)->first()->status ?? null;
         ?>
 	<div class="col-md-3 col-xs-6 order_div">
 		<div class="small-box bg-gray">
@@ -79,7 +65,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                     <?php endif; ?>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <?php if($sell_line->res_line_order_status  != 'cooked'): ?>     
+                                    <?php if($sell_line->res_line_order_status  != 'cooked' && $sell_line->res_line_order_status  != 'done'): ?>     
                                         <span class="btn btn-danger" style="padding: 2px;" ><i class="fa fa-check"></i> <?php echo app('translator')->get('restaurant.not_done'); ?></span>
                                     <?php else: ?>
                                         <span class="btn btn-primary" style="padding: 2px;" ><i class="fa fa-check"></i> <?php echo app('translator')->get('restaurant.done'); ?></span>
@@ -90,6 +76,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                     </tbody>
             	</table> 
             </div> 
+                <?php if($status == "done"): ?>
                 <div class='share-button'>
                     <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_received_btn" 
                         data-href="<?php echo e(action([\App\Http\Controllers\Restaurant\OrderController::class, 'markAsReceived'], [$order->id]), false); ?>">
@@ -104,6 +91,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             data-container=".view_modal"><?php echo app('translator')->get('restaurant.order_details'); ?> 
                                 <i class="fa fa-arrow-circle-right"></i></a>  
                 </div> 
+                <?php endif; ?>
          </div>
 	</div>
 	<?php if($loop->iteration % 4 == 0): ?>

@@ -29,21 +29,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 @forelse($orders as $order)
 
         @php
-            $count_sell_line = count($order->sell_lines);
-            $count_cooked = count($order->sell_lines->where('res_line_order_status', 'cooked'));
-            $count_served = count($order->sell_lines->where('res_line_order_status', 'served'));
-            $count_received= count($order->sell_lines->where('res_line_order_status', 'received'));
-            $order_status =  'received';
-            if($count_cooked == $count_sell_line) {
-                    $order_status =  'cooked';
-            } else if($count_served == $count_sell_line) {
-                    $order_status =  'served';
-            } else if ($count_served > 0 && $count_served < $count_sell_line) {
-                    $order_status =  'partial_served';
-            } else if ($count_cooked > 0 && $count_cooked < $count_sell_line) {
-                    $order_status =  'partial_cooked';
-            }
-            
+            $status =  $order->lineDetails->where('transaction_id', $order->id)->first()->status ?? null;
         @endphp
 	<div class="col-md-3 col-xs-6 order_div">
 		<div class="small-box bg-gray">
@@ -79,7 +65,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                     @endforelse
                                 </td>
                                 <td style="padding: 2px;">
-                                    @if ($sell_line->res_line_order_status  != 'cooked')     
+                                    @if ($sell_line->res_line_order_status  != 'cooked' && $sell_line->res_line_order_status  != 'done')     
                                         <span class="btn btn-danger" style="padding: 2px;" ><i class="fa fa-check"></i> @lang('restaurant.not_done')</span>
                                     @else
                                         <span class="btn btn-primary" style="padding: 2px;" ><i class="fa fa-check"></i> @lang('restaurant.done')</span>
@@ -90,6 +76,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                     </tbody>
             	</table> 
             </div> 
+                @if($status == "done")
                 <div class='share-button'>
                     <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_received_btn" 
                         data-href="{{action([\App\Http\Controllers\Restaurant\OrderController::class, 'markAsReceived'], [$order->id])}}">
@@ -104,6 +91,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             data-container=".view_modal">@lang('restaurant.order_details') 
                                 <i class="fa fa-arrow-circle-right"></i></a>  
                 </div> 
+                @endif
          </div>
 	</div>
 	@if($loop->iteration % 4 == 0)

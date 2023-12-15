@@ -27,6 +27,7 @@ use App\Events\TransactionPaymentDeleted;
 use App\Events\TransactionPaymentUpdated;
 use App\TransactionSellLinesPurchaseLines;
 use App\Exceptions\AdvanceBalanceNotAvailable;
+use App\LineDetails;
 
 class TransactionUtil extends Util
 {
@@ -421,7 +422,7 @@ class TransactionUtil extends Util
                 }
 
                 $lines_formatted[] = new TransactionSellLine($line);
-
+                
                 $sell_line_warranties[] = ! empty($product['warranty_id']) ? $product['warranty_id'] : 0;
 
                 //Update purchase order line quantity received
@@ -450,6 +451,7 @@ class TransactionUtil extends Util
         $combo_lines = [];
 
         if (! empty($lines_formatted)) { 
+            // \Log::info($transaction);
             $transaction->sell_lines()->saveMany($lines_formatted);
             $business_id = request()->session()->get('user.business_id');
 
@@ -473,7 +475,6 @@ class TransactionUtil extends Util
                     }
                 }
             }
-            \Log::debug($ids);
             //Combo product lines.
             //$products_value = array_values($products);
             foreach ($lines_formatted as $key => $value) {
@@ -490,10 +491,12 @@ class TransactionUtil extends Util
 
         if (! empty($combo_lines)) {
             $transaction->sell_lines()->saveMany($combo_lines);
+           
         }
 
         if (! empty($modifiers_formatted)) {
             $transaction->sell_lines()->saveMany($modifiers_formatted);
+            
         }
 
         if ($return_deleted) {

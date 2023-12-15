@@ -75,6 +75,7 @@ class ComposerStaticInitc24849ce517e595851d0c0a3e2c94573
         ),
         'Z' => 
         array (
+            'Znck\\Eloquent\\' => 14,
             'ZipStream\\' => 10,
         ),
         'Y' => 
@@ -315,6 +316,10 @@ class ComposerStaticInitc24849ce517e595851d0c0a3e2c94573
         'libphonenumber\\' => 
         array (
             0 => __DIR__ . '/..' . '/giggsey/libphonenumber-for-php/src',
+        ),
+        'Znck\\Eloquent\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/staudenmeir/belongs-to-through/src',
         ),
         'ZipStream\\' => 
         array (
@@ -1024,6 +1029,7 @@ class ComposerStaticInitc24849ce517e595851d0c0a3e2c94573
         'App\\CashRegisterTransaction' => __DIR__ . '/../..' . '/app/CashRegisterTransaction.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Charts\\CommonChart' => __DIR__ . '/../..' . '/app/Charts/CommonChart.php',
+        'App\\CompleteOrder' => __DIR__ . '/../..' . '/app/CompleteOrder.php',
         'App\\Console\\Commands\\AutoSendPaymentReminder' => __DIR__ . '/../..' . '/app/Console/Commands/AutoSendPaymentReminder.php',
         'App\\Console\\Commands\\CreateDummyBusiness' => __DIR__ . '/../..' . '/app/Console/Commands/CreateDummyBusiness.php',
         'App\\Console\\Commands\\MapPurchaseSell' => __DIR__ . '/../..' . '/app/Console/Commands/MapPurchaseSell.php',
@@ -1143,6 +1149,7 @@ class ComposerStaticInitc24849ce517e595851d0c0a3e2c94573
         'App\\InvoiceLayout' => __DIR__ . '/../..' . '/app/InvoiceLayout.php',
         'App\\InvoiceScheme' => __DIR__ . '/../..' . '/app/InvoiceScheme.php',
         'App\\Kitchen' => __DIR__ . '/../..' . '/app/Kitchen.php',
+        'App\\LineDetails' => __DIR__ . '/../..' . '/app/LineDetails.php',
         'App\\Listeners\\AddAccountTransaction' => __DIR__ . '/../..' . '/app/Listeners/AddAccountTransaction.php',
         'App\\Listeners\\DeleteAccountTransaction' => __DIR__ . '/../..' . '/app/Listeners/DeleteAccountTransaction.php',
         'App\\Listeners\\UpdateAccountTransaction' => __DIR__ . '/../..' . '/app/Listeners/UpdateAccountTransaction.php',
@@ -12222,6 +12229,9 @@ class ComposerStaticInitc24849ce517e595851d0c0a3e2c94573
         'ZipStream\\Option\\Version' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/Version.php',
         'ZipStream\\Stream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Stream.php',
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
+        'Znck\\Eloquent\\Relations\\BelongsToThrough' => __DIR__ . '/..' . '/staudenmeir/belongs-to-through/src/Relations/BelongsToThrough.php',
+        'Znck\\Eloquent\\Traits\\BelongsToThrough' => __DIR__ . '/..' . '/staudenmeir/belongs-to-through/src/Traits/BelongsToThrough.php',
+        'Znck\\Eloquent\\Traits\\HasTableAlias' => __DIR__ . '/..' . '/staudenmeir/belongs-to-through/src/Traits/HasTableAlias.php',
         'libphonenumber\\AlternateFormatsCountryCodeSet' => __DIR__ . '/..' . '/giggsey/libphonenumber-for-php/src/AlternateFormatsCountryCodeSet.php',
         'libphonenumber\\AsYouTypeFormatter' => __DIR__ . '/..' . '/giggsey/libphonenumber-for-php/src/AsYouTypeFormatter.php',
         'libphonenumber\\CountryCodeSource' => __DIR__ . '/..' . '/giggsey/libphonenumber-for-php/src/CountryCodeSource.php',

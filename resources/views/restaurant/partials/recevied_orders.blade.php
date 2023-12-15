@@ -33,93 +33,9 @@
 @endsection
 
 @section('javascript')
+
     <script type="text/javascript">
         $(document).ready(function(){
-
-            $(document).on('click', 'a.markOrderCompleteNotDone', function(e){
-                e.preventDefault();
-                swal({
-                  title: LANG.sure,
-                  icon: "info",
-                  buttons: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        var _this = $(this);
-                        var href = _this.data('href');
-                        $.ajax({
-                            method: "GET",
-                            url: href,
-                            dataType: "json",
-                            success: function(result){
-                                if(result.success == true){
-                                    toastr.success(result.msg);
-                                    _this.closest('.order_div').remove();
-                                    location.reload();
-                                } else {
-                                    toastr.error(result.msg);
-                                }
-                            }
-                        });
-                    }
-                });
-            });
-
-            $(document).on('click', 'a.markOrderCompleteDone', function(e){
-                e.preventDefault();
-                swal({
-                  title: LANG.sure,
-                  icon: "info",
-                  buttons: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        var _this = $(this);
-                        var href = _this.data('href');
-                        $.ajax({
-                            method: "GET",
-                            url: href,
-                            dataType: "json",
-                            success: function(result){
-                                if(result.success == true){
-                                    toastr.success(result.msg);
-                                    _this.closest('.order_div').remove();
-                                    location.reload();
-                                } else {
-                                    toastr.error(result.msg);
-                                }
-                            }
-                        });
-                    }
-                });
-            });
-
-            $(document).on('click', 'a.mark_as_cooked_btn', function(e){
-                e.preventDefault();
-                swal({
-                  title: LANG.sure,
-                  icon: "info",
-                  buttons: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        var _this = $(this);
-                        var href = _this.data('href');
-                        $.ajax({
-                            method: "GET",
-                            url: href,
-                            dataType: "json",
-                            success: function(result){
-                                if(result.success == true){
-                                    toastr.success(result.msg);
-                                    _this.closest('.order_div').remove();
-                                    location.reload();
-                                } else {
-                                    toastr.error(result.msg);
-                                }
-                            }
-                        });
-                    }
-                });
-            });
-
 
             $(document).on('click', 'a.back_to_kitchen_btn', function(e){
                 e.preventDefault();

@@ -13,7 +13,10 @@
             <a href="<?php echo e(route('kitchen.show',$kitchen->id), false); ?>">
                 <div class="inner text-center">
                     <div <?php if(empty($for_ledger)): ?> class="bg-green  text-center" <?php endif; ?> style="padding: 5px;"><?php echo e(__('restaurant.kitchen_name'), false); ?></div>
-                    <span  style="padding: 20px;"><?php echo e($kitchen->name, false); ?></span>
+                    <span  style="padding: 20px;"><?php echo e($kitchen->name, false); ?>   <?php echo e($kitchen->sell_lines
+                                                                            ->where('res_line_order_status','!=','cooked')
+                                                                            ->where('res_line_order_status','!=','delivered')
+                                                                            ->where('res_line_order_status','!=','done')->count(), false); ?></span> 
                 </div>
             </a>
          </div>

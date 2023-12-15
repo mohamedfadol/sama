@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaction extends Model
 {
+    use BelongsToThrough;
     use HasFactory;
     //Transaction types = ['purchase','sell','expense','stock_adjustment','sell_transfer','purchase_transfer','opening_stock','sell_return','opening_balance','purchase_return', 'payroll', 'expense_refund', 'sales_order', 'purchase_order']
 
@@ -48,6 +50,11 @@ class Transaction extends Model
         return $this->hasMany(\App\TransactionSellLine::class);
     }
 
+    public function lineDetails() 
+    { 
+        return $this->hasOne(\App\LineDetails::class, 'transaction_id');
+    }
+    
     public function contact()
     {
         return $this->belongsTo(\App\Contact::class, 'contact_id');

@@ -27,6 +27,11 @@ class Kitchen extends Model
         return $this->belongsTo(\App\Category::class);
     }
 
+    public function lineDetails($transaction_id) 
+    { 
+        return $this->hasOne(\App\LineDetails::class, 'kitchen_id')->where('transaction_id',$transaction_id)->first();
+    }
+
     public function sell_lines() {
         return $this->hasMany(\App\TransactionSellLine::class, 'kitchen_id');    
     }

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '09779fdb9561c745da023d3d62b3c36b0090cd83',
+        'reference' => '546cb4397755138f367216226662a4b237dcb79a',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -568,7 +568,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '09779fdb9561c745da023d3d62b3c36b0090cd83',
+            'reference' => '546cb4397755138f367216226662a4b237dcb79a',
             'dev_requirement' => false,
         ),
         'laravel/legacy-factories' => array(
@@ -1673,6 +1673,15 @@
             'install_path' => __DIR__ . '/../srmklive/paypal',
             'aliases' => array(),
             'reference' => '0090adfe44bfff7fe14cf3ee0f8df56d72cccb59',
+            'dev_requirement' => false,
+        ),
+        'staudenmeir/belongs-to-through' => array(
+            'pretty_version' => 'v2.12.1',
+            'version' => '2.12.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../staudenmeir/belongs-to-through',
+            'aliases' => array(),
+            'reference' => '8316d274db603f63b16bb1c67379b0fa73209d98',
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(

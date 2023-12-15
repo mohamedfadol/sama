@@ -6,7 +6,7 @@
 <section class="content min-height-90hv no-print">
 <div class="row">
     <div class="col-md-12 text-center">
-        <h3>@lang( 'restaurant.all_orders' ) - @lang( 'restaurant.kitchen' )  {{$kitchen_name}}</h3>
+        <h3>@lang( 'restaurant.all_orders' ) - @lang( 'restaurant.kitchen' )  {{$kitchen->name}}</h3>
     </div>
 </div>
 	<div class="box">
@@ -21,6 +21,7 @@
         <div class="box-body">
             <input type="hidden" id="orders_for" value="kitchen">
         	<div class="row" id="orders_div"> 
+                
              @include('restaurant.partials.edit_show_orders')   
             </div>
         </div>
@@ -33,8 +34,40 @@
 @endsection
 
 @section('javascript')
+
+
     <script type="text/javascript">
         $(document).ready(function(){
+
+            $(document).on('click', 'a.mark_as_all_cooked_btn', function(e){
+                e.preventDefault();
+                swal({
+                  title: LANG.sure,
+                  icon: "info",
+                  buttons: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        var _this = $(this);
+                        var href = _this.data('href');
+                        $.ajax({
+                            method: "GET",
+                            url: href,
+                            dataType: "json",
+                            success: function(result){
+                                if(result.success == true){
+                                    toastr.success(result.msg);
+                                    _this.closest('.order_div').remove();
+                                    location.reload();
+                                } else {
+                                    toastr.error(result.msg);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            
             $(document).on('click', 'a.mark_as_cooked_btn', function(e){
                 e.preventDefault();
                 swal({

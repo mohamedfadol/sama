@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restaurant;
 use App\Kitchen;
 use App\Category;
 use App\Utils\Util;
+use App\Transaction;
 use App\CompleteOrder;
 use App\BusinessLocation;
 use App\SellingPriceGroup;
@@ -47,8 +48,7 @@ class KitchenController extends Controller
     public function index()
     {
         $business_id = request()->session()->get('user.business_id');
-        $kitchens = Kitchen::whereHas('sell_lines',function ($q){
-            $q->where('kitchen_id', '!=', '0');},'>=',1)->where('business_id', $business_id)->get();
+        $kitchens = Kitchen::where('business_id', $business_id)->get();
         return view('restaurant.kitchen.index', compact('kitchens'));
     }
 
@@ -85,11 +85,10 @@ class KitchenController extends Controller
 
     public function show($id)
     {
+        $kitchen = Kitchen::find($id);
         $business_id = request()->session()->get('user.business_id');
-        $orders = $this->restUtil->getAllOrders($business_id, ['line_order_status' => 'received'],$id);
-        // dd($orders);
-        $kitchen_name = Kitchen::find($id)->name;
-        return view('restaurant.kitchen.ketchen_home', compact('orders','kitchen_name'));   
+        $orders = $this->restUtil->getAllOrders($business_id, ['line_order_status' => 'received'],$kitchen->id);
+        return view('restaurant.kitchen.ketchen_home', compact('orders','kitchen','id'));   
     }
 
 
@@ -234,19 +233,76 @@ class KitchenController extends Controller
     {
         try {
             $business_id = request()->session()->get('user.business_id');
-            $sl = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
-                        ->where('t.business_id', $business_id)
-                        ->where('transaction_sell_lines.id', $id)
-                        ->update(['res_line_order_status' => 'cooked']);
-
-            $modefiers =  TransactionSellLine::
-            leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+            $tline = TransactionSellLine::find($id);
+            $tline->update(['res_line_order_status' => 'cooked']);
+            TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
                         ->where('parent_sell_line_id', '=',  $id)
                         ->update(['res_line_order_status' => 'cooked']);
-                     
-                        $msgs = 'New Order Coming ...';
-                        event(new NewOrdersEvent($msgs));
+
+            $t = Transaction::find($tline->transaction_id);
+            $t_Lines = TransactionSellLine::where('transaction_id',$tline->transaction_id)
+                                            ->whereNull('res_line_order_status')
+                                            ->orWhereNotNull('res_line_order_status')
+                                                                        /* != */
+                                            ->where('res_line_order_status','<>','done')  
+                                            // ->where('res_line_order_status','<>','returned')  
+                                            ->where('res_line_order_status','<>','cooked'); 
+                                              
+            if($t_Lines->count() > 0):
+            else:
+                DB::table('order_status')->where('transaction_id',$tline->transaction_id)->update(['status' => 'done']);
+                TransactionSellLine::where('transaction_id',$tline->transaction_id)->update(['res_line_order_status' => 'done']);
+                $t->update(['info' => 'done']);
+            endif;
+                $msgs = 'New Order Coming ...';
+                event(new NewOrdersEvent($msgs));
+            $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_cooked')];
+        } catch (\Exception $e) {
+            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+            $output = ['success' => 0,'msg' => trans('messages.something_went_wrong')];
+        }
+
+        return $output;
+    }
+
+
+
+
+    /**
+     * Marks an order as all cooked
+     *
+     * @return json $output
+     */
+    public function markAsAllCooked($id, $kitchen_id)
+    {
+        try {
+            $business_id = request()->session()->get('user.business_id');
+            $tline = TransactionSellLine::find($id);
+            $tline->update(['res_line_order_status' => 'cooked']);
+            TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+                        ->where('t.business_id', $business_id)
+                        ->where('parent_sell_line_id', '=',  $id)
+                        ->where('transaction_sell_lines.kitchen_id', $kitchen_id)
+                        ->update(['res_line_order_status' => 'cooked']);
+
+            $t = Transaction::find($tline->transaction_id);
+            $t_Lines = TransactionSellLine::where('transaction_id',$tline->transaction_id)
+                                            ->whereNull('res_line_order_status')
+                                            ->orWhereNotNull('res_line_order_status')
+                                                                        /* != */
+                                            ->where('res_line_order_status','<>','done')  
+                                            // ->where('res_line_order_status','<>','returned')  
+                                            ->where('res_line_order_status','<>','cooked'); 
+                                              
+            if($t_Lines->count() > 0):
+            else:
+                DB::table('order_status')->where('transaction_id',$tline->transaction_id)->update(['status' => 'done']);
+                TransactionSellLine::where('transaction_id',$tline->transaction_id)->update(['res_line_order_status' => 'done']);
+                $t->update(['info' => 'done']);
+            endif;
+                $msgs = 'New Order Coming ...';
+                event(new NewOrdersEvent($msgs));
             $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_cooked')];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
@@ -275,7 +331,9 @@ class KitchenController extends Controller
                                 ->orWhere('res_line_order_status','served');
                         })
                         ->update(['res_line_order_status' => 'delivered']);
-
+            DB::table('order_status')->where('transaction_id',$id)->update(['status' => 'delivered']);
+            $msgs = 'New Order Coming ...';
+            event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_delivered'),
             ];
@@ -313,14 +371,18 @@ class KitchenController extends Controller
             $business_id = request()->session()->get('user.business_id');
             $sl = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
-                        ->where('transaction_id', $id)
-                        // ->where(function ($q) {
-                        //     $q->whereNull('res_line_order_status')
-                        //         ->orWhere('res_line_order_status', 'received');
-                        // })
-                        ->update(['res_line_order_status' => 'returned']);
-                        $msgs = 'New Order Coming ...';
-                        event(new NewOrdersEvent($msgs));
+                        ->where('transaction_id', $id);
+                
+                     $transaction_sell_lines_ids = $sl->pluck('transaction_sell_lines.id');
+                    TransactionSellLine::whereIn('parent_sell_line_id',$transaction_sell_lines_ids)
+                                            ->update(['res_line_order_status' => 'returned']);
+                    TransactionSellLine::whereIn('id',$transaction_sell_lines_ids)
+                                                ->update(['res_line_order_status' => 'returned']);
+
+                    $sl->update(['info' => 'returned']);
+                    DB::table('order_status')->where('transaction_id',$id)->update(['status' => 'returned']);
+                    $msgs = 'New Order Coming ...';
+                    event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_back_to_cooked'),
             ];
@@ -339,7 +401,6 @@ class KitchenController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $orders = $this->restUtil->getAllOrdersCooked($business_id, ['line_order_status' => 'cooked']);
         $ervedOrders = $this->restUtil->getAllOrdersRerved($business_id, ['line_order_status' => 'served']);
-        
         return view('restaurant.partials.hole_view', compact('orders','ervedOrders'));
     }
 
@@ -364,15 +425,12 @@ class KitchenController extends Controller
                         })
                         ->update(['res_line_order_status' => 'returned']);
 
-            $output = ['success' => 1,
-                'msg' => trans('restaurant.order_successfully_marked_returned'),
+            $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_returned'),
             ];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
 
-            $output = ['success' => 0,
-                'msg' => trans('messages.something_went_wrong'),
-            ];
+            $output = ['success' => 0,'msg' => trans('messages.something_went_wrong'),];
         }
 
         return $output;
@@ -391,14 +449,11 @@ class KitchenController extends Controller
                                 ->where('business_id', $business_id)
                                 ->update(['status' => 'done']);
 
-            $output = ['success' => 1,
-                'msg' => trans('restaurant.order_successfully_marked_done'),
+            $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_done'),
             ];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
-            $output = ['success' => 0,
-                'msg' => trans('messages.something_went_wrong'),
+            $output = ['success' => 0,'msg' => trans('messages.something_went_wrong'),
             ];
         }
 
@@ -412,10 +467,6 @@ class KitchenController extends Controller
      */
     public function refreshOrdersList(Request $request)
     {
-
-        // if (!auth()->user()->can('sell.view')) {
-        //     abort(403, 'Unauthorized action.');
-        // }
         $business_id = request()->session()->get('user.business_id');
         $orders_for = $request->orders_for;
         $filter = [];

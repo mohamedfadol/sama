@@ -13,7 +13,11 @@
             <a href="{{route('kitchen.show',$kitchen->id)}}">
                 <div class="inner text-center">
                     <div @if(empty($for_ledger)) class="bg-green  text-center" @endif style="padding: 5px;">{{ __('restaurant.kitchen_name') }}</div>
-                    <span  style="padding: 20px;">{{ $kitchen->name }}</span>
+                    <span  style="padding: 20px;">{{ $kitchen->name }}   {{$kitchen->sell_lines
+                                                                            ->where('res_line_order_status','!=','cooked')
+                                                                            ->where('res_line_order_status','!=','delivered')
+                                                                            ->where('res_line_order_status','!=','done')->count()
+                                                                            }}</span> 
                 </div>
             </a>
          </div>

@@ -124,7 +124,7 @@ return [
     'status' => 'Status',
     'done' => 'Done',
     'not_done' => 'Not Done',
-    'kitchen_name' => 'Kitchen Name',
+    'kitchen_name' => 'Order Done',
     'kitchen_name' => 'Kitchen Name',
 
 ];

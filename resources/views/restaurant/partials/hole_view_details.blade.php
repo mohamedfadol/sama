@@ -5,7 +5,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 .small-box p {font-size: 12px;font-size: 12px;text-wrap: nowrap;display: inline;padding: 5px;background-color: lightskyblue;border-radius: 3px;}
 .small-box .ready{background-color: #60c9a6;}
 .share-button{padding: 5px;}
-.vl{border-left: 4px solid red;height: 200px;position: absolute;left: 50%;margin-left: -3px;top: 0;}
+.vl{border-left: 2px solid red;height: -webkit-fill-available;position: absolute;left: 50%;margin-left: -3px;top: 0;}
 .heart {animation: animateHeart 1.2s infinite;}
 @keyframes animateHeart {0% {transform: scale(0.8); }50% {transform: scale(0.8);}100% {transform: scale(1.5);}}
 </style>
@@ -41,9 +41,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                 </div>
             @endif
         @empty
-        <div class="col-md-12">
-            <h4 class="text-center">@lang('restaurant.no_orders_found')</h4>
-        </div>
         @endforelse
     </div>
 
@@ -79,9 +76,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                 </div>
             @endif
         @empty
-            <div class="col-md-12">
-                <h4 class="text-center">@lang('restaurant.no_orders_found')</h4>
-            </div>
         @endforelse
     </div>
 </div>

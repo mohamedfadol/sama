@@ -39,7 +39,39 @@
 
 <?php $__env->startSection('javascript'); ?>
     <script type="text/javascript">
+
+
         $(document).ready(function(){
+
+            $(document).on('click', 'a.mark_as_all_cooked_btn', function(e){
+                e.preventDefault();
+                swal({
+                  title: LANG.sure,
+                  icon: "info",
+                  buttons: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        var _this = $(this);
+                        var href = _this.data('href');
+                        $.ajax({
+                            method: "GET",
+                            url: href,
+                            dataType: "json",
+                            success: function(result){
+                                if(result.success == true){
+                                    toastr.success(result.msg);
+                                    _this.closest('.order_div').remove();
+                                    location.reload();
+                                } else {
+                                    toastr.error(result.msg);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+
             $(document).on('click', 'a.mark_as_cooked_btn', function(e){
                 e.preventDefault();
                 swal({
@@ -116,6 +148,7 @@
                                     toastr.success(result.msg);
                                     _this.closest('.order_div').remove();
                                     location.reload();
+                                    console.log('lod');
                                 } else {
                                     toastr.error(result.msg);
                                 }

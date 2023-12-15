@@ -71,7 +71,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+    Route::get('clear', function() {
+        Artisan::call('cache:clear');
+        Artisan::call('route:cache');
+    })->name('clear');
 include_once 'install_r.php';
 
 Route::middleware(['setData'])->group(function () {
@@ -433,6 +436,7 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
         
         Route::get('/kitchen-hole-view-page', [Restaurant\KitchenController::class, 'viewPage'])->name('kitchen.hole.view.page');
         Route::get('/kitchen/mark-as-cooked/{id}', [Restaurant\KitchenController::class, 'markAsCooked']);
+        Route::get('/orders/mark-as-cooked/{id}/{kitchen_id}', [Restaurant\KitchenController::class, 'markAsAllCooked']);
         Route::get('/kitchen/back-to-kitchen/{id}', [Restaurant\KitchenController::class, 'backToKitchen']);
         Route::get('/kitchen/order-back-to-kitchen', [Restaurant\KitchenController::class, 'orderBackToKitchen'])->name('kitchen.order.back.to-kitchen');
         Route::get('/kitchen/kitchen-order-recevied', [Restaurant\KitchenController::class, 'orderRecevied'])->name('kitchen.order.recevied');
@@ -442,8 +446,10 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
         Route::post('/refresh-line-orders-list', [Restaurant\KitchenController::class, 'refreshLineOrdersList']);
 
         Route::get('/orders', [Restaurant\OrderController::class, 'index']);
-        Route::get('/orders/mark-as-served/{id}', [Restaurant\OrderController::class, 'markAsServed']);
+        Route::get('/orders/mark-as-served/{id}/{kitchen_id}', [Restaurant\OrderController::class, 'markAsServed']);
         Route::get('/orders/mark-as-received/{id}', [Restaurant\OrderController::class, 'markAsReceived']);
+        Route::get('/orders/mark-as-cooked/{id}/{kitchen_id}', [Restaurant\OrderController::class, 'markAsAllCooked']);
+        Route::get('/orders/mark-as-order-done/{id}', [Restaurant\OrderController::class, 'markAsOrderDone']);
         Route::get('/data/get-pos-details', [Restaurant\DataController::class, 'getPosDetails']);
         Route::get('/orders/mark-line-order-as-served/{id}', [Restaurant\OrderController::class, 'markLineOrderAsServed']);
         Route::get('/print-line-order', [Restaurant\OrderController::class, 'printLineOrder']);

@@ -25,7 +25,7 @@
         <h3><?php echo app('translator')->get( 'restaurant.hole_views' ); ?> - <?php echo app('translator')->get( 'restaurant.orders' ); ?></h3>
     </div>
 </div>
-	<div class="box">
+	<div class="box" style="height: 100%;">
         <div class="box-body">
             <input type="hidden" id="orders_for" value="kitchen">
         	<div class="row" id="orders_div"> 

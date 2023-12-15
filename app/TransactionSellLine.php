@@ -37,6 +37,11 @@ class TransactionSellLine extends Model
             ->where('children_type', 'modifier');
     }
 
+    public function lineDetails() 
+    { 
+        return $this->hasMany(\App\LineDetails::class, 'line_id');
+    }
+
     /**
      * The kitchens that belong to the.
      */

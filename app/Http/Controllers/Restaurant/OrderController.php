@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Restaurant;
 
-use App\TransactionSellLine;
 use App\User;
-use App\Utils\RestaurantUtil;
 use App\Utils\Util;
+use App\Transaction;
+use App\TransactionSellLine;
 use Illuminate\Http\Request;
+use App\Utils\RestaurantUtil;
 use Illuminate\Http\Response;
+use App\Events\NewOrdersEvent;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
  
 class OrderController extends Controller
 {
@@ -72,30 +75,34 @@ class OrderController extends Controller
      *
      * @return json $output
      */
-    public function markAsServed($id)
+    public function markAsServed($id,$kitchen_id)
     {
-        // if (!auth()->user()->can('sell.update')) {
-        //     abort(403, 'Unauthorized action.');res_line_order_status
-        // }
-        // \Log::alert($id);
         try {
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
             $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
-                        ->where('transaction_sell_lines.id', $id);
-
+                        ->where('transaction_id', $id)
+                        ->where('transaction_sell_lines.kitchen_id', $kitchen_id);
+            $transaction_sell_lines_ids = $query->pluck('transaction_sell_lines.id');
             if ($this->restUtil->is_service_staff($user_id)) {
                 $query->where('res_waiter_id', $user_id);
             }
+            
             $query->update(['res_line_order_status' => 'served']);
 
-            $modefiers =  TransactionSellLine::
+            TransactionSellLine::
             leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
-                        ->where('parent_sell_line_id', '=',  $id)
+                        ->whereIn('parent_sell_line_id',$transaction_sell_lines_ids)
                         ->update(['res_line_order_status' => 'served']);
-
+            DB::table('order_status')->insert(
+                            ['transaction_id' => $id ,
+                            'kitchen_id' => $kitchen_id,
+                            'status' => 'served'
+                            ]);
+            $msgs = 'New Order Coming ...';
+            event(new NewOrdersEvent($msgs));
             $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_served')];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
@@ -130,8 +137,45 @@ class OrderController extends Controller
             }
 
             $query->update(['res_line_order_status' => 'delivered']);
+            DB::table('order_status')->where('transaction_id',$id)->delete();
+            $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_delivered'),];
+        } catch (\Exception $e) {
+            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+
+            $output = ['success' => 0,
+                'msg' => trans('messages.something_went_wrong'),
+            ];
+        }
+
+        return $output;
+    }
+    
+
+            /**
+     * Marks an order as received
+     *
+     * @return json $output
+     */
+    public function markAsOrderDone($id)
+    {
+        // if (!auth()->user()->can('sell.update')) {
+        //     abort(403, 'Unauthorized action.');
+        // }
+        try {
+            $business_id = request()->session()->get('user.business_id');
+            $user_id = request()->session()->get('user.id');
+
+            $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+                        ->where('t.business_id', $business_id)
+                        ->where('transaction_id', $id);
+
+            if ($this->restUtil->is_service_staff($user_id)) {
+                $query->where('res_waiter_id', $user_id);
+            }
+
+            $query->update(['res_line_order_status' => 'done']);
             $output = ['success' => 1,
-                'msg' => trans('restaurant.order_successfully_marked_delivered'),
+                'msg' => trans('restaurant.order_successfully_marked_done'),
             ];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
@@ -143,6 +187,102 @@ class OrderController extends Controller
 
         return $output;
     }
+    
+    /**
+     * Marks an order as received
+     *
+     * @return json $output
+     */
+    public function markAsCooked($id)
+    {
+        // if (!auth()->user()->can('sell.update')) {
+        //     abort(403, 'Unauthorized action.');
+        // }
+        try {
+            $business_id = request()->session()->get('user.business_id');
+            $user_id = request()->session()->get('user.id');
+
+            $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+                        ->where('t.business_id', $business_id)
+                        ->where('transaction_id', $id);
+
+            if ($this->restUtil->is_service_staff($user_id)) {
+                $query->where('res_waiter_id', $user_id);
+            }
+
+            $query->update(['info' => 'cooked']);
+            $output = ['success' => 1,
+                'msg' => trans('restaurant.order_successfully_marked_cooked'),
+            ];
+        } catch (\Exception $e) {
+            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+
+            $output = ['success' => 0,
+                'msg' => trans('messages.something_went_wrong'),
+            ];
+        }
+
+        return $output;
+    }
+
+
+        /**
+     * Marks an order as received
+     *
+     * @return json $output
+     */
+    public function markAsAllCooked($id, $kitchen_id)
+    {
+        try {
+            $business_id = request()->session()->get('user.business_id');
+            $user_id = request()->session()->get('user.id');
+            $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+                        ->where('t.business_id', $business_id)
+                        ->where('transaction_id', $id)
+                        ->where('transaction_sell_lines.kitchen_id', $kitchen_id);
+            $transaction_sell_lines_ids = $query->pluck('transaction_sell_lines.id');
+            if ($this->restUtil->is_service_staff($user_id)) {
+                $query->where('res_waiter_id', $user_id);
+            }
+            $query->update(['res_line_order_status' => 'cooked']);
+
+            TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+                                ->where('t.business_id', $business_id)
+                                ->where('kitchen_id', $kitchen_id)
+                                ->whereIn('parent_sell_line_id',$transaction_sell_lines_ids)
+                                ->update(['res_line_order_status' => 'cooked']);
+
+            $t = Transaction::find($id);
+            $t_Lines = TransactionSellLine::where('transaction_id',$id)
+                                            ->whereNull('res_line_order_status')
+                                            ->orWhereNotNull('res_line_order_status')
+                                                                        /* != */
+                                            ->where('res_line_order_status','<>','done')  
+                                            // ->where('res_line_order_status','<>','returned')  
+                                            ->where('res_line_order_status','<>','cooked'); 
+                                                
+            if($t_Lines->count() > 0):
+            else:
+                DB::table('order_status')->where('transaction_id',$id)->update(['status' => 'done']);
+                TransactionSellLine::where('transaction_id',$id)->update(['res_line_order_status' => 'done']);
+                $t->update(['info' => 'done']);
+            endif;
+
+            $msgs = 'New Order Coming ...';
+            event(new NewOrdersEvent($msgs));
+
+            $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_cooked')];
+        } catch (\Exception $e) {
+            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+
+            $output = ['success' => 0,
+                'msg' => trans('messages.something_went_wrong'),
+            ];
+        }
+
+        return $output;
+    }
+
     
     /**
      * Marks an line order as served

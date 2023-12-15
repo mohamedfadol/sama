@@ -21,17 +21,12 @@ class RestaurantUtil extends Util
      */
     public function getAllOrders($business_id, $filter = [],$kitchen_id)
     {
-        // dd($kitchen_id);
         $query = Transaction::leftJoin('contacts', 'transactions.contact_id', '=', 'contacts.id')
                 ->leftjoin('business_locations AS bl','transactions.location_id','=','bl.id')
                 ->leftjoin('res_tables AS rt','transactions.res_table_id','=','rt.id')
-                // ->leftjoin('transaction_sell_lines AS tsl','transactions.id','=','tsl.transaction_id')
                 ->where('transactions.business_id', $business_id)
-                // ->where('tsl.kitchen_id', $kitchen_id)
-                
                 ->where('transactions.type', 'sell')
                 ->where('transactions.status', 'final');
-        // ->where('transactions.res_order_status', '!=' ,'served');
 
         if (empty($filter['order_status'])) {
             $query->where(function ($q) {
@@ -41,32 +36,14 @@ class RestaurantUtil extends Util
         }
 
         //For new orders order_status is 'received'
-        if (! empty($filter['order_status']) && $filter['order_status'] == 'received') {
-            $query->whereNull('res_order_status');
-        }
-
         if (! empty($filter['line_order_status'])) {
             if ($filter['line_order_status'] == 'received') {
                 $query->whereHas('sell_lines', function ($q) use($kitchen_id){
-                    $q->whereNull('res_line_order_status')
-                    ->where('kitchen_id', $kitchen_id)
-                    // ->orWhere('res_line_order_status', '!=', 'cooked')
-                        ->orWhere('res_line_order_status','returned')
-                        ->orWhere('res_line_order_status','served');
-                }, '>=', 1);
-            }
-
-            if ($filter['line_order_status'] == 'cooked') {
-                $query->whereHas('sell_lines', function ($q) {
-                    $q->where('res_line_order_status', '!=', 'cooked')
-                    ->where('res_line_order_status', '!=', 'delivered');
-                }, '=', 0);
-            }
-
-            if ($filter['line_order_status'] == 'served') {
-                $query->whereHas('sell_lines', function ($q) {
-                    $q->where('res_line_order_status', '!=', 'served');
-                }, '=', 0);
+                    $q->where('kitchen_id', $kitchen_id)
+                    ->where('res_line_order_status','!=','done')
+                    ->where('res_line_order_status','!=','delivered')
+                    ->orWhereNull('res_line_order_status');
+                });
             }
         }
 
@@ -85,9 +62,8 @@ class RestaurantUtil extends Util
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) use($kitchen_id){
-            $q->where('kitchen_id','=', $kitchen_id)
-            // ->orWhereNull('kitchen_id')
-            ;}, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+                    $q->where('kitchen_id', $kitchen_id);
+            }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
@@ -130,6 +106,7 @@ class RestaurantUtil extends Util
                 $query->whereHas('sell_lines', function ($q) {
                     
                     $q->where('res_line_order_status','received')
+                    ->orWhere('res_line_order_status', 'done')
                       ->orWhere('res_line_order_status', 'cooked');
                 }, '>=', 1);
             }
@@ -145,8 +122,8 @@ class RestaurantUtil extends Util
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
-            $q->where('res_line_order_status','cooked')
-                ->orWhere('res_line_order_status','!=', 'cooked');
+            // $q->where('res_line_order_status','cooked')
+                // ->orWhere('res_line_order_status','!=', 'cooked');
         }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
@@ -183,8 +160,8 @@ class RestaurantUtil extends Util
         if (! empty($filter['line_order_status'])) {
             if ($filter['line_order_status'] == 'cooked') {
                 $query->whereHas('sell_lines', function ($q) {
-                    $q->where('res_line_order_status', 'cooked')
-                    ->orWhere('res_line_order_status', 'received');
+                    // $q->where('res_line_order_status', 'cooked')
+                    $q->where('res_line_order_status', 'done');
                 }, '>=', 1);
             }
         }
@@ -199,7 +176,8 @@ class RestaurantUtil extends Util
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
-            $q->whereNull('parent_sell_line_id');}, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+            $q->whereNull('parent_sell_line_id');
+        }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
@@ -226,10 +204,11 @@ class RestaurantUtil extends Util
                     'res_tables AS rt',
                     'transactions.res_table_id',
                     '=',
-                    'rt.id'
+                    'rt.id' 
                 )
                 ->where('transactions.business_id', $business_id)
                 ->where('transactions.type', 'sell')
+                // ->where('transactions.info','served')
                 ->where('transactions.status', 'final');
 
         if (! empty($filter['line_order_status'])) {
@@ -250,7 +229,8 @@ class RestaurantUtil extends Util
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
-            $q->whereNull('parent_sell_line_id');}, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+            $q->whereNull('parent_sell_line_id');
+        }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
