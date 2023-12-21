@@ -99,6 +99,7 @@ class OrderController extends Controller
             DB::table('order_status')->insert(
                             ['transaction_id' => $id ,
                             'kitchen_id' => $kitchen_id,
+                            'business_id' => $business_id,
                             'status' => 'served'
                             ]);
             $msgs = 'New Order Coming ...';
@@ -137,7 +138,9 @@ class OrderController extends Controller
             }
 
             $query->update(['res_line_order_status' => 'delivered']);
-            DB::table('order_status')->where('transaction_id',$id)->delete();
+            DB::table('order_status')->where('transaction_id',$id)->where('business_id', $business_id)->delete();
+            $msgs = 'New Order Coming ...';
+            event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_delivered'),];
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
@@ -174,6 +177,8 @@ class OrderController extends Controller
             }
 
             $query->update(['res_line_order_status' => 'done']);
+            $msgs = 'New Order Coming ...';
+            event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_done'),
             ];
@@ -211,9 +216,12 @@ class OrderController extends Controller
             }
 
             $query->update(['info' => 'cooked']);
+            $msgs = 'New Order Coming ...';
+            event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_cooked'),
             ];
+
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
 
@@ -258,12 +266,14 @@ class OrderController extends Controller
                                             ->orWhereNotNull('res_line_order_status')
                                                                         /* != */
                                             ->where('res_line_order_status','<>','done')  
-                                            // ->where('res_line_order_status','<>','returned')  
+                                            ->where('res_line_order_status','<>','returned')
+                                            ->where('res_line_order_status','<>','delivered')   
                                             ->where('res_line_order_status','<>','cooked'); 
                                                 
-            if($t_Lines->count() > 0):
+            if($t_Lines->count() > 0):  
             else:
-                DB::table('order_status')->where('transaction_id',$id)->update(['status' => 'done']);
+                DB::table('order_status')->where('transaction_id',$id)->where('business_id', $business_id)
+                    ->update(['status' => 'done']);
                 TransactionSellLine::where('transaction_id',$id)->update(['res_line_order_status' => 'done']);
                 $t->update(['info' => 'done']);
             endif;

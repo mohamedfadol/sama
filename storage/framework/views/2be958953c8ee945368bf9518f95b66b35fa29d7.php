@@ -56,7 +56,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
             else if ($count_null) {
                 $order_status =  'new';
             }
-            
+            $variations = collect([]);
         ?>
         
         <div class="col-md-3 col-xs-6 order_div" >
@@ -69,17 +69,20 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <span class="new white"><?php echo app('translator')->get('restaurant.new'); ?></span> 
                         </div>
                     <?php endif; ?>
-                    <?php if($status  == 'returned'): ?>
+                    <?php if($status  == 'returned'): ?> 
                         <div class="heart">
                             <span class="new white"><?php echo app('translator')->get('restaurant.returned'); ?></span> 
                         </div>
                     <?php endif; ?>
                 <table class="table no-margin table-bordered table-slim" style="width: 100%;">
+                <?php dump($index); ?>
                     <thead class=" <?php echo e($status  == 'served' ? "order-status-servied" : "order-status-pending", false); ?>" >
                         <tr>
                             <td><?php echo e(__('restaurant.table_no'), false); ?>  <span <?php if(!empty($order->table_name)): ?> class="t-number" <?php endif; ?> ><?php echo e($order->table_name, false); ?></span> </td>
                             <td>#<?php echo e($order->invoice_no, false); ?></td>
-                            <td class="text-center"> <div id="countdown_<?php echo $index; ?>">Loading...</div> </td>
+                            <td class="text-center"> 
+                            <div id="countdown_<?php echo $index; ?>">Loading...</div> 
+                            </td>
                         </tr>
                     </thead>
                     <thead>
@@ -88,9 +91,8 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <th><?php echo e(__('sale.qty'), false); ?></th>
                             <th><?php echo e(__('restaurant.notes'), false); ?></th>
                             <?php if($order_status == 'new'): ?>
-                                
                             <?php else: ?>
-                            <th><?php echo e(__('restaurant.status'), false); ?> </th> 
+                                <th><?php echo e(__('restaurant.status'), false); ?> </th> 
                             <?php endif; ?>
                             
                         </tr>
@@ -100,13 +102,14 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <tr> 
                                 <td><?php echo e($sell_line->product->name, false); ?></td>
                                 <td><?php echo e($sell_line->quantity, false); ?></td>
-                                <td>
+                                 <td>
                                     <?php echo e($sell_line->sell_line_note, false); ?> ,
-                                    <?php $__empty_3 = true; $__currentLoopData = $order->sell_lines->whereNotNull('parent_sell_line_id')->where('parent_sell_line_id',$sell_line->id); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_3 = false; ?>
-                                        <span><?php echo e($line->product->name, false); ?></span>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_3): ?>
+                                    <?php if(!empty($sell_line->modifiers)): ?>
+                                        <?php $__currentLoopData = $sell_line->modifiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $modifier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php echo e($modifier->variations->name ?? '', false); ?> &nbsp;|                                        
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php endif; ?>
-                                </td>
+                                 </td>
                                 <?php if($status != null): ?>
                                     <td style="padding: 2px;">
                                         <?php if($sell_line->res_line_order_status == "cooked"): ?>
@@ -121,9 +124,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                     </td>
                                 <?php else: ?>
                                 <?php endif; ?>
-
                             </tr> 
-                            
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_2): ?> 
                         <?php endif; ?>
                     </tbody>
@@ -158,51 +159,28 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
         ?>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
     <div class="col-md-12">
-    <h4 class="text-center"><?php echo app('translator')->get('restaurant.no_orders_found'); ?></h4>
+        <h4 class="text-center"><?php echo app('translator')->get('restaurant.no_orders_found'); ?></h4>
     </div>
     <?php endif; ?>
  
-
-
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        <?php foreach ($orders as $index => $item): ?>
-        var countdown_<?php echo $index; ?> = localStorage.getItem('countdown_<?php echo $index; ?>') || 300; // Default to 5 minutes
-
-        var countdownInterval_<?php echo $index; ?> = setInterval(function () {
-            var minutes = Math.floor(countdown_<?php echo $index; ?> / 60);
-            var seconds = countdown_<?php echo $index; ?> % 60;
-            document.getElementById('countdown_<?php echo $index; ?>').innerHTML = minutes + 'm ' + seconds + 's';
-            countdown_<?php echo $index; ?>++;
-            localStorage.setItem('countdown_<?php echo $index; ?>', countdown_<?php echo $index; ?>);
+        <?php foreach ($orders as $index => $order): ?>
+            var laravelCreatedAt = "<?php echo e($order->created_at->toIso8601String(), false); ?>";
+            var countdownInterval_<?php echo $index; ?> = setInterval(function () {
+            // Convert Laravel created_at to JavaScript Date object
+            var createdAtDate = new Date(laravelCreatedAt);
+            // Get the current system time
+            var now = new Date();
+            // Calculate the difference in milliseconds
+            var difference = now - createdAtDate;
+            // Convert milliseconds to seconds and minutes
+            var seconds = Math.floor(difference / 1000);
+            var minutes = Math.floor(seconds / 60);
+            document.getElementById('countdown_<?php echo $index; ?>').innerHTML = minutes + 'm ' + seconds %60 + 's';
+            // console.log("Minutes: " + minutes + ", Seconds: " + seconds);
         }, 1000);
         <?php endforeach; ?>
-    });
-</script>
+    </script>
 
-<script> 
-     
-        var startTimeInSeconds = (10 * 3600);
-        // Function to format seconds into HH:mm:ss
-        function formatTime(seconds) {
-            var hours = Math.floor(seconds / 3600);
-            var minutes = Math.floor((seconds % 3600) / 60);
-            var remainingSeconds = seconds % 60;
-            return pad(minutes) + ':' + pad(remainingSeconds);
-        }
-
-        // Function to pad single-digit numbers with a leading zero
-        function pad(num) {
-            return num < 10 ? '0' + num : num;
-        }
-
-        // Update the counter every second
-        var interval = setInterval(function() {
-        $('.clock-time').text(formatTime(startTimeInSeconds));
-        startTimeInSeconds++;
-        }, 1000);
-  
-    
-</script>
  
- <?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/edit_show_orders.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/edit_show_orders.blade.php ENDPATH**/ ?>

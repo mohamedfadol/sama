@@ -17,25 +17,14 @@
         <th><?php echo e(__('sale.unit_price'), false); ?></th>
         <th><?php echo e(__('sale.discount'), false); ?></th>
         <th><?php echo e(__('sale.tax'), false); ?></th>
-        <th><?php echo e(__('sale.price_inc_tax'), false); ?></th>
+        <th><?php echo e(__('sale.price_inc_tax'), false); ?></th> 
         <th><?php echo e(__('sale.subtotal'), false); ?></th>
     </tr>
     <?php $__currentLoopData = $sell->sell_lines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sell_line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
             <td><?php echo e($loop->iteration, false); ?></td>
             <td>
-                <?php echo e($sell_line->product->name, false); ?>
-
-                <?php if( $sell_line->product->type == 'variable'): ?>
-                - <?php echo e($sell_line->variations->product_variation->name ?? '', false); ?>
-
-                - <?php echo e($sell_line->variations->name ?? '', false); ?>,
-                <?php endif; ?>
-                <?php echo e($sell_line->variations->sub_sku ?? '', false); ?>
-
-                <?php
-                $brand = $sell_line->product->brand;
-                ?>
+                 
                 <?php if(!empty($brand->name)): ?>
                 , <?php echo e($brand->name, false); ?>
 

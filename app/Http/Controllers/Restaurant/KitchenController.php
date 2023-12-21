@@ -246,12 +246,13 @@ class KitchenController extends Controller
                                             ->orWhereNotNull('res_line_order_status')
                                                                         /* != */
                                             ->where('res_line_order_status','<>','done')  
-                                            // ->where('res_line_order_status','<>','returned')  
+                                            ->where('res_line_order_status','<>','returned') 
+                                            ->where('res_line_order_status','<>','delivered') 
                                             ->where('res_line_order_status','<>','cooked'); 
                                               
             if($t_Lines->count() > 0):
             else:
-                DB::table('order_status')->where('transaction_id',$tline->transaction_id)->update(['status' => 'done']);
+                DB::table('order_status')->where('transaction_id',$tline->transaction_id)->where('business_id', $business_id)->update(['status' => 'done']);
                 TransactionSellLine::where('transaction_id',$tline->transaction_id)->update(['res_line_order_status' => 'done']);
                 $t->update(['info' => 'done']);
             endif;
@@ -292,12 +293,13 @@ class KitchenController extends Controller
                                             ->orWhereNotNull('res_line_order_status')
                                                                         /* != */
                                             ->where('res_line_order_status','<>','done')  
-                                            // ->where('res_line_order_status','<>','returned')  
+                                            ->where('res_line_order_status','<>','returned')
+                                            ->where('res_line_order_status','<>','delivered') 
                                             ->where('res_line_order_status','<>','cooked'); 
                                               
             if($t_Lines->count() > 0):
             else:
-                DB::table('order_status')->where('transaction_id',$tline->transaction_id)->update(['status' => 'done']);
+                DB::table('order_status')->where('transaction_id',$tline->transaction_id)->where('business_id', $business_id)->update(['status' => 'done']);
                 TransactionSellLine::where('transaction_id',$tline->transaction_id)->update(['res_line_order_status' => 'done']);
                 $t->update(['info' => 'done']);
             endif;
@@ -331,7 +333,7 @@ class KitchenController extends Controller
                                 ->orWhere('res_line_order_status','served');
                         })
                         ->update(['res_line_order_status' => 'delivered']);
-            DB::table('order_status')->where('transaction_id',$id)->update(['status' => 'delivered']);
+            DB::table('order_status')->where('transaction_id',$id)->where('business_id', $business_id)->update(['status' => 'delivered']);
             $msgs = 'New Order Coming ...';
             event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,
@@ -380,7 +382,7 @@ class KitchenController extends Controller
                                                 ->update(['res_line_order_status' => 'returned']);
 
                     $sl->update(['info' => 'returned']);
-                    DB::table('order_status')->where('transaction_id',$id)->update(['status' => 'returned']);
+                    DB::table('order_status')->where('transaction_id',$id)->where('business_id', $business_id)->update(['status' => 'returned']);
                     $msgs = 'New Order Coming ...';
                     event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,

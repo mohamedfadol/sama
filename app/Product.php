@@ -72,7 +72,7 @@ class Product extends Model
     /**
      * Get the unit associated with the product.
      */
-    public function unit()
+    public function unit() 
     {
         return $this->belongsTo(\App\Unit::class);
     }

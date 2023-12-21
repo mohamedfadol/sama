@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->integer('transaction_id')->unsigned();
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
+            $table->integer('business_id')->unsigned();
+            $table->foreign('business_id')->references('id')->on('business')->onDelete('cascade');
             $table->unsignedBigInteger('kitchen_id');
             $table->foreign('kitchen_id')->references('id')->on('kitchens')->onDelete('cascade');
             $table->timestamps();

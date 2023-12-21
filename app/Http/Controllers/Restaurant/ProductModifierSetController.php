@@ -74,7 +74,7 @@ class ProductModifierSetController extends Controller
             if (! empty($input['products'])) {
                 $products = $input['products'];
             }
-            $modifer_set->modifier_products()->sync($products);
+            $modifer_set->modifier_products()->sync($products); 
 
             DB::commit();
 

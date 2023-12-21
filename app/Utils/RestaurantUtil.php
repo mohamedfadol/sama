@@ -46,7 +46,7 @@ class RestaurantUtil extends Util
                 });
             }
         }
-
+  
         if (! empty($filter['waiter_id'])) {
             $query->where('transactions.res_waiter_id', $filter['waiter_id']);
         }
@@ -63,7 +63,7 @@ class RestaurantUtil extends Util
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) use($kitchen_id){
                     $q->where('kitchen_id', $kitchen_id);
-            }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+            },'sell_lines.modifiers'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
@@ -117,14 +117,14 @@ class RestaurantUtil extends Util
         }
 
         $orders = $query->select(
-            'transactions.*',
+            'transactions.*', 
             'contacts.name as customer_name',
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
             // $q->where('res_line_order_status','cooked')
                 // ->orWhere('res_line_order_status','!=', 'cooked');
-        }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+        }, 'sell_lines.product','sell_lines.modifiers'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
@@ -177,7 +177,7 @@ class RestaurantUtil extends Util
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
             $q->whereNull('parent_sell_line_id');
-        }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+        }, 'sell_lines.product','sell_lines.modifiers'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
@@ -230,7 +230,7 @@ class RestaurantUtil extends Util
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
             $q->whereNull('parent_sell_line_id');
-        }, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+        }, 'sell_lines.product','sell_lines.modifiers'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
@@ -280,7 +280,7 @@ class RestaurantUtil extends Util
             'bl.name as business_location',
             'rt.name as table_name'
         )->with(['sell_lines' => function ($q) {
-            $q->whereNull('parent_sell_line_id');}, 'sell_lines.product'])->orderBy('created_at', 'desc')->get();
+            $q->whereNull('parent_sell_line_id');}, 'sell_lines.product','sell_lines.modifiers'])->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }

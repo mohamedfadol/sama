@@ -112,7 +112,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 
 
  
-<script>
+<!-- <script>
     function updateClockTime() {
         // Get all elements with the class "clock-time"
         const clockElements = document.querySelectorAll('.clock-time');
@@ -128,4 +128,4 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
     // Call the function immediately to set the initial time
     updateClockTime();
 </script>
- 
+  -->

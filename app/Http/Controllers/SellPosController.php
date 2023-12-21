@@ -1530,7 +1530,7 @@ class SellPosController extends Controller
         if (! auth()->user()->can('sell.delete') && ! auth()->user()->can('direct_sell.delete') && ! auth()->user()->can('so.delete')) {
             abort(403, 'Unauthorized action.');
         }
-
+ 
         if (request()->ajax()) {
             try {
                 $business_id = request()->session()->get('user.business_id');

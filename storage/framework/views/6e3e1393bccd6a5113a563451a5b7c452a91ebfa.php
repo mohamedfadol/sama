@@ -26,7 +26,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 
 @keyframes animate {0% {left: 0;transform: translate(-30%);}50% {left: 0;transform: translate(-50%);}75% {left: 0;transform: translate(-75%);}100% {left: 100%;transform: translate(0);}}
 </style>
-<?php $__empty_1 = true; $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+<?php $__empty_1 = true; $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 
         <?php
             $status =  $order->lineDetails->where('transaction_id', $order->id)->first()->status ?? null;
@@ -36,9 +36,11 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
             <div class="inner">
             	<table class="table no-margin table-bordered table-slim" style="width: 100%;">
                     <thead>
+                        
                         <tr>
                             <td><?php echo e(__('restaurant.table_no'), false); ?><?php echo e($order->table_name, false); ?> </td>
                             <td>#<?php echo e($order->invoice_no, false); ?></td>
+                             
                         </tr>
                     </thead>
                     <thead>
@@ -58,10 +60,10 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                 <td>
                                     <?php echo e($sell_line->sell_line_note, false); ?>  ,
 
-                                    <?php $__empty_2 = true; $__currentLoopData = $order->sell_lines->whereNotNull('parent_sell_line_id')->where('parent_sell_line_id',$sell_line->id); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_2 = false; ?>
-                                        <span><?php echo e($line->product->name, false); ?></span>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_2): ?>
-                                        
+                                    <?php if(!empty($sell_line->modifiers)): ?>
+                                        <?php $__currentLoopData = $sell_line->modifiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $modifier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php echo e($modifier->variations->name ?? '', false); ?> &nbsp;|                                        
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php endif; ?>
                                 </td>
                                 <td style="padding: 2px;">
@@ -75,7 +77,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
             	</table> 
-            </div> 
+            </div>  
                 <?php if($status == "done"): ?>
                 <div class='share-button'>
                     <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_received_btn" 
@@ -111,26 +113,4 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 <?php endif; ?>
 
 
- 
-<script>
-        var startTimeInSeconds = (10 * 3600);
-        // Function to format seconds into HH:mm:ss
-        function formatTime(seconds) {
-            var hours = Math.floor(seconds / 3600);
-            var minutes = Math.floor((seconds % 3600) / 60);
-            var remainingSeconds = seconds % 60;
-            return pad(minutes) + ':' + pad(remainingSeconds);
-        }
-
-        // Function to pad single-digit numbers with a leading zero
-        function pad(num) {
-            return num < 10 ? '0' + num : num;
-        }
-
-        // Update the counter every second
-        var interval = setInterval(function() {
-        $('.clock-time').text(formatTime(startTimeInSeconds));
-        startTimeInSeconds++;
-        }, 1000);
-</script>
- <?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/recevied_orders_details.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/recevied_orders_details.blade.php ENDPATH**/ ?>

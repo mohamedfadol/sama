@@ -56,7 +56,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
             else if ($count_null) {
                 $order_status =  'new';
             }
-            
+            $variations = collect([]);
         @endphp
         
         <div class="col-md-3 col-xs-6 order_div" >
@@ -69,17 +69,20 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <span class="new white">@lang('restaurant.new')</span> 
                         </div>
                     @endif
-                    @if($status  == 'returned')
+                    @if($status  == 'returned') 
                         <div class="heart">
                             <span class="new white">@lang('restaurant.returned')</span> 
                         </div>
                     @endif
                 <table class="table no-margin table-bordered table-slim" style="width: 100%;">
+                @dump($index)
                     <thead class=" {{$status  == 'served' ? "order-status-servied" : "order-status-pending" }}" >
                         <tr>
                             <td>{{ __('restaurant.table_no') }}  <span @if(!empty($order->table_name)) class="t-number" @endif >{{ $order->table_name }}</span> </td>
                             <td>#{{$order->invoice_no}}</td>
-                            <td class="text-center"> <div id="countdown_<?php echo $index; ?>">Loading...</div> </td>
+                            <td class="text-center"> 
+                            <div id="countdown_<?php echo $index; ?>">Loading...</div> 
+                            </td>
                         </tr>
                     </thead>
                     <thead>
@@ -88,9 +91,8 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <th>{{ __('sale.qty') }}</th>
                             <th>{{ __('restaurant.notes') }}</th>
                             @if ($order_status == 'new')
-                                
                             @else
-                            <th>{{ __('restaurant.status') }} </th> 
+                                <th>{{ __('restaurant.status') }} </th> 
                             @endif
                             
                         </tr>
@@ -100,13 +102,14 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                             <tr> 
                                 <td>{{ $sell_line->product->name }}</td>
                                 <td>{{ $sell_line->quantity }}</td>
-                                <td>
+                                 <td>
                                     {{ $sell_line->sell_line_note }} ,
-                                    @forelse ($order->sell_lines->whereNotNull('parent_sell_line_id')->where('parent_sell_line_id',$sell_line->id) as $line)
-                                        <span>{{$line->product->name}}</span>
-                                    @empty
-                                    @endforelse
-                                </td>
+                                    @if(!empty($sell_line->modifiers))
+                                        @foreach($sell_line->modifiers as $modifier)
+                                            {{ $modifier->variations->name ?? ''}} &nbsp;|                                        
+                                        @endforeach
+                                    @endif
+                                 </td>
                                 @if ($status != null)
                                     <td style="padding: 2px;">
                                         @if ($sell_line->res_line_order_status == "cooked")
@@ -121,9 +124,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                     </td>
                                 @else
                                 @endif
-
                             </tr> 
-                            
                             @empty 
                         @endforelse
                     </tbody>
@@ -158,51 +159,27 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
         @endphp
     @empty
     <div class="col-md-12">
-    <h4 class="text-center">@lang('restaurant.no_orders_found')</h4>
+        <h4 class="text-center">@lang('restaurant.no_orders_found')</h4>
     </div>
     @endforelse
  
-
-
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        <?php foreach ($orders as $index => $item): ?>
-        var countdown_<?php echo $index; ?> = localStorage.getItem('countdown_<?php echo $index; ?>') || 300; // Default to 5 minutes
-
-        var countdownInterval_<?php echo $index; ?> = setInterval(function () {
-            var minutes = Math.floor(countdown_<?php echo $index; ?> / 60);
-            var seconds = countdown_<?php echo $index; ?> % 60;
-            document.getElementById('countdown_<?php echo $index; ?>').innerHTML = minutes + 'm ' + seconds + 's';
-            countdown_<?php echo $index; ?>++;
-            localStorage.setItem('countdown_<?php echo $index; ?>', countdown_<?php echo $index; ?>);
+        <?php foreach ($orders as $index => $order): ?>
+            var laravelCreatedAt = "{{ $order->created_at->toIso8601String() }}";
+            var countdownInterval_<?php echo $index; ?> = setInterval(function () {
+            // Convert Laravel created_at to JavaScript Date object
+            var createdAtDate = new Date(laravelCreatedAt);
+            // Get the current system time
+            var now = new Date();
+            // Calculate the difference in milliseconds
+            var difference = now - createdAtDate;
+            // Convert milliseconds to seconds and minutes
+            var seconds = Math.floor(difference / 1000);
+            var minutes = Math.floor(seconds / 60);
+            document.getElementById('countdown_<?php echo $index; ?>').innerHTML = minutes + 'm ' + seconds %60 + 's';
+            // console.log("Minutes: " + minutes + ", Seconds: " + seconds);
         }, 1000);
         <?php endforeach; ?>
-    });
-</script>
+    </script>
 
-<script> 
-     
-        var startTimeInSeconds = (10 * 3600);
-        // Function to format seconds into HH:mm:ss
-        function formatTime(seconds) {
-            var hours = Math.floor(seconds / 3600);
-            var minutes = Math.floor((seconds % 3600) / 60);
-            var remainingSeconds = seconds % 60;
-            return pad(minutes) + ':' + pad(remainingSeconds);
-        }
-
-        // Function to pad single-digit numbers with a leading zero
-        function pad(num) {
-            return num < 10 ? '0' + num : num;
-        }
-
-        // Update the counter every second
-        var interval = setInterval(function() {
-        $('.clock-time').text(formatTime(startTimeInSeconds));
-        startTimeInSeconds++;
-        }, 1000);
-  
-    
-</script>
- 
  

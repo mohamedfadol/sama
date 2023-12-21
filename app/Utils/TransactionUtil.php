@@ -422,7 +422,6 @@ class TransactionUtil extends Util
                 }
 
                 $lines_formatted[] = new TransactionSellLine($line);
-                
                 $sell_line_warranties[] = ! empty($product['warranty_id']) ? $product['warranty_id'] : 0;
 
                 //Update purchase order line quantity received
@@ -451,7 +450,6 @@ class TransactionUtil extends Util
         $combo_lines = [];
 
         if (! empty($lines_formatted)) { 
-            // \Log::info($transaction);
             $transaction->sell_lines()->saveMany($lines_formatted);
             $business_id = request()->session()->get('user.business_id');
 
@@ -4805,7 +4803,7 @@ class TransactionUtil extends Util
                     ->whereIn('type', ['sell', 'sales_order'])
                     ->with(['sell_lines', 'payment_lines'])
                     ->first();
-
+                    
         if (! empty($transaction)) {
             $log_properities = [
                 'id' => $transaction->id,
@@ -4824,7 +4822,7 @@ class TransactionUtil extends Util
                     $this->updateSalesOrderStatus($sales_order_ids);
                 }
 
-                $transaction->delete();
+                $transaction->delete(); 
             } else {
                 $business = Business::findOrFail($business_id);
                 $transaction_payments = $transaction->payment_lines;
@@ -4832,40 +4830,29 @@ class TransactionUtil extends Util
                 $deleted_sell_lines_ids = $deleted_sell_lines->pluck('id')->toArray();
                 $this->deleteSellLines(
                     $deleted_sell_lines_ids,
-                    $transaction->location_id
+                    $transaction->location_id 
                 );
-
                 $this->updateCustomerRewardPoints($transaction->contact_id, 0, $transaction->rp_earned, 0, $transaction->rp_redeemed);
-
                 $transaction->status = 'draft';
                 $business_data = ['id' => $business_id,
                     'accounting_method' => $business->accounting_method,
                     'location_id' => $transaction->location_id,
                 ];
-
                 $this->adjustMappingPurchaseSell('final', $transaction, $business_data, $deleted_sell_lines_ids);
-
                 $sales_order_ids = $transaction->sales_order_ids ?? [];
-
                 if (! empty($sales_order_ids)) {
                     $this->updateSalesOrderStatus($sales_order_ids);
                 }
-
                 //Delete Cash register transactions
                 $transaction->cash_register_payments()->delete();
-
                 $transaction->delete();
-
                 foreach ($transaction_payments as $payment) {
                     event(new TransactionPaymentDeleted($payment));
                 }
             }
         }
 
-        $output = [
-            'success' => true,
-            'msg' => __('lang_v1.sale_delete_success'),
-        ];
+        $output = ['success' => true,'msg' => __('lang_v1.sale_delete_success'),];
 
         return $output;
     }

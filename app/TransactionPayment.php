@@ -16,6 +16,7 @@ class TransactionPayment extends Model
      * @var array
      */
     protected $guarded = ['id'];
+    protected $table = 'transaction_payments';
 
     /**
      * Get the phone record associated with the user.

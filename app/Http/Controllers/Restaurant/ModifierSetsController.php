@@ -38,7 +38,7 @@ class ModifierSetsController extends Controller
             $business_id = request()->session()->get('user.business_id');
 
             $modifer_set = Product::where('business_id', $business_id)
-                            ->where('type', 'modifier')
+                            ->where('type', 'modifier') 
                             ->with(['variations', 'modifier_products']);
 
             return \Datatables::of($modifer_set)

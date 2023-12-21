@@ -15,7 +15,7 @@
 			name="products[{{$index}}][modifier_set_id][]" 
 			value="{{$modifier->product_id}}">
 		</div>
-	@endforeach
+	@endforeach 
 </small>
 @else
 	@foreach($modifiers as $modifier)

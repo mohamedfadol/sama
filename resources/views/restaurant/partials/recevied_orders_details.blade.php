@@ -26,7 +26,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 
 @keyframes animate {0% {left: 0;transform: translate(-30%);}50% {left: 0;transform: translate(-50%);}75% {left: 0;transform: translate(-75%);}100% {left: 100%;transform: translate(0);}}
 </style>
-@forelse($orders as $order)
+@forelse($orders as $index => $order)
 
         @php
             $status =  $order->lineDetails->where('transaction_id', $order->id)->first()->status ?? null;
@@ -36,9 +36,11 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
             <div class="inner">
             	<table class="table no-margin table-bordered table-slim" style="width: 100%;">
                     <thead>
+                        
                         <tr>
                             <td>{{ __('restaurant.table_no') }}{{ $order->table_name }} </td>
                             <td>#{{$order->invoice_no}}</td>
+                             
                         </tr>
                     </thead>
                     <thead>
@@ -58,11 +60,11 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                 <td>
                                     {{ $sell_line->sell_line_note }}  ,
 
-                                    @forelse ($order->sell_lines->whereNotNull('parent_sell_line_id')->where('parent_sell_line_id',$sell_line->id) as $line)
-                                        <span>{{$line->product->name}}</span>
-                                    @empty
-                                        
-                                    @endforelse
+                                    @if(!empty($sell_line->modifiers))
+                                        @foreach($sell_line->modifiers as $modifier)
+                                            {{ $modifier->variations->name ?? ''}} &nbsp;|                                        
+                                        @endforeach
+                                    @endif
                                 </td>
                                 <td style="padding: 2px;">
                                     @if ($sell_line->res_line_order_status  != 'cooked' && $sell_line->res_line_order_status  != 'done')     
@@ -75,7 +77,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         @endforeach
                     </tbody>
             	</table> 
-            </div> 
+            </div>  
                 @if($status == "done")
                 <div class='share-button'>
                     <a href="#" class="btn btn-sm small-box-footer bg-primary mark_as_received_btn" 
@@ -111,26 +113,3 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 @endforelse
 
 
- 
-<script>
-        var startTimeInSeconds = (10 * 3600);
-        // Function to format seconds into HH:mm:ss
-        function formatTime(seconds) {
-            var hours = Math.floor(seconds / 3600);
-            var minutes = Math.floor((seconds % 3600) / 60);
-            var remainingSeconds = seconds % 60;
-            return pad(minutes) + ':' + pad(remainingSeconds);
-        }
-
-        // Function to pad single-digit numbers with a leading zero
-        function pad(num) {
-            return num < 10 ? '0' + num : num;
-        }
-
-        // Update the counter every second
-        var interval = setInterval(function() {
-        $('.clock-time').text(formatTime(startTimeInSeconds));
-        startTimeInSeconds++;
-        }, 1000);
-</script>
- 

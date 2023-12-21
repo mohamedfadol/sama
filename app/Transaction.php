@@ -19,6 +19,8 @@ class Transaction extends Model
      *
      * @var array
      */
+
+    protected $table = 'transactions';
     protected $guarded = ['id'];
 
     /**
@@ -38,8 +40,7 @@ class Transaction extends Model
      *
      * @var string
      */
-    protected $table = 'transactions';
-
+    
     public function purchase_lines()
     {
         return $this->hasMany(\App\PurchaseLine::class);
@@ -60,7 +61,7 @@ class Transaction extends Model
         return $this->belongsTo(\App\Contact::class, 'contact_id');
     }
 
-    public function payment_lines()
+    public function payment_lines() 
     {
         return $this->hasMany(\App\TransactionPayment::class, 'transaction_id');
     }
