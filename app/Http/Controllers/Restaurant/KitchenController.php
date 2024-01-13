@@ -232,6 +232,7 @@ class KitchenController extends Controller
     public function markAsCooked($id)
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $tline = TransactionSellLine::find($id);
             $tline->update(['res_line_order_status' => 'cooked']);
@@ -259,8 +260,10 @@ class KitchenController extends Controller
                 $msgs = 'New Order Coming ...';
                 event(new NewOrdersEvent($msgs));
             $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_cooked')];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+            DB::rollback();
             $output = ['success' => 0,'msg' => trans('messages.something_went_wrong')];
         }
 
@@ -278,6 +281,7 @@ class KitchenController extends Controller
     public function markAsAllCooked($id, $kitchen_id)
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $tline = TransactionSellLine::find($id);
             $tline->update(['res_line_order_status' => 'cooked']);
@@ -306,8 +310,10 @@ class KitchenController extends Controller
                 $msgs = 'New Order Coming ...';
                 event(new NewOrdersEvent($msgs));
             $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_cooked')];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+            DB::rollback();
             $output = ['success' => 0,'msg' => trans('messages.something_went_wrong')];
         }
 
@@ -315,7 +321,7 @@ class KitchenController extends Controller
     }
 
 
-        /**
+    /**
      * Marks an order as delivered
      *
      * @return json $output
@@ -323,6 +329,7 @@ class KitchenController extends Controller
     public function markAsDeliveried($id)
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $sl = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
@@ -339,9 +346,10 @@ class KitchenController extends Controller
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_delivered'),
             ];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            DB::rollback();
             $output = ['success' => 0,
                 'msg' => trans('messages.something_went_wrong'),
             ];
@@ -351,7 +359,7 @@ class KitchenController extends Controller
     }
 
     /**
-    * change res_line_order_status to null in order to back Kitchen view
+    * change order status to returned in order to back Kitchen view
     *
     * @return json $output
     */
@@ -362,14 +370,15 @@ class KitchenController extends Controller
         return view('restaurant.partials.orders_back', compact('orders'));
     }
  
-        /**
-    * change res_line_order_status to null in order to back Kitchen view
+    /**
+    * change order status to returned in order to back Kitchen view
     *
     * @return json $output
     */
     public function backToKitchen($id) 
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $sl = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
@@ -388,9 +397,10 @@ class KitchenController extends Controller
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_back_to_cooked'),
             ];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            DB::rollback();
             $output = ['success' => 0,
                 'msg' => trans('messages.something_went_wrong'),
             ];
@@ -415,6 +425,7 @@ class KitchenController extends Controller
     public function markOrderCompleteDone($id)
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $sl = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
@@ -429,9 +440,10 @@ class KitchenController extends Controller
 
             $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_returned'),
             ];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            DB::rollback();
             $output = ['success' => 0,'msg' => trans('messages.something_went_wrong'),];
         }
 
@@ -446,6 +458,7 @@ class KitchenController extends Controller
     public function markOrderCompleteNotDone($id)
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             CompleteOrder::where('id', $id)
                                 ->where('business_id', $business_id)
@@ -453,8 +466,10 @@ class KitchenController extends Controller
 
             $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_done'),
             ];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+            DB::rollback();
             $output = ['success' => 0,'msg' => trans('messages.something_went_wrong'),
             ];
         }

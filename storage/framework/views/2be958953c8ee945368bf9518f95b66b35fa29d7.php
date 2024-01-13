@@ -31,8 +31,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
     <?php $__empty_1 = true; $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
         <?php
             if ($order->sell_lines->where('kitchen_id',$kitchen->id)->where('res_line_order_status','!=','cooked')->count() > 0) {
-                
-            
         ?>
         <?php 
             $kitchen_id = $kitchen->id;
@@ -56,7 +54,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
             else if ($count_null) {
                 $order_status =  'new';
             }
-            $variations = collect([]);
         ?>
         
         <div class="col-md-3 col-xs-6 order_div" >
@@ -75,7 +72,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         </div>
                     <?php endif; ?>
                 <table class="table no-margin table-bordered table-slim" style="width: 100%;">
-                <?php dump($index); ?>
                     <thead class=" <?php echo e($status  == 'served' ? "order-status-servied" : "order-status-pending", false); ?>" >
                         <tr>
                             <td><?php echo e(__('restaurant.table_no'), false); ?>  <span <?php if(!empty($order->table_name)): ?> class="t-number" <?php endif; ?> ><?php echo e($order->table_name, false); ?></span> </td>

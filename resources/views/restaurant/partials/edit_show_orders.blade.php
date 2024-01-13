@@ -31,8 +31,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
     @forelse($orders as $index => $order)
         @php
             if ($order->sell_lines->where('kitchen_id',$kitchen->id)->where('res_line_order_status','!=','cooked')->count() > 0) {
-                
-            
         @endphp
         @php 
             $kitchen_id = $kitchen->id;
@@ -56,7 +54,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
             else if ($count_null) {
                 $order_status =  'new';
             }
-            $variations = collect([]);
         @endphp
         
         <div class="col-md-3 col-xs-6 order_div" >
@@ -75,7 +72,6 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         </div>
                     @endif
                 <table class="table no-margin table-bordered table-slim" style="width: 100%;">
-                @dump($index)
                     <thead class=" {{$status  == 'served' ? "order-status-servied" : "order-status-pending" }}" >
                         <tr>
                             <td>{{ __('restaurant.table_no') }}  <span @if(!empty($order->table_name)) class="t-number" @endif >{{ $order->table_name }}</span> </td>
@@ -103,7 +99,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                 <td>{{ $sell_line->product->name }}</td>
                                 <td>{{ $sell_line->quantity }}</td>
                                  <td>
-                                    {{ $sell_line->sell_line_note }} ,
+                                    {{ $sell_line->sell_line_note }} , 
                                     @if(!empty($sell_line->modifiers))
                                         @foreach($sell_line->modifiers as $modifier)
                                             {{ $modifier->variations->name ?? ''}} &nbsp;|                                        

@@ -78,6 +78,7 @@ class OrderController extends Controller
     public function markAsServed($id,$kitchen_id)
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
             $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
@@ -105,9 +106,10 @@ class OrderController extends Controller
             $msgs = 'New Order Coming ...';
             event(new NewOrdersEvent($msgs));
             $output = ['success' => 1, 'msg' => trans('restaurant.order_successfully_marked_served')];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            DB::rollback();
             $output = ['success' => 0, 'msg' => trans('messages.something_went_wrong')];
         }
 
@@ -126,6 +128,7 @@ class OrderController extends Controller
         //     abort(403, 'Unauthorized action.');
         // }
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
 
@@ -142,20 +145,19 @@ class OrderController extends Controller
             $msgs = 'New Order Coming ...';
             event(new NewOrdersEvent($msgs));
             $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_delivered'),];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
-            $output = ['success' => 0,
-                'msg' => trans('messages.something_went_wrong'),
-            ];
+                DB::rollback();
+            $output = ['success' => 0,'msg' => trans('messages.something_went_wrong'),];
         }
 
         return $output;
     }
     
 
-            /**
-     * Marks an order as received
+     /**
+     * Marks an order as done
      *
      * @return json $output
      */
@@ -165,6 +167,7 @@ class OrderController extends Controller
         //     abort(403, 'Unauthorized action.');
         // }
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
 
@@ -182,9 +185,10 @@ class OrderController extends Controller
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_done'),
             ];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            DB::rollback();
             $output = ['success' => 0,
                 'msg' => trans('messages.something_went_wrong'),
             ];
@@ -194,7 +198,7 @@ class OrderController extends Controller
     }
     
     /**
-     * Marks an order as received
+     * Marks an order as Cooked
      *
      * @return json $output
      */
@@ -204,6 +208,7 @@ class OrderController extends Controller
         //     abort(403, 'Unauthorized action.');
         // }
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
 
@@ -221,10 +226,10 @@ class OrderController extends Controller
             $output = ['success' => 1,
                 'msg' => trans('restaurant.order_successfully_marked_cooked'),
             ];
-
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            DB::rollback();
             $output = ['success' => 0,
                 'msg' => trans('messages.something_went_wrong'),
             ];
@@ -234,14 +239,15 @@ class OrderController extends Controller
     }
 
 
-        /**
-     * Marks an order as received
+    /**
+     * Marks all order as Cooked
      *
      * @return json $output
      */
     public function markAsAllCooked($id, $kitchen_id)
     {
         try {
+            DB::beginTransaction();
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
             $query = TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
@@ -277,14 +283,13 @@ class OrderController extends Controller
                 TransactionSellLine::where('transaction_id',$id)->update(['res_line_order_status' => 'done']);
                 $t->update(['info' => 'done']);
             endif;
-
             $msgs = 'New Order Coming ...';
             event(new NewOrdersEvent($msgs));
-
             $output = ['success' => 1,'msg' => trans('restaurant.order_successfully_marked_cooked')];
+            DB::commit();
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            DB::rollback();
             $output = ['success' => 0,
                 'msg' => trans('messages.something_went_wrong'),
             ];
@@ -317,7 +322,7 @@ class OrderController extends Controller
                 $sell_line->save();
                 $output = ['success' => 1,
                     'msg' => trans('restaurant.order_successfully_marked_served'),
-                ];
+                ]; 
             } else {
                 $output = ['success' => 0,
                     'msg' => trans('messages.something_went_wrong'),
@@ -325,7 +330,7 @@ class OrderController extends Controller
             }
         } catch (\Exception $e) {
             \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
-
+            
             $output = ['success' => 0,
                 'msg' => trans('messages.something_went_wrong'),
             ];

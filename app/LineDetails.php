@@ -14,7 +14,7 @@ class LineDetails extends Model
     /**
      * Get the line that owns the LineDetails
      *
-     * @return BelongsTo
+     * @return BelongsTo 
      */
     // public function line(): BelongsTo
     // {
