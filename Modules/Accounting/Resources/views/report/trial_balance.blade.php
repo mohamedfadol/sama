@@ -32,12 +32,15 @@
                             <th></th>
                             <th>@lang( 'accounting::lang.debit')</th>
                             <th>@lang( 'accounting::lang.credit')</th>
+                            <th>@lang( 'accounting::lang.total_debit_balance')</th>
+                            <th>@lang( 'accounting::lang.total_credit_balance')</th>
                         </tr>
                     </thead>
 
                     @php
                         $total_debit = 0;
                         $total_credit = 0;
+                        $final_balance =0;
                     @endphp
 
                     <tbody>
@@ -46,20 +49,31 @@
                         @php
                             $total_debit += $account->debit_balance;
                             $total_credit += $account->credit_balance;
+                           $final_balance += $account->debit_balance - $account->credit_balance;
                         @endphp
 
                             <tr>
                                 <td>{{$account->name_ar ?? $account->name_en}}</td>
                                 <td>
                                     @if($account->debit_balance != 0)
-                                        @format_currency($account->debit_balance)
+                                        {{number_format($account->debit_balance,2,",",".")}}
                                     @endif    
                                 </td>
                                 <td>
                                     @if($account->credit_balance != 0)
-                                        @format_currency($account->credit_balance)
+                                        {{number_format($account->credit_balance,2,",",".")}}
                                     @endif
                                 </td>
+
+                                
+                                <td>{{ ($account->debit_balance - $account->credit_balance < 0) ? 0 : ($account->debit_balance - $account->credit_balance )}}</td>
+                                                              
+                               
+                                
+                                <td>{{ ($account->debit_balance - $account->credit_balance < 0) ? ($account->debit_balance - $account->credit_balance ) : 0}}</td>
+                                  
+
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -67,8 +81,10 @@
                     <tfoot>
                         <tr>
                             <th>Total</th>
-                            <th class="total_debit">@format_currency($total_debit)</th>
-                            <th class="total_credit">@format_currency($total_credit)</th>
+                            <th class="total_debit">{{session("currency")["symbol"]}} {{number_format($total_debit,2,",",".") }}</th>
+                            <th class="total_credit">{{session("currency")["symbol"]}} {{number_format($total_credit,2,",",".") }}</th>
+                            <th class="total_debit_balance">{{session("currency")["symbol"]}} {{number_format($final_balance,2,",",".") }}</th>
+                            <th class="total_credit_balance">{{session("currency")["symbol"]}} {{number_format($final_balance,2,",",".") }}</th>
                         </tr>
                     </tfoot>
                 </table>

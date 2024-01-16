@@ -90,7 +90,8 @@ class ReportController extends Controller
                             ->select(
                                 DB::raw("SUM(IF(AAT.type = 'credit', AAT.amount, 0)) as credit_balance"),
                                 DB::raw("SUM(IF(AAT.type = 'debit', AAT.amount, 0)) as debit_balance"),
-                                'main_accounts.name_ar'
+                                'main_accounts.name_ar',
+                                'main_accounts.name_en',
                             )
                             ->groupBy('main_accounts.name_ar')
                             ->get();

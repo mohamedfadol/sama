@@ -452,4 +452,6 @@ return [
     'is_account_primary_type' => 'هل حساب رئيسي',
     'account_number' => 'رقم الحساب',
     'classification_account'=> 'تصنيف الحساب',
+    'total_credit_balance'=> 'الرصيد الدائن',
+    'total_debit_balance'=> 'الرصيد المدين',
 ];

@@ -34,12 +34,15 @@
                             <th></th>
                             <th><?php echo app('translator')->get( 'accounting::lang.debit'); ?></th>
                             <th><?php echo app('translator')->get( 'accounting::lang.credit'); ?></th>
+                            <th><?php echo app('translator')->get( 'accounting::lang.total_debit_balance'); ?></th>
+                            <th><?php echo app('translator')->get( 'accounting::lang.total_credit_balance'); ?></th>
                         </tr>
                     </thead>
 
                     <?php
                         $total_debit = 0;
                         $total_credit = 0;
+                        $final_balance =0;
                     ?>
 
                     <tbody>
@@ -48,40 +51,33 @@
                         <?php
                             $total_debit += $account->debit_balance;
                             $total_credit += $account->credit_balance;
+                           $final_balance += $account->debit_balance - $account->credit_balance;
                         ?>
 
                             <tr>
                                 <td><?php echo e($account->name_ar ?? $account->name_en, false); ?></td>
                                 <td>
                                     <?php if($account->debit_balance != 0): ?>
-                                        <?php 
-            $formated_number = "";
-            if (session("business.currency_symbol_placement") == "before") {
-                $formated_number .= session("currency")["symbol"] . " ";
-            } 
-            $formated_number .= number_format((float) $account->debit_balance, session("business.currency_precision", 2) , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
+                                        <?php echo e(number_format($account->debit_balance,2,",","."), false); ?>
 
-            if (session("business.currency_symbol_placement") == "after") {
-                $formated_number .= " " . session("currency")["symbol"];
-            }
-            echo $formated_number; ?>
                                     <?php endif; ?>    
                                 </td>
                                 <td>
                                     <?php if($account->credit_balance != 0): ?>
-                                        <?php 
-            $formated_number = "";
-            if (session("business.currency_symbol_placement") == "before") {
-                $formated_number .= session("currency")["symbol"] . " ";
-            } 
-            $formated_number .= number_format((float) $account->credit_balance, session("business.currency_precision", 2) , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
+                                        <?php echo e(number_format($account->credit_balance,2,",","."), false); ?>
 
-            if (session("business.currency_symbol_placement") == "after") {
-                $formated_number .= " " . session("currency")["symbol"];
-            }
-            echo $formated_number; ?>
                                     <?php endif; ?>
                                 </td>
+
+                                
+                                <td><?php echo e(($account->debit_balance - $account->credit_balance < 0) ? 0 : ($account->debit_balance - $account->credit_balance ), false); ?></td>
+                                                              
+                               
+                                
+                                <td><?php echo e(($account->debit_balance - $account->credit_balance < 0) ? ($account->debit_balance - $account->credit_balance ) : 0, false); ?></td>
+                                  
+
+
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
@@ -89,28 +85,10 @@
                     <tfoot>
                         <tr>
                             <th>Total</th>
-                            <th class="total_debit"><?php 
-            $formated_number = "";
-            if (session("business.currency_symbol_placement") == "before") {
-                $formated_number .= session("currency")["symbol"] . " ";
-            } 
-            $formated_number .= number_format((float) $total_debit, session("business.currency_precision", 2) , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
-
-            if (session("business.currency_symbol_placement") == "after") {
-                $formated_number .= " " . session("currency")["symbol"];
-            }
-            echo $formated_number; ?></th>
-                            <th class="total_credit"><?php 
-            $formated_number = "";
-            if (session("business.currency_symbol_placement") == "before") {
-                $formated_number .= session("currency")["symbol"] . " ";
-            } 
-            $formated_number .= number_format((float) $total_credit, session("business.currency_precision", 2) , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
-
-            if (session("business.currency_symbol_placement") == "after") {
-                $formated_number .= " " . session("currency")["symbol"];
-            }
-            echo $formated_number; ?></th>
+                            <th class="total_debit"><?php echo e(session("currency")["symbol"], false); ?> <?php echo e(number_format($total_debit,2,",","."), false); ?></th>
+                            <th class="total_credit"><?php echo e(session("currency")["symbol"], false); ?> <?php echo e(number_format($total_credit,2,",","."), false); ?></th>
+                            <th class="total_debit_balance"><?php echo e(session("currency")["symbol"], false); ?> <?php echo e(number_format($final_balance,2,",","."), false); ?></th>
+                            <th class="total_credit_balance"><?php echo e(session("currency")["symbol"], false); ?> <?php echo e(number_format($final_balance,2,",","."), false); ?></th>
                         </tr>
                     </tfoot>
                 </table>

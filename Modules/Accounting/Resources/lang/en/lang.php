@@ -424,4 +424,6 @@ return [
     'is_account_primary_type' => 'Account Primary',
     'account_number' => 'Account Number',
     'classification_account' => 'Classification Account',
+    'total_credit_balance'=> 'Total Credit Balance',
+    'total_debit_balance'=> 'Total Debit Balance',
 ];
