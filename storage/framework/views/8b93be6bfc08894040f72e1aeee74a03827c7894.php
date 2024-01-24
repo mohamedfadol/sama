@@ -5,6 +5,9 @@
 <?php $__env->startSection('content'); ?>
 <?php $__env->startSection('css'); ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <style>
+        /* .jstree-anchor {background-color: red;} */
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('accounting::layouts.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -88,14 +91,11 @@
         load_accounts_table('tree');
 	});
 
-
-    // $(document).ready( function(){
-    //     $("accounts-dropdown").select2({
-             
-    //     });
-    // });
-
-
+        // Remove the 'highlighted' class after 1 minute
+        setTimeout(function() {
+                element.classList.remove('highlighted');
+            }, 60000); // 1 minute in milliseconds
+            
     $(document).on('change', '#account_type_filter, #status_filter', function(){
         load_accounts_table();
     });
@@ -283,5 +283,18 @@
         window.location.href = $(this).attr('href');
     });
 </script>
+
+<script>
+        function highlightRecord() {
+            var element = document.getElementById('record');
+            element.classList.add('highlighted');
+
+            // Remove the 'highlighted' class after 1 minute
+            setTimeout(function() {
+                element.classList.remove('highlighted');
+            }, 60000); // 1 minute in milliseconds
+        }
+ </script>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\Modules\Accounting\Providers/../Resources/views/chart_of_accounts/index.blade.php ENDPATH**/ ?>

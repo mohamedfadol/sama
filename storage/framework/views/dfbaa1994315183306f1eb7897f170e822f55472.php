@@ -17,7 +17,7 @@
             <span class="input-group-addon">
                 <i class="fas fa-search"></i>
             </span>
-        </div>
+        </div> 
     </div>
     <div class="col-md-4">
         <button class="btn btn-primary btn-sm" id="expand_all"><?php echo app('translator')->get('accounting::lang.expand_all'); ?></button>

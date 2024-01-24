@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Business;
-use App\BusinessLocation;
-use App\Contact;
-use App\CustomerGroup;
-use App\Notifications\CustomerNotification;
-use App\PurchaseLine;
-use App\Transaction;
-use App\TransactionPayment;
-use App\User;
-use App\Utils\ContactUtil;
-use App\Utils\ModuleUtil;
-use App\Utils\NotificationUtil;
-use App\Utils\TransactionUtil;
-use App\Utils\Util;
 use DB;
 use Excel;
+use App\User;
+use App\Contact;
+use App\Business;
+use App\Utils\Util;
+use App\MainAccount;
+use App\Transaction;
+use App\PurchaseLine;
+use App\CustomerGroup;
+use App\BusinessLocation;
+use App\Utils\ModuleUtil;
+use App\Utils\ContactUtil;
+use App\TransactionPayment;
 use Illuminate\Http\Request;
+use App\Utils\TransactionUtil;
+use App\Utils\NotificationUtil;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\Facades\DataTables;
+use App\Notifications\CustomerNotification;
 
 class ContactController extends Controller
 {
@@ -561,9 +562,9 @@ class ContactController extends Controller
 
         //Added check because $users is of no use if enable_contact_assign if false
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
-
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('contact.create')
-            ->with(compact('types', 'customer_groups', 'selected_type', 'module_form_parts', 'users'));
+            ->with(compact('types', 'customer_groups', 'selected_type', 'module_form_parts', 'users','account_types'));
     }
 
     /**
@@ -585,7 +586,7 @@ class ContactController extends Controller
                 return $this->moduleUtil->expiredResponse();
             }
 
-            $input = $request->only(['type', 'supplier_business_name',
+            $input = $request->only(['type', 'supplier_business_name', 'account_id',
                 'prefix', 'first_name', 'middle_name', 'last_name', 'tax_number', 'pay_term_number', 'pay_term_type', 'mobile', 'landline', 'alternate_number', 'city', 'state', 'country', 'address_line_1', 'address_line_2', 'customer_group_id', 'zip_code', 'contact_id', 'custom_field1', 'custom_field2', 'custom_field3', 'custom_field4', 'custom_field5', 'custom_field6', 'custom_field7', 'custom_field8', 'custom_field9', 'custom_field10', 'email', 'shipping_address', 'position', 'dob', 'shipping_custom_field_details', 'assigned_to_users', ]);
 
             $name_array = [];
@@ -604,7 +605,8 @@ class ContactController extends Controller
             }
 
             $input['name'] = trim(implode(' ', $name_array));
-
+            $input['business_id']  = $request->session()->get('user.business_id');
+            $account_types = MainAccount::createNewAccount($input);
             if (! empty($request->input('is_export'))) {
                 $input['is_export'] = true;
                 $input['export_custom_field_1'] = $request->input('export_custom_field_1');
@@ -618,7 +620,6 @@ class ContactController extends Controller
             if (! empty($input['dob'])) {
                 $input['dob'] = $this->commonUtil->uf_date($input['dob']);
             }
-
             $input['business_id'] = $business_id;
             $input['created_by'] = $request->session()->get('user.id');
 
@@ -750,9 +751,9 @@ class ContactController extends Controller
 
             //Added check because $users is of no use if enable_contact_assign if false
             $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
-
+            $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
             return view('contact.edit')
-                ->with(compact('contact', 'types', 'customer_groups', 'opening_balance', 'users'));
+                ->with(compact('contact', 'types', 'customer_groups', 'opening_balance', 'users','account_types'));
         }
     }
 
@@ -771,7 +772,7 @@ class ContactController extends Controller
 
         if (request()->ajax()) {
             try {
-                $input = $request->only(['type', 'supplier_business_name', 'prefix', 'first_name', 'middle_name', 'last_name', 'tax_number', 'pay_term_number', 'pay_term_type', 'mobile', 'address_line_1', 'address_line_2', 'zip_code', 'dob', 'alternate_number', 'city', 'state', 'country', 'landline', 'customer_group_id', 'contact_id', 'custom_field1', 'custom_field2', 'custom_field3', 'custom_field4', 'custom_field5', 'custom_field6', 'custom_field7', 'custom_field8', 'custom_field9', 'custom_field10', 'email', 'shipping_address', 'position', 'shipping_custom_field_details', 'export_custom_field_1', 'export_custom_field_2', 'export_custom_field_3', 'export_custom_field_4', 'export_custom_field_5',
+                $input = $request->only(['type', 'supplier_business_name','account_id', 'prefix', 'first_name', 'middle_name', 'last_name', 'tax_number', 'pay_term_number', 'pay_term_type', 'mobile', 'address_line_1', 'address_line_2', 'zip_code', 'dob', 'alternate_number', 'city', 'state', 'country', 'landline', 'customer_group_id', 'contact_id', 'custom_field1', 'custom_field2', 'custom_field3', 'custom_field4', 'custom_field5', 'custom_field6', 'custom_field7', 'custom_field8', 'custom_field9', 'custom_field10', 'email', 'shipping_address', 'position', 'shipping_custom_field_details', 'export_custom_field_1', 'export_custom_field_2', 'export_custom_field_3', 'export_custom_field_4', 'export_custom_field_5',
                     'export_custom_field_6', 'assigned_to_users', ]);
 
                 $name_array = [];
@@ -810,7 +811,6 @@ class ContactController extends Controller
                 if (! $this->moduleUtil->isSubscribed($business_id)) {
                     return $this->moduleUtil->expiredResponse();
                 }
-
                 $output = $this->contactUtil->updateContact($input, $id, $business_id);
 
                 $this->contactUtil->activityLog($output['data'], 'edited');

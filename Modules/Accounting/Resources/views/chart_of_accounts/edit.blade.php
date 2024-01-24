@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('account_parent', __( 'accounting::lang.account_parent' ) . ':*') !!}
-                    <select class="form-control" name="account_parent_id" id="account_parent">
+                    <select class="form-control accounts-dropdown select2"   name="account_parent_id" id="account_sub_type">
                         <option value="">@lang('messages.please_select')</option>
                         @foreach($account_types as $account_type)
                             <option value="{{$account_type->id}}" 
@@ -40,11 +40,26 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('is_account_primary_type', __( 'accounting::lang.is_account_primary_type' ) . ':*') !!}
-                     <input type="checkbox" name="is_account_primary_type" 
-                       @if($account->is_account_primary_type == 1) checked @endif   id="is_account_primary_type" value="1">
-                    <p class="help-block" id="detail_type_desc"></p>
-                </div> 
+                    {!! Form::label('financial_statement', __( 'accounting::lang.financial_statement' ) . ':*') !!}
+                    <select class="form-control accounts-dropdown select2" name="financial_statement" id="account_sub_type">
+                        <option value="">@lang('messages.please_select')</option>
+                        @foreach($financialStatements as $financialStatement)
+                            <option value="{{$financialStatement->id}}" @if($financialStatement->id == $account->financial_statement_id) selected @endif>{{$financialStatement->name_ar}} {{$financialStatement->name_en}}</option>
+                        @endforeach
+                         
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('account_category', __( 'accounting::lang.account_category' ) . ':*') !!}
+                    <select class="form-control accounts-dropdown select2" name="account_category" id="account_sub_type">
+                        <option value="">@lang('messages.please_select')</option>
+                        @foreach($accountCategories as $accountCategory)
+                            <option value="{{$accountCategory->id}}" @if($accountCategory->id == $account->account_category_id) selected @endif>{{$accountCategory->name_ar}} {{$accountCategory->name_en}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-group">
                     {!! Form::label('account_number', __( 'accounting::lang.account_number' ) . ':') !!}
                     {!! Form::text('account_number', $account->account_number, ['class' => 'form-control', 'placeholder' => __( 'accounting::lang.account_number' ) ]); !!}

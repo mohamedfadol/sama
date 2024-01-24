@@ -37,6 +37,8 @@
                     </div>
                 </div>
             </div>
+
+            
             <div class="col-md-4 mt-15">
                 <label class="radio-inline">
                     <input type="radio" name="contact_type_radio" id="inlineRadio1" value="individual">
@@ -61,6 +63,27 @@
                     </p>
                 </div>
             </div>
+
+
+            <div class="col-md-4">
+                <div class="form-group">
+                {!! Form::label('account_parent', __( 'accounting::lang.account_parent' ) . ':*') !!}
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="fa fa-users"></i>
+                      </span>
+                        <select class="form-control accounts-dropdown select2" name="account_id" id="account_sub_type" required>
+                            <option value="">@lang('messages.please_select')</option>
+                            @foreach($account_types as $account)
+                                <option value="{{$account->id}}">{{$account->name_ar}}</option>
+                            @endforeach
+                        </select>
+                  </div>
+                </div>
+            </div>
+
+
+
             <div class="col-md-4 customer_fields">
                 <div class="form-group">
                   {!! Form::label('customer_group_id', __('lang_v1.customer_group') . ':') !!}
@@ -546,7 +569,7 @@
       <button type="submit" class="btn btn-primary">@lang( 'messages.save' )</button>
       <button type="button" class="btn btn-default" data-dismiss="modal">@lang( 'messages.close' )</button>
     </div>
-
+ 
     {!! Form::close() !!}
   
   </div><!-- /.modal-content -->

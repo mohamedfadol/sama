@@ -92,6 +92,7 @@ class ReportController extends Controller
                                 DB::raw("SUM(IF(AAT.type = 'debit', AAT.amount, 0)) as debit_balance"),
                                 'main_accounts.name_ar',
                                 'main_accounts.name_en',
+                                'main_accounts.id',
                             )
                             ->groupBy('main_accounts.name_ar')
                             ->get();

@@ -778,6 +778,21 @@ class AdminSidebarMenu
                                 ['icon' => 'fa fas fa-user-circle', 'active' => request()->segment(1) == 'types-of-service']
                             );
                         }
+
+                        $sub->url(
+                            action([\App\Http\Controllers\AccountCategoryController::class, 'index']),
+                            __('lang_v1.account_category'),
+                            ['icon' => 'fa fas fa-user-circle', 'active' => request()->segment(1) == 'account-category']
+                        );
+                    
+
+                        $sub->url(
+                            action([\App\Http\Controllers\FinancialStatementController::class, 'index']),
+                            __('lang_v1.financial_statement'),
+                            ['icon' => 'fa fas fa-user-circle', 'active' => request()->segment(1) == 'financial-statement']
+                            );
+                        
+
                     },
                     ['icon' => 'fa fas fa-cog', 'id' => 'tour_step3']
                 )->order(85);

@@ -426,4 +426,11 @@ return [
     'classification_account' => 'Classification Account',
     'total_credit_balance'=> 'Total Credit Balance',
     'total_debit_balance'=> 'Total Debit Balance',
+    'debit_credit'=> 'Show Total',
+    'debit_credit_balance'=> 'Show Balance',
+    'account_category' => 'Account Category',
+    'account_categories' => 'Account Categories',
+    'financial_statement' => 'Financial Statement',
+    'account_name' => 'Account Name'
+
 ];

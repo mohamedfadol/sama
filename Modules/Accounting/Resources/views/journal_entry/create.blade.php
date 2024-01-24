@@ -162,6 +162,10 @@
         });
 	});
 
+ 
+
+
+
     function calculate_total(){
         var total_credit = 0;
         var total_debit = 0;
@@ -173,11 +177,12 @@
             total_debit += debit;
         });
 
+     
         $('.total_credit_hidden').val(total_credit);
         $('.total_debit_hidden').val(total_debit);
 
-        $('.total_credit').text(__currency_trans_from_en(total_credit));
-        $('.total_debit').text(__currency_trans_from_en(total_debit));
+        $('.total_credit').text(__number_format(total_credit, 3, '.', ''));
+        $('.total_debit').text(__number_format(total_debit, 3, '.', ''));
     }
 
 </script>

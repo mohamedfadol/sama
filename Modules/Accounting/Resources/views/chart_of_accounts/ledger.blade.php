@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                             <th>@lang( 'lang_v1.balance' ):</th>
-                            <td>@format_currency($current_bal)</td>
+                            <td>{{session("currency")["symbol"]}}  {{number_format($current_bal,3,".","")}} </td>
                         </tr>
                     </table>
                 </div>
@@ -116,7 +116,7 @@
                                     <th>@lang( 'lang_v1.added_by' )</th>
                                     <th>@lang('account.debit')</th>
                                     <th>@lang('account.credit')</th>
-                    				<!-- <th>@lang( 'lang_v1.balance' )</th> -->
+                    				<th>@lang( 'lang_v1.balanceT' )</th>
                                     <th>@lang( 'messages.action' )</th>
                     			</tr>
                     		</thead>
@@ -126,10 +126,13 @@
                                     <td class="footer_total_debit"></td>
                                     <td class="footer_total_credit"></td>
                                     <td></td>
+                                    <td class="footer_total_credit_and_debit"></td>
                                 </tr>
                                 <tr class="bg-gray font-17 footer-total text-center">
-                                    <td colspan="4"><strong>@lang('sale.balance'):</strong></td>
+                                    
                                     <td></td>
+                                    <td></td>
+                                    <td colspan="4"><strong>@lang('sale.balance'):</strong></td>
                                     <td class="footer_total_balance"></td>
                                     <td></td>
                                 </tr>
@@ -193,7 +196,7 @@
                                 {data: 'added_by', name: 'added_by'},
                                 {data: 'debit', name: 'amount', searchable: false},
                                 {data: 'credit', name: 'amount', searchable: false},
-                                //{data: 'balance', name: 'balance', searchable: false},
+                                {data: 'balance', name: 'balanceT', searchable: false},
                                 {data: 'action', name: 'action', searchable: false}
                             ],
                             "fnDrawCallback": function (oSettings) {
@@ -202,15 +205,36 @@
                             "footerCallback": function ( row, data, start, end, display ) {
                                 var footer_total_debit = 0;
                                 var footer_total_credit = 0;
+                                var footer_total_credit_and_debit = 0;
 
                                 for (var r in data){
                                     footer_total_debit += $(data[r].debit).data('orig-value') ? parseFloat($(data[r].debit).data('orig-value')) : 0;
                                     footer_total_credit += $(data[r].credit).data('orig-value') ? parseFloat($(data[r].credit).data('orig-value')) : 0;
+                                    footer_total_credit_and_debit += $(data[r].balance).data('orig-value') ? parseFloat($(data[r].balance).data('orig-value')) : 0;
                                 }
 
-                                $('.footer_total_debit').html(__currency_trans_from_en(footer_total_debit));
-                                $('.footer_total_credit').html(__currency_trans_from_en(footer_total_credit));
-                                $('.footer_total_balance').html(__currency_trans_from_en(footer_total_debit - footer_total_credit));
+                                var api = this.api();
+
+                                // Sum the balanceT column
+                                var totalBalance = api.column(6, { page: 'current' }).data().reduce(function (a, b) {
+                                    return a + parseFloat(b);
+                                }, 0);
+
+                                // Update the footer
+                                $(api.column(6).footer()).html(__number_format(totalBalance));
+
+                                var rows = api.rows({ page: 'current' }).nodes();
+                                var lastBalance = 0;
+                                api.column(6, { page: 'current' }).data().each(function(value, index) {
+                                    lastBalance += parseFloat(value || 0);
+                                    // Update the 'balanceT' column in the current row
+                                    $(rows[index]).find('td:eq(6)').text(lastBalance.toFixed(2));
+                                });
+
+                                $('.footer_total_debit').html(__number_format(footer_total_debit));
+                                $('.footer_total_credit').html(__number_format(footer_total_credit));
+                                $('.footer_total_balance').html(__number_format(footer_total_debit - footer_total_credit));
+                                
                             }
                         });
         $('#transaction_date_range').on('cancel.daterangepicker', function(ev, picker) {

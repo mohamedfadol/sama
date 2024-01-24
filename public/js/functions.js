@@ -1,5 +1,5 @@
 //This file contains all functions used in the app.
-
+    
 function __calculate_amount(calculation_type, calculation_amount, amount) {
     var calculation_amount = parseFloat(calculation_amount);
     calculation_amount = isNaN(calculation_amount) ? 0 : calculation_amount;
@@ -68,6 +68,22 @@ function __tab_key_up(e) {
     }
 }
 
+
+// Example function similar to PHP's number_format
+function __number_format(number, decimals, dec_point, thousands_sep) {
+    number = Number(number || 0);
+    decimals = decimals || 0;
+    dec_point = dec_point || '.';
+    thousands_sep = thousands_sep || '';
+
+    var parts = number.toFixed(decimals).split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
+    
+
+    return parts.join(dec_point);
+}
+
+
 function __currency_trans_from_en(
     input,
     show_symbol = true,
@@ -98,8 +114,7 @@ function __currency_trans_from_en(
     if (is_quantity) {
         precision = __quantity_precision;
     }
-
-    return accounting.formatMoney(input, symbol, precision, thousand, decimal, format);
+    return accounting.formatMoney(input, symbol, 3, thousand, decimal, format);
 }
 
 function __currency_convert_recursively(element, use_page_currency = false) {

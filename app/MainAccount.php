@@ -82,7 +82,7 @@ class MainAccount extends Model
         return $sum->sum('balance');
     }
 
-   public function sumBalanceOfChildrenTwo() {
+    public function sumBalanceOfChildrenTwo() {
         $business_id = request()->session()->get('user.business_id');
         $parentsAccIds = MainAccount::with('child_accounts')->where('business_id',$business_id)->whereNull('parent_id')->pluck('id');
         $sum = MainAccount::where('business_id',$business_id)->whereIn('parent_id', $parentsAccIds)
@@ -114,4 +114,61 @@ class MainAccount extends Model
         }
     }
 
+    public static  function getLastDigit($serialNumber) {
+        // Convert the serial number to a string
+        $serialString = (string)$serialNumber;
+        // Get the last character (digit)
+        $lastDigit = substr($serialString, -1);
+        return (int)$lastDigit;
+    }
+    
+    public static function createNewAccount($input) {
+            $business_id = $input['business_id'];
+            if (! (auth()->user()->can('superadmin') ||
+                $this->moduleUtil->hasThePermissionInSubscription($business_id, 'accounting_module')) ||
+                ! (auth()->user()->can('accounting.manage_accounts'))) {
+                abort(403, 'Unauthorized action.');
+            }
+            try {
+                $parentAccount = MainAccount::where('business_id',$business_id)->find($input['account_id']);
+                $account = new MainAccount() ;
+                $account->name_en = $input['name_en'] ?? null;
+                $account->name_ar = $input['name'];
+                $account->account_category_id = $parentAccount->account_category_id;
+                $account->financial_statement_id = $parentAccount->financial_statement_id;
+                $account->parent_id = $input['account_id'];
+                $account->created_by = auth()->user()->id;
+                $account->business_id = $input['business_id'];
+                $account->status = 'active';
+    
+                if(!empty($parentAccount->account_number) ){
+                    $parentAccountCildren = MainAccount::where('parent_id',$input['account_id'])->where('business_id',$business_id)->count();
+                    if ($parentAccountCildren >= 1) {
+                        $parentChildren =  MainAccount::where('parent_id',$parentAccount->id)->where('business_id',$business_id)->latest('account_number')->first();
+                        $parent_children_account_number = $parentChildren->account_number;
+                        $lastDigit = MainAccount::getLastDigit($parent_children_account_number);
+                        $plusOldNumber = (int) ($lastDigit + 1);
+                        $account->account_number =  "$parentAccount->account_number$plusOldNumber";
+                        // dd('yes');
+                    }else{
+                        $parent_children_account_number = $parentAccount->account_number;
+                        $plusOldNumber = 1;
+                        $account->account_number =  "$parent_children_account_number$plusOldNumber";
+                    }                 
+                }else{
+                    $nullParentAccountNumber = MainAccount::whereNull('parent_id')->where('business_id',$business_id)->latest('account_number')->first();
+                    if (!is_null($nullParentAccountNumber)) {
+                        $account->account_number =  (int) (++$nullParentAccountNumber->account_number);
+                    }else{
+                        $account->account_number = 1;
+                    }
+                }
+                $account->save();
+            } catch (\Exception $e) {
+    
+                \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+            }
+    
+            return true;
+    }
 }

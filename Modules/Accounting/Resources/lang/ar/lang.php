@@ -454,4 +454,11 @@ return [
     'classification_account'=> 'تصنيف الحساب',
     'total_credit_balance'=> 'الرصيد الدائن',
     'total_debit_balance'=> 'الرصيد المدين',
+    'account_category' => 'تصنيفات الحسابات',
+    'financial_statement' => 'القوائم المالية',
+    'account_categories' => 'تصنيفات الحسابات',
+    'financial_statement' => 'القوائم المالية',
+    'debit_credit'=> 'إظهار المجاميع',
+    'debit_credit_balance'=> 'إظهار الأرصدة',
+    'account_name' => 'إسم الحساب',
 ];

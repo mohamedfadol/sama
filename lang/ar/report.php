@@ -69,4 +69,6 @@
      'net_profit' => 'صافى الربح',
      'total_stock_adjustment' => 'اجمالى المخزون التالف',
      'total_stock_recovered' => 'إجمالي المخزون المسترد',
+     'debit_credit'=> 'إظهار المجاميع',
+     'debit_credit_balance'=> 'إظهار الأرصدة'
  ];

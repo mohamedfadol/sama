@@ -40,6 +40,8 @@
                     </div>
                 </div>
             </div>
+
+            
             <div class="col-md-4 mt-15">
                 <label class="radio-inline">
                     <input type="radio" name="contact_type_radio" id="inlineRadio1" value="individual">
@@ -66,6 +68,28 @@
                     </p>
                 </div>
             </div>
+
+
+            <div class="col-md-4">
+                <div class="form-group">
+                <?php echo Form::label('account_parent', __( 'accounting::lang.account_parent' ) . ':*'); ?>
+
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="fa fa-users"></i>
+                      </span>
+                      <select class="form-control accounts-dropdown select2" name="account_parent" id="account_sub_type" required>
+                        <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
+                        <?php $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($account->id, false); ?>"><?php echo e($account->name_ar, false); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                  </div>
+                </div>
+            </div>
+
+
+
             <div class="col-md-4 customer_fields">
                 <div class="form-group">
                   <?php echo Form::label('customer_group_id', __('lang_v1.customer_group') . ':'); ?>
@@ -641,7 +665,7 @@
       <button type="submit" class="btn btn-primary"><?php echo app('translator')->get( 'messages.save' ); ?></button>
       <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo app('translator')->get( 'messages.close' ); ?></button>
     </div>
-
+ 
     <?php echo Form::close(); ?>
 
   

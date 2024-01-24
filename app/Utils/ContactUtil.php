@@ -143,6 +143,7 @@ class ContactUtil extends Util
 
     public function updateContact($input, $id, $business_id)
     {
+        // dd($input);
         $count = 0;
         //Check Contact id
         if (! empty($input['contact_id'])) {
@@ -151,7 +152,7 @@ class ContactUtil extends Util
                     ->where('id', '!=', $id)
                     ->count();
         }
-
+ 
         if ($count == 0) {
             //Get opening balance if exists
             $ob_transaction = Transaction::where('contact_id', $id)
@@ -169,7 +170,7 @@ class ContactUtil extends Util
                 $assigned_to_users = $input['assigned_to_users'];
                 unset($input['assigned_to_users']);
             }
-
+            // dd($input);
             $contact = Contact::where('business_id', $business_id)->findOrFail($id);
             foreach ($input as $key => $value) {
                 $contact->$key = $value;

@@ -5,6 +5,9 @@
 @section('content')
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <style>
+        /* .jstree-anchor {background-color: red;} */
+    </style>
 @endsection
 
 @include('accounting::layouts.nav')
@@ -84,14 +87,11 @@
         load_accounts_table('tree');
 	});
 
-
-    // $(document).ready( function(){
-    //     $("accounts-dropdown").select2({
-             
-    //     });
-    // });
-
-
+        // Remove the 'highlighted' class after 1 minute
+        setTimeout(function() {
+                element.classList.remove('highlighted');
+            }, 60000); // 1 minute in milliseconds
+            
     $(document).on('change', '#account_type_filter, #status_filter', function(){
         load_accounts_table();
     });
@@ -279,4 +279,17 @@
         window.location.href = $(this).attr('href');
     });
 </script>
+
+<script>
+        function highlightRecord() {
+            var element = document.getElementById('record');
+            element.classList.add('highlighted');
+
+            // Remove the 'highlighted' class after 1 minute
+            setTimeout(function() {
+                element.classList.remove('highlighted');
+            }, 60000); // 1 minute in milliseconds
+        }
+ </script>
+
 @endsection

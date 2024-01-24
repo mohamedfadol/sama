@@ -1529,5 +1529,15 @@ return [
     'product_prices_imported_successfully' => 'Product prices imported successfully',
     'price_group_price_type_tooltip' => 'If <b>Fixed</b> - the entered price will be used. If <b>Percentage</b> - price will be that much % of default selling price',
     'dropdown' => 'Dropdown',
-    'enter_dropdown_values' => 'Enter dropdown options, one option per line'
+    'enter_dropdown_values' => 'Enter dropdown options, one option per line',
+    'account_category' => 'Account Category',
+    'account_categories' => 'Account Categories',
+    'financial_statement' => 'Financial Statement',
+    'name_ar' => 'Arabic Name',
+    'name_en' => 'Eng Name',
+    'edit_financial_statement' => 'Edit Financial Statement',
+    'add_financial_statement' => 'add Financial Statement',
+    'parent_id' => 'Parent',
+    'add_account_category' => 'Add Account Category',
+    'account_name' => 'Account Name'
 ];

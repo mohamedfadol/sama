@@ -1,7 +1,6 @@
     {{$account->name_ar}}   
     @if(!empty($account->account_number))({{$account->account_number}}) @endif
-    
-    @format_currency(-1 * $account->totalBalance)
+    {{session("currency")["symbol"]}}  {{number_format(-1 * $account->totalBalance,3,".","")}}  
       
      @if($account->status == 'active') 
          <span style="margin-right: 5px;"><i class="fas fa-check text-success" title="@lang( 'accounting::lang.active' )"></i></span>

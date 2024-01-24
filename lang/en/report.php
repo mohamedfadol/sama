@@ -78,4 +78,6 @@ return [
     'net_profit' => 'Net Profit',
     'total_stock_adjustment' => 'Total Stock Adjustment',
     'total_stock_recovered' => 'Total Stock Recovered',
+    'debit_credit'=> 'Show Total',
+    'debit_credit_balance'=> 'Show Balance'
 ];

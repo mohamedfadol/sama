@@ -16,4 +16,4 @@
   </section>
   <!-- /.sidebar -->
 </aside>
-<?php /**PATH C:\xampp\htdocs\pos\resources\views/layouts/partials/sidebar.blade.php ENDPATH**/ ?>
+ <?php /**PATH C:\xampp\htdocs\pos\resources\views/layouts/partials/sidebar.blade.php ENDPATH**/ ?>

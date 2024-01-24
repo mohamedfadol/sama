@@ -20,6 +20,21 @@
       </div>
 
       <div class="form-group">
+          {!! Form::label('account_parent', __( 'accounting::lang.account_parent' ) . ':*') !!}
+          <div class="input-group">
+              <span class="input-group-addon">
+                  <i class="fa fa-users"></i>
+              </span>
+                <select class="form-control accounts-dropdown select2" name="account_id" id="account_sub_type" required>
+                    <option value="">@lang('messages.please_select')</option>
+                    @foreach($account_types as $account)
+                        <option value="{{$account->id}}" @if($account->id == $tax_rate->account_id) selected @endif>{{$account->name_ar}}</option>
+                    @endforeach
+                </select>
+          </div>
+      </div>
+
+      <div class="form-group">
         <div class="checkbox">
           <label>
              {!! Form::checkbox('for_tax_group', 1, !empty($tax_rate->for_tax_group), [ 'class' => 'input_icheck']); !!} @lang( 'lang_v1.for_tax_group_only' )

@@ -232,6 +232,32 @@
 <!-- /.content -->
 @stop
 @section('javascript')
+<script type="text/javascript">
+
+$(document).ready( function(){
+ 
+    $("select.accounts-dropdown").select2({
+        ajax: {
+            url: '{{route("accounts-dropdown")}}',
+            dataType: 'json',
+            processResults: function (data) {
+                return {
+                    results: data
+                }
+            },
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
+        templateResult: function(data) {
+            return data.html;
+        },
+        templateSelection: function(data) {
+            return data.text;
+        }
+    }); 
+});
+</script>
 @if(!empty($api_key))
 <script>
   // This example adds a search box to a map, using the Google Place Autocomplete

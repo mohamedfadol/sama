@@ -1975,6 +1975,171 @@ $(document).ready(function() {
                         },
                     });
 
+    account_categories_table = $('#account_categories_table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: base_path + '/account-category',
+        columnDefs: [
+            {
+                targets: [2],
+                orderable: false,
+                searchable: false,
+            },
+        ],
+        aaSorting: [1, 'asc'],
+        columns: [
+            { data: 'name_ar', name: 'name_ar' },
+            { data: 'name_en', name: 'name_en' },
+            { data: 'action', name: 'action' },
+        ],
+        fnDrawCallback: function(oSettings) {
+            __currency_convert_recursively($('#account_categories_table'));
+        },
+    });
+
+    $(document).on('submit', 'form#account_category_form', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var data = form.serialize();
+        $.ajax({
+            method: $(this).attr('method'),
+            url: $(this).attr('action'),
+            dataType: 'json',
+            data: data,
+            beforeSend: function(xhr) {
+                __disable_submit_button(form.find('button[type="submit"]'));
+            },
+            success: function(result) {
+                if (result.success == true) {
+                    $('div.account_category_modal').modal('hide');
+                    toastr.success(result.msg);
+                    account_categories_table.ajax.reload();
+                } else {
+                    toastr.error(result.msg);
+                }
+            },
+        });
+    });
+    
+    
+    $(document).on('click', 'button.delete_account_category', function(e) {
+        e.preventDefault();
+        swal({
+            title: LANG.sure,
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then(willDelete => {
+            if (willDelete) {
+                var href = $(this).data('href');
+                var data = $(this).serialize();
+    
+                $.ajax({
+                    method: 'DELETE',
+                    url: href,
+                    dataType: 'json',
+                    data: data,
+                    success: function(result) {
+                        if (result.success == true) {
+                            toastr.success(result.msg);
+                            account_categories_table.ajax.reload();
+                        } else {
+                            toastr.error(result.msg);
+                        }
+                    },
+                });
+            }
+        });
+    });
+    
+
+
+    financial_statement_table = $('#financial_statement_table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: base_path + '/financial-statement',
+        columnDefs: [
+            {
+                targets: [2],
+                orderable: false,
+                searchable: false,
+            },
+        ],
+        aaSorting: [1, 'asc'],
+        columns: [
+            { data: 'name_ar', name: 'name_ar' },
+            { data: 'name_en', name: 'name_en' },
+            { data: 'action', name: 'action' },
+        ],
+        fnDrawCallback: function(oSettings) {
+            __currency_convert_recursively($('#financial_statement_table'));
+        },
+    });
+
+    $(document).on('submit', 'form#financial_statement_form', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var data = form.serialize();
+        $.ajax({
+            method: $(this).attr('method'),
+            url: $(this).attr('action'),
+            dataType: 'json',
+            data: data,
+            beforeSend: function(xhr) {
+                __disable_submit_button(form.find('button[type="submit"]'));
+            },
+            success: function(result) {
+                if (result.success == true) {
+                    $('div.financial_statement_modal').modal('hide');
+                    toastr.success(result.msg);
+                    financial_statement_table.ajax.reload();
+                } else {
+                    toastr.error(result.msg);
+                }
+            },
+        });
+    });
+    
+    
+    $(document).on('click', 'button.delete_financial_statement', function(e) {
+        e.preventDefault();
+        swal({
+            title: LANG.sure,
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then(willDelete => {
+            if (willDelete) {
+                var href = $(this).data('href');
+                var data = $(this).serialize();
+    
+                $.ajax({
+                    method: 'DELETE',
+                    url: href,
+                    dataType: 'json',
+                    data: data,
+                    success: function(result) {
+                        if (result.success == true) {
+                            toastr.success(result.msg);
+                            financial_statement_table.ajax.reload();
+                        } else {
+                            toastr.error(result.msg);
+                        }
+                    },
+                });
+            }
+        });
+    });
+    
+
+
+
+
+
+
+
+
+
     home_kitchen_table = $('#home_kitchen_table').DataTable({
                         processing: true,
                         serverSide: true,
@@ -2498,6 +2663,10 @@ $(document).on('click', 'button.delete_type_of_service', function(e) {
         }
     });
 });
+
+
+
+
 
 $(document).on('shown.bs.modal', '.view_modal', function(e){
     if ($('#shipping_documents_dropzone').length) {

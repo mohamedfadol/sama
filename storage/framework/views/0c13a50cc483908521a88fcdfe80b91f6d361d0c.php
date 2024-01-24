@@ -1,17 +1,6 @@
     <?php echo e($account->name_ar, false); ?>   
     <?php if(!empty($account->account_number)): ?>(<?php echo e($account->account_number, false); ?>) <?php endif; ?>
-    
-    <?php 
-            $formated_number = "";
-            if (session("business.currency_symbol_placement") == "before") {
-                $formated_number .= session("currency")["symbol"] . " ";
-            } 
-            $formated_number .= number_format((float) -1 * $account->totalBalance, session("business.currency_precision", 2) , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
-
-            if (session("business.currency_symbol_placement") == "after") {
-                $formated_number .= " " . session("currency")["symbol"];
-            }
-            echo $formated_number; ?>
+    <?php echo e(session("currency")["symbol"], false); ?>  <?php echo e(number_format(-1 * $account->totalBalance,3,".",""), false); ?>  
       
      <?php if($account->status == 'active'): ?> 
          <span style="margin-right: 5px;"><i class="fas fa-check text-success" title="<?php echo app('translator')->get( 'accounting::lang.active' ); ?>"></i></span>

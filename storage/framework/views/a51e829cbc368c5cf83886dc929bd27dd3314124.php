@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <?php echo Form::label('account_parent', __( 'accounting::lang.account_parent' ) . ':*'); ?>
 
-                    <select class="form-control" name="account_parent_id" id="account_parent">
+                    <select class="form-control accounts-dropdown select2"   name="account_parent_id" id="account_sub_type">
                         <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
                         <?php $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account_type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($account_type->id, false); ?>" 
@@ -46,12 +46,28 @@
                 </div>
 
                 <div class="form-group">
-                    <?php echo Form::label('is_account_primary_type', __( 'accounting::lang.is_account_primary_type' ) . ':*'); ?>
+                    <?php echo Form::label('financial_statement', __( 'accounting::lang.financial_statement' ) . ':*'); ?>
 
-                     <input type="checkbox" name="is_account_primary_type" 
-                       <?php if($account->is_account_primary_type == 1): ?> checked <?php endif; ?>   id="is_account_primary_type" value="1">
-                    <p class="help-block" id="detail_type_desc"></p>
-                </div> 
+                    <select class="form-control accounts-dropdown select2" name="financial_statement" id="account_sub_type">
+                        <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
+                        <?php $__currentLoopData = $financialStatements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $financialStatement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($financialStatement->id, false); ?>" <?php if($financialStatement->id == $account->financial_statement_id): ?> selected <?php endif; ?>><?php echo e($financialStatement->name_ar, false); ?> <?php echo e($financialStatement->name_en, false); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                         
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <?php echo Form::label('account_category', __( 'accounting::lang.account_category' ) . ':*'); ?>
+
+                    <select class="form-control accounts-dropdown select2" name="account_category" id="account_sub_type">
+                        <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
+                        <?php $__currentLoopData = $accountCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $accountCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($accountCategory->id, false); ?>" <?php if($accountCategory->id == $account->account_category_id): ?> selected <?php endif; ?>><?php echo e($accountCategory->name_ar, false); ?> <?php echo e($accountCategory->name_en, false); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <?php echo Form::label('account_number', __( 'accounting::lang.account_number' ) . ':'); ?>
 

@@ -98,3 +98,5 @@ with laravel componnets for accounts and account  <x-accounts :accounts="$accoun
    5- finished  journal entry with note and calculate balance
    6- finished reports ledger 
    7 - finished trial balance
+
+   8- report finished  totla balance for debit and credit

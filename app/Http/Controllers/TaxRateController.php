@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\GroupSubTax;
 use App\TaxRate;
+use App\GroupSubTax;
+use App\MainAccount;
 use App\Utils\TaxUtil;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -73,11 +74,12 @@ class TaxRateController extends Controller
      */
     public function create()
     {
+        $business_id = request()->session()->get('user.business_id');
         if (! auth()->user()->can('tax_rate.create')) {
             abort(403, 'Unauthorized action.');
         }
-
-        return view('tax_rate.create');
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
+        return view('tax_rate.create',compact('account_types'));
     }
 
     /**
@@ -93,13 +95,13 @@ class TaxRateController extends Controller
         }
 
         try {
-            $input = $request->only(['name', 'amount']);
+            $input = $request->only(['name', 'amount','account_id']);
             $input['business_id'] = $request->session()->get('user.business_id');
             $input['created_by'] = $request->session()->get('user.id');
             $input['amount'] = $this->taxUtil->num_uf($input['amount']);
             $input['for_tax_group'] = ! empty($request->for_tax_group) ? 1 : 0;
-
             $tax_rate = TaxRate::create($input);
+            $account_types = MainAccount::createNewAccount($input);
             $output = ['success' => true,
                 'data' => $tax_rate,
                 'msg' => __('tax_rate.added_success'),
@@ -141,9 +143,10 @@ class TaxRateController extends Controller
         if (request()->ajax()) {
             $business_id = request()->session()->get('user.business_id');
             $tax_rate = TaxRate::where('business_id', $business_id)->find($id);
+            $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
 
             return view('tax_rate.edit')
-                ->with(compact('tax_rate'));
+                ->with(compact('tax_rate','account_types'));
         }
     }
 
@@ -162,11 +165,12 @@ class TaxRateController extends Controller
 
         if (request()->ajax()) {
             try {
-                $input = $request->only(['name', 'amount']);
+                $input = $request->only(['name', 'amount','account_id']);
                 $business_id = $request->session()->get('user.business_id');
 
                 $tax_rate = TaxRate::where('business_id', $business_id)->findOrFail($id);
                 $tax_rate->name = $input['name'];
+                $tax_rate->account_id = $input['account_id'];
                 $tax_rate->amount = $this->taxUtil->num_uf($input['amount']);
                 $tax_rate->for_tax_group = ! empty($request->for_tax_group) ? 1 : 0;
                 $tax_rate->save();
