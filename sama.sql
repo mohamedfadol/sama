@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2024 at 09:43 PM
+-- Generation Time: Jan 24, 2024 at 09:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -71,22 +71,23 @@ CREATE TABLE `accounting_accounts_transactions` (
 --
 
 INSERT INTO `accounting_accounts_transactions` (`id`, `accounting_account_id`, `acc_trans_mapping_id`, `transaction_id`, `transaction_payment_id`, `amount`, `type`, `sub_type`, `map_type`, `created_by`, `operation_date`, `note`, `created_at`, `updated_at`) VALUES
-(25, 15, 22, NULL, NULL, 100.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-12 02:42:00', NULL, '2024-01-11 23:43:19', '2024-01-11 23:43:19'),
-(26, 16, 22, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-12 02:42:00', NULL, '2024-01-11 23:43:19', '2024-01-11 23:43:19'),
-(27, 15, 22, NULL, NULL, 500.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-12 02:42:00', NULL, '2024-01-11 23:43:19', '2024-01-11 23:43:19'),
-(28, 18, 22, NULL, NULL, 500.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-12 02:42:00', NULL, '2024-01-11 23:43:19', '2024-01-11 23:43:19'),
-(29, 18, 23, NULL, NULL, 250.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-12 02:43:00', NULL, '2024-01-11 23:43:53', '2024-01-11 23:43:53'),
-(30, 15, 23, NULL, NULL, 250.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-12 02:43:00', NULL, '2024-01-11 23:43:53', '2024-01-11 23:43:53'),
-(31, 16, 23, NULL, NULL, 50.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-12 02:43:00', NULL, '2024-01-11 23:43:53', '2024-01-11 23:43:53'),
-(32, 15, 23, NULL, NULL, 50.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-12 02:43:00', NULL, '2024-01-11 23:43:53', '2024-01-11 23:43:53'),
-(33, 19, 24, NULL, NULL, 555.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-12 02:44:00', NULL, '2024-01-11 23:45:03', '2024-01-11 23:49:36'),
-(34, 15, 24, NULL, NULL, 555.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-12 02:44:00', NULL, '2024-01-11 23:45:03', '2024-01-11 23:49:36'),
-(35, 25, 25, NULL, NULL, 100.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-12 02:47:00', NULL, '2024-01-11 23:47:49', '2024-01-11 23:47:49'),
-(36, 15, 25, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-12 02:47:00', NULL, '2024-01-11 23:47:49', '2024-01-11 23:47:49'),
-(37, 27, 26, NULL, NULL, 333.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-12 02:53:00', NULL, '2024-01-11 23:53:28', '2024-01-11 23:53:28'),
-(38, 15, 26, NULL, NULL, 333.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-12 02:53:00', NULL, '2024-01-11 23:53:28', '2024-01-11 23:53:28'),
-(39, 15, 27, NULL, NULL, 100.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-13 18:31:00', 'ssss', '2024-01-13 15:32:10', '2024-01-13 15:32:10'),
-(40, 16, 27, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-13 18:31:00', 'dddd', '2024-01-13 15:32:10', '2024-01-13 15:32:10');
+(1, 8, 1, NULL, NULL, 100.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-19 04:58:00', NULL, '2024-01-19 01:59:23', '2024-01-19 01:59:23'),
+(2, 9, 1, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-19 04:58:00', NULL, '2024-01-19 01:59:23', '2024-01-19 01:59:23'),
+(3, 8, 2, NULL, NULL, 500.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-19 05:01:00', NULL, '2024-01-19 02:02:43', '2024-01-19 02:02:43'),
+(4, 9, 2, NULL, NULL, 500.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-19 05:01:00', NULL, '2024-01-19 02:02:43', '2024-01-19 02:02:43'),
+(5, 9, 2, NULL, NULL, 130.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-19 05:01:00', NULL, '2024-01-19 02:02:43', '2024-01-19 02:02:43'),
+(6, 8, 2, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-19 05:01:00', NULL, '2024-01-19 02:02:43', '2024-01-19 02:02:43'),
+(7, 8, 2, NULL, NULL, 30.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-19 05:01:00', NULL, '2024-01-19 02:02:43', '2024-01-19 02:02:43'),
+(8, 8, 3, NULL, NULL, 100.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-19 05:09:00', NULL, '2024-01-19 02:09:38', '2024-01-19 02:09:38'),
+(9, 11, 3, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-19 05:09:00', NULL, '2024-01-19 02:09:38', '2024-01-19 02:09:38'),
+(10, 13, 4, NULL, NULL, 1500.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-19 05:13:00', NULL, '2024-01-19 02:14:21', '2024-01-19 02:14:21'),
+(11, 9, 4, NULL, NULL, 1500.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-19 05:13:00', NULL, '2024-01-19 02:14:21', '2024-01-19 02:14:21'),
+(12, 9, 4, NULL, NULL, 15000.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-19 05:13:00', NULL, '2024-01-19 02:14:21', '2024-01-19 02:14:21'),
+(13, 13, 4, NULL, NULL, 15000.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-19 05:13:00', NULL, '2024-01-19 02:14:21', '2024-01-19 02:14:21'),
+(14, 11, 5, NULL, NULL, 152364125.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-20 03:49:00', NULL, '2024-01-20 00:50:25', '2024-01-20 00:50:25'),
+(15, 11, 5, NULL, NULL, 152364125.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-20 03:49:00', NULL, '2024-01-20 00:50:25', '2024-01-20 00:50:25'),
+(16, 14, 6, NULL, NULL, 1500.0000, 'debit', 'journal_entry', NULL, 1, '2024-01-23 00:14:00', 'دفعة', '2024-01-22 21:14:32', '2024-01-22 21:14:32'),
+(17, 9, 6, NULL, NULL, 1500.0000, 'credit', 'journal_entry', NULL, 1, '2024-01-23 00:14:00', 'دفعو', '2024-01-22 21:14:32', '2024-01-22 21:14:32');
 
 -- --------------------------------------------------------
 
@@ -132,12 +133,12 @@ CREATE TABLE `accounting_acc_trans_mappings` (
 --
 
 INSERT INTO `accounting_acc_trans_mappings` (`id`, `business_id`, `ref_no`, `type`, `created_by`, `operation_date`, `note`, `created_at`, `updated_at`) VALUES
-(22, 1, '2024/0021', 'journal_entry', 1, '2024-01-12 02:42:00', NULL, '2024-01-11 23:43:19', '2024-01-11 23:43:19'),
-(23, 1, '2024/0022', 'journal_entry', 1, '2024-01-12 02:43:00', NULL, '2024-01-11 23:43:53', '2024-01-11 23:43:53'),
-(24, 1, '2024/0023', 'journal_entry', 1, '2024-01-12 02:44:00', '{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null,\"9\":null,\"10\":null}', '2024-01-11 23:45:03', '2024-01-13 15:31:42'),
-(25, 1, '2024/0024', 'journal_entry', 1, '2024-01-12 02:47:00', NULL, '2024-01-11 23:47:49', '2024-01-11 23:47:49'),
-(26, 1, '2024/0025', 'journal_entry', 1, '2024-01-12 02:53:00', NULL, '2024-01-11 23:53:28', '2024-01-11 23:53:28'),
-(27, 1, '2024/0026', 'journal_entry', 1, '2024-01-13 18:31:00', NULL, '2024-01-13 15:32:10', '2024-01-13 15:32:10');
+(1, 1, '2024/0027', 'journal_entry', 1, '2024-01-19 04:58:00', NULL, '2024-01-19 01:59:23', '2024-01-19 01:59:23'),
+(2, 1, '2024/0028', 'journal_entry', 1, '2024-01-19 05:01:00', NULL, '2024-01-19 02:02:43', '2024-01-19 02:02:43'),
+(3, 1, '2024/0029', 'journal_entry', 1, '2024-01-19 05:09:00', NULL, '2024-01-19 02:09:38', '2024-01-19 02:09:38'),
+(4, 1, '2024/0030', 'journal_entry', 1, '2024-01-19 05:13:00', NULL, '2024-01-19 02:14:21', '2024-01-19 02:14:21'),
+(5, 1, '2024/0031', 'journal_entry', 1, '2024-01-20 03:49:00', NULL, '2024-01-20 00:50:25', '2024-01-20 00:50:25'),
+(6, 1, '2024/0032', 'journal_entry', 1, '2024-01-23 00:14:00', NULL, '2024-01-22 21:14:32', '2024-01-22 21:14:32');
 
 -- --------------------------------------------------------
 
@@ -190,6 +191,33 @@ CREATE TABLE `accounts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account_categories`
+--
+
+CREATE TABLE `account_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name_ar` varchar(191) NOT NULL,
+  `name_en` varchar(191) DEFAULT NULL,
+  `business_id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `account_categories`
+--
+
+INSERT INTO `account_categories` (`id`, `name_ar`, `name_en`, `business_id`, `parent_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'dddd', 'sss', 1, 0, 1, '2024-01-19 00:52:25', '2024-01-19 00:52:25'),
+(2, 'صافي المبيعات', NULL, 1, 0, 1, '2024-01-19 01:17:58', '2024-01-20 21:07:18'),
+(3, 'محمد', NULL, 1, 0, 1, '2024-01-20 21:01:08', '2024-01-20 21:01:08'),
+(4, 'فراس', NULL, 1, 0, 1, '2024-01-20 21:01:16', '2024-01-20 21:01:16');
 
 -- --------------------------------------------------------
 
@@ -257,193 +285,22 @@ CREATE TABLE `activity_log` (
 --
 
 INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_id`, `subject_type`, `event`, `business_id`, `causer_id`, `causer_type`, `properties`, `batch_uuid`, `created_at`, `updated_at`) VALUES
-(1, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-01 21:02:30', '2023-11-01 21:02:30'),
-(2, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":100}}', NULL, '2023-11-01 21:18:46', '2023-11-01 21:18:46'),
-(3, 'default', 'added', 306175, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-03 14:46:08', '2023-11-03 14:46:08'),
-(4, 'default', 'added', 306176, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-03 14:51:30', '2023-11-03 14:51:30'),
-(5, 'default', 'added', 306177, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":150}}', NULL, '2023-11-04 11:15:57', '2023-11-04 11:15:57'),
-(6, 'default', 'added', 306178, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":225}}', NULL, '2023-11-04 11:16:07', '2023-11-04 11:16:07'),
-(7, 'default', 'added', 306179, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":175}}', NULL, '2023-11-04 11:16:16', '2023-11-04 11:16:16'),
-(8, 'default', 'added', 306180, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":200}}', NULL, '2023-11-04 11:16:23', '2023-11-04 11:16:23'),
-(9, 'default', 'added', 306181, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":175}}', NULL, '2023-11-04 11:16:31', '2023-11-04 11:16:31'),
-(10, 'default', 'added', 306182, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":525}}', NULL, '2023-11-10 14:10:26', '2023-11-10 14:10:26'),
-(11, 'default', 'added', 306183, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-11 12:58:04', '2023-11-11 12:58:04'),
-(12, 'default', 'added', 306184, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":100}}', NULL, '2023-11-11 13:01:56', '2023-11-11 13:01:56'),
-(13, 'default', 'added', 306185, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-11 13:31:31', '2023-11-11 13:31:31'),
-(14, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-12 07:09:49', '2023-11-12 07:09:49'),
-(15, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-14 03:43:44', '2023-11-14 03:43:44'),
-(16, 'default', 'added', 306186, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.5}}', NULL, '2023-11-14 03:51:21', '2023-11-14 03:51:21'),
-(17, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-14 05:06:00', '2023-11-14 05:06:00'),
-(18, 'default', 'added', 306187, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":31.25}}', NULL, '2023-11-14 05:13:19', '2023-11-14 05:13:19'),
-(19, 'default', 'added', 306188, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.65}}', NULL, '2023-11-14 05:17:52', '2023-11-14 05:17:52'),
-(20, 'default', 'added', 306189, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":1.25}}', NULL, '2023-11-14 05:18:51', '2023-11-14 05:18:51'),
-(21, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-14 11:40:36', '2023-11-14 11:40:36'),
-(22, 'default', 'added', 306190, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":30}}', NULL, '2023-11-14 11:48:23', '2023-11-14 11:48:23'),
-(23, 'default', 'added', 306191, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":30}}', NULL, '2023-11-14 11:51:27', '2023-11-14 11:51:27'),
-(24, 'default', 'added', 306192, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-14 11:52:20', '2023-11-14 11:52:20'),
-(25, 'default', 'added', 306193, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-14 12:05:49', '2023-11-14 12:05:49'),
-(26, 'default', 'added', 306194, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-14 12:08:37', '2023-11-14 12:08:37'),
-(27, 'default', 'added', 306195, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-14 12:12:18', '2023-11-14 12:12:18'),
-(28, 'default', 'added', 306196, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-14 12:21:55', '2023-11-14 12:21:55'),
-(29, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-15 16:23:42', '2023-11-15 16:23:42'),
-(30, 'default', 'added', 306197, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-15 16:25:31', '2023-11-15 16:25:31'),
-(31, 'default', 'added', 306198, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":26.25}}', NULL, '2023-11-15 16:25:46', '2023-11-15 16:25:46'),
-(32, 'default', 'added', 306199, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":30}}', NULL, '2023-11-15 16:30:45', '2023-11-15 16:30:45'),
-(33, 'default', 'added', 306200, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":30}}', NULL, '2023-11-15 16:30:55', '2023-11-15 16:30:55'),
-(34, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-18 01:02:05', '2023-11-18 01:02:05'),
-(35, 'default', 'added', 306201, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5}}', NULL, '2023-11-18 01:02:45', '2023-11-18 01:02:45'),
-(36, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-18 23:57:38', '2023-11-18 23:57:38'),
-(37, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-19 05:07:48', '2023-11-19 05:07:48'),
-(38, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-20 03:13:43', '2023-11-20 03:13:43'),
-(39, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":50}}', NULL, '2023-11-20 03:17:31', '2023-11-20 03:17:31'),
-(40, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-20 04:51:38', '2023-11-20 04:51:38'),
-(41, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-20 04:52:28', '2023-11-20 04:52:28'),
-(42, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":33}}', NULL, '2023-11-20 04:56:14', '2023-11-20 04:56:14'),
-(43, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-11-20 11:14:03', '2023-11-20 11:14:03'),
-(44, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.25}}', NULL, '2023-11-20 11:24:08', '2023-11-20 11:24:08'),
-(45, 'default', 'added', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":16}}', NULL, '2023-11-20 11:28:45', '2023-11-20 11:28:45'),
-(46, 'default', 'added', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":18.15}}', NULL, '2023-11-20 11:32:01', '2023-11-20 11:32:01'),
-(47, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5.15}}', NULL, '2023-11-21 20:22:16', '2023-11-21 20:22:16'),
-(48, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.25}}', NULL, '2023-11-24 17:11:15', '2023-11-24 17:11:15'),
-(49, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":10}}', NULL, '2023-11-24 19:01:50', '2023-11-24 19:01:50'),
-(50, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.25}}', NULL, '2023-11-24 20:44:17', '2023-11-24 20:44:17'),
-(51, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":13.4}}', NULL, '2023-11-25 00:01:31', '2023-11-25 00:01:31'),
-(52, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":13}}', NULL, '2023-11-25 00:06:22', '2023-11-25 00:06:22'),
-(53, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25}}', NULL, '2023-11-25 00:13:50', '2023-11-25 00:13:50'),
-(54, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":16}}', NULL, '2023-11-25 00:21:56', '2023-11-25 00:21:56'),
-(55, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":16}}', NULL, '2023-11-25 00:45:15', '2023-11-25 00:45:15'),
-(56, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":11}}', NULL, '2023-11-25 01:36:29', '2023-11-25 01:36:29'),
-(57, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-11-25 02:16:00', '2023-11-25 02:16:00'),
-(58, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":10}}', NULL, '2023-12-01 20:44:24', '2023-12-01 20:44:24'),
-(59, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6}}', NULL, '2023-12-01 20:54:53', '2023-12-01 20:54:53'),
-(60, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":13.4}}', NULL, '2023-12-01 20:57:55', '2023-12-01 20:57:55'),
-(61, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-12-01 21:00:50', '2023-12-01 21:00:50'),
-(62, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14}}', NULL, '2023-12-01 21:51:47', '2023-12-01 21:51:47'),
-(63, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":16.4}}', NULL, '2023-12-01 21:59:37', '2023-12-01 21:59:37'),
-(64, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":13.4}}', NULL, '2023-12-01 22:11:10', '2023-12-01 22:11:10'),
-(65, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5.4}}', NULL, '2023-12-01 22:12:43', '2023-12-01 22:12:43'),
-(66, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":22}}', NULL, '2023-12-01 22:14:49', '2023-12-01 22:14:49'),
-(67, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5.25}}', NULL, '2023-12-02 00:05:14', '2023-12-02 00:05:14'),
-(68, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":16}}', NULL, '2023-12-02 00:23:12', '2023-12-02 00:23:12'),
-(69, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":33.38}}', NULL, '2023-12-02 00:32:35', '2023-12-02 00:32:35'),
-(70, 'default', 'added', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":12.88}}', NULL, '2023-12-02 00:36:01', '2023-12-02 00:36:01'),
-(71, 'default', 'added', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":15.88}}', NULL, '2023-12-02 00:55:28', '2023-12-02 00:55:28'),
-(72, 'default', 'added', 9, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":27.26}}', NULL, '2023-12-02 00:59:17', '2023-12-02 00:59:17'),
-(73, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":11.25}}', NULL, '2023-12-02 10:42:49', '2023-12-02 10:42:49'),
-(74, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5}}', NULL, '2023-12-02 10:53:13', '2023-12-02 10:53:13'),
-(75, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":10}}', NULL, '2023-12-02 11:38:53', '2023-12-02 11:38:53'),
-(76, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":20.9}}', NULL, '2023-12-02 13:24:06', '2023-12-02 13:24:06'),
-(77, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-12-02 13:28:26', '2023-12-02 13:28:26'),
-(78, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-12-02 13:33:05', '2023-12-02 13:33:05'),
-(79, 'default', 'added', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-12-02 13:38:32', '2023-12-02 13:38:32'),
-(80, 'default', 'added', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":27.53}}', NULL, '2023-12-02 16:17:08', '2023-12-02 16:17:08'),
-(81, 'default', 'added', 9, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":37.53}}', NULL, '2023-12-02 21:14:14', '2023-12-02 21:14:14'),
-(82, 'default', 'added', 10, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":37.53}}', NULL, '2023-12-02 21:15:39', '2023-12-02 21:15:39'),
-(83, 'default', 'added', 11, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8.13}}', NULL, '2023-12-02 21:17:13', '2023-12-02 21:17:13'),
-(84, 'default', 'added', 12, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":9.25}}', NULL, '2023-12-02 21:20:49', '2023-12-02 21:20:49'),
-(85, 'default', 'added', 13, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:21:08', '2023-12-05 20:21:08'),
-(86, 'default', 'added', 14, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:21:55', '2023-12-05 20:21:55'),
-(87, 'default', 'added', 15, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:22:48', '2023-12-05 20:22:48'),
-(88, 'default', 'added', 16, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:23:40', '2023-12-05 20:23:40'),
-(89, 'default', 'added', 17, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:26:22', '2023-12-05 20:26:22'),
-(90, 'default', 'added', 18, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:29:49', '2023-12-05 20:29:49'),
-(91, 'default', 'added', 19, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:37:41', '2023-12-05 20:37:41'),
-(92, 'default', 'added', 20, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:38:58', '2023-12-05 20:38:58'),
-(93, 'default', 'added', 21, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:40:20', '2023-12-05 20:40:20'),
-(94, 'default', 'added', 22, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:43:34', '2023-12-05 20:43:34'),
-(95, 'default', 'added', 23, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:45:31', '2023-12-05 20:45:31'),
-(96, 'default', 'login', 1, 'App\\User', NULL, 1, 1, 'App\\User', '[]', NULL, '2023-12-05 20:46:07', '2023-12-05 20:46:07'),
-(97, 'default', 'added', 24, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:46:25', '2023-12-05 20:46:25'),
-(98, 'default', 'added', 25, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:47:34', '2023-12-05 20:47:34'),
-(99, 'default', 'added', 26, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:48:24', '2023-12-05 20:48:24'),
-(100, 'default', 'added', 27, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:48:35', '2023-12-05 20:48:35'),
-(101, 'default', 'added', 28, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 20:56:56', '2023-12-05 20:56:56'),
-(102, 'default', 'added', 29, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-05 21:09:56', '2023-12-05 21:09:56'),
-(103, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5}}', NULL, '2023-12-06 19:38:00', '2023-12-06 19:38:00'),
-(104, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-06 19:38:19', '2023-12-06 19:38:19'),
-(105, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.25}}', NULL, '2023-12-06 20:32:50', '2023-12-06 20:32:50'),
-(106, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.65}}', NULL, '2023-12-06 21:30:19', '2023-12-06 21:30:19'),
-(107, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":33.78}}', NULL, '2023-12-08 15:12:39', '2023-12-08 15:12:39'),
-(108, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":29.9}}', NULL, '2023-12-08 15:27:08', '2023-12-08 15:27:08'),
-(109, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":11.25}}', NULL, '2023-12-08 20:25:39', '2023-12-08 20:25:39'),
-(110, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":33.38}}', NULL, '2023-12-08 20:37:41', '2023-12-08 20:37:41'),
-(111, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":23.5}}', NULL, '2023-12-08 20:38:13', '2023-12-08 20:38:13'),
-(112, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":27.63}}', NULL, '2023-12-08 23:18:44', '2023-12-08 23:18:44'),
-(113, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25.38}}', NULL, '2023-12-09 01:12:07', '2023-12-09 01:12:07'),
-(114, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":20.5}}', NULL, '2023-12-09 18:13:46', '2023-12-09 18:13:46'),
-(115, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.25}}', NULL, '2023-12-09 18:15:48', '2023-12-09 18:15:48'),
-(116, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":10}}', NULL, '2023-12-09 18:49:21', '2023-12-09 18:49:21'),
-(117, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":15.5}}', NULL, '2023-12-09 18:50:07', '2023-12-09 18:50:07'),
-(118, 'default', 'added', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.25}}', NULL, '2023-12-09 18:50:41', '2023-12-09 18:50:41'),
-(119, 'default', 'added', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.25}}', NULL, '2023-12-09 18:51:11', '2023-12-09 18:51:11'),
-(120, 'default', 'added', 9, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.25}}', NULL, '2023-12-09 19:20:26', '2023-12-09 19:20:26'),
-(121, 'default', 'added', 10, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":15.5}}', NULL, '2023-12-09 19:22:06', '2023-12-09 19:22:06'),
-(122, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":23.5}}', NULL, '2023-12-09 19:39:49', '2023-12-09 19:39:49'),
-(123, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.65}}', NULL, '2023-12-09 19:43:04', '2023-12-09 19:43:04'),
-(124, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.65}}', NULL, '2023-12-09 19:47:04', '2023-12-09 19:47:04'),
-(125, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":28.5}}', NULL, '2023-12-10 20:07:32', '2023-12-10 20:07:32'),
-(126, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":40.15}}', NULL, '2023-12-10 20:52:56', '2023-12-10 20:52:56'),
-(127, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":23.5}}', NULL, '2023-12-10 20:56:31', '2023-12-10 20:56:31'),
-(128, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":22.5}}', NULL, '2023-12-11 19:54:45', '2023-12-11 19:54:45'),
-(129, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":25.63}}', NULL, '2023-12-11 19:58:03', '2023-12-11 19:58:03'),
-(130, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":22.5}}', NULL, '2023-12-11 20:06:46', '2023-12-11 20:06:46'),
-(131, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":20.5}}', NULL, '2023-12-11 20:07:30', '2023-12-11 20:07:30'),
-(132, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":27.38}}', NULL, '2023-12-11 20:11:49', '2023-12-11 20:11:49'),
-(133, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":32.26}}', NULL, '2023-12-14 14:54:34', '2023-12-14 14:54:34'),
-(134, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":26.53}}', NULL, '2023-12-14 20:47:18', '2023-12-14 20:47:18'),
-(135, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.25}}', NULL, '2023-12-14 21:02:08', '2023-12-14 21:02:08'),
-(136, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":23.5}}', NULL, '2023-12-15 12:46:49', '2023-12-15 12:46:49'),
-(137, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":23.5}}', NULL, '2023-12-15 12:49:13', '2023-12-15 12:49:13'),
-(138, 'default', 'sell_deleted', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":2,\"invoice_no\":\"0126\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"23.5000\"}}', NULL, '2023-12-16 10:53:40', '2023-12-16 10:53:40'),
-(139, 'default', 'sell_deleted', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":1,\"invoice_no\":\"0125\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"23.5000\"}}', NULL, '2023-12-16 10:53:49', '2023-12-16 10:53:49'),
-(140, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.25}}', NULL, '2023-12-16 12:12:14', '2023-12-16 12:12:14'),
-(141, 'default', 'sell_deleted', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":3,\"invoice_no\":\"0127\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"19.2500\"}}', NULL, '2023-12-16 12:14:21', '2023-12-16 12:14:21'),
-(142, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":11.25}}', NULL, '2023-12-16 12:15:32', '2023-12-16 12:15:32'),
-(143, 'default', 'sell_deleted', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":4,\"invoice_no\":\"0128\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"11.2500\"}}', NULL, '2023-12-16 12:17:18', '2023-12-16 12:17:18'),
-(144, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":19.25}}', NULL, '2023-12-16 12:19:18', '2023-12-16 12:19:18'),
-(145, 'default', 'sell_deleted', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":5,\"invoice_no\":\"0129\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"19.2500\"}}', NULL, '2023-12-16 12:20:01', '2023-12-16 12:20:01'),
-(146, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":14.25}}', NULL, '2023-12-16 12:27:37', '2023-12-16 12:27:37'),
-(147, 'default', 'sell_deleted', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":6,\"invoice_no\":\"0130\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"14.2500\"}}', NULL, '2023-12-16 12:28:16', '2023-12-16 12:28:16'),
-(148, 'default', 'added', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":9.25}}', NULL, '2023-12-16 12:29:11', '2023-12-16 12:29:11'),
-(149, 'default', 'sell_deleted', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":7,\"invoice_no\":\"0131\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"9.2500\"}}', NULL, '2023-12-16 12:29:29', '2023-12-16 12:29:29'),
-(150, 'default', 'added', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":4.88}}', NULL, '2023-12-16 12:35:52', '2023-12-16 12:35:52'),
-(151, 'default', 'sell_deleted', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":8,\"invoice_no\":\"0132\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"4.8800\"}}', NULL, '2023-12-16 12:36:20', '2023-12-16 12:36:20'),
-(152, 'default', 'added', 9, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":4.88}}', NULL, '2023-12-16 12:38:35', '2023-12-16 12:38:35'),
-(155, 'default', 'added', 10, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":4.88}}', NULL, '2023-12-16 12:52:47', '2023-12-16 12:52:47'),
-(180, 'default', 'sell_deleted', 10, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":10,\"invoice_no\":\"0134\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"4.8800\"}}', NULL, '2023-12-16 13:49:32', '2023-12-16 13:49:32'),
-(207, 'default', 'sell_deleted', 9, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":9,\"invoice_no\":\"0133\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"4.8800\"}}', NULL, '2023-12-16 14:46:27', '2023-12-16 14:46:27'),
-(208, 'default', 'added', 12, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":9.25}}', NULL, '2023-12-16 14:50:08', '2023-12-16 14:50:08'),
-(229, 'default', 'sell_deleted', 12, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":12,\"invoice_no\":\"0135\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"9.2500\"}}', NULL, '2023-12-16 16:03:59', '2023-12-16 16:03:59'),
-(230, 'default', 'added', 13, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":9.25}}', NULL, '2023-12-16 16:04:58', '2023-12-16 16:04:58'),
-(244, 'default', 'sell_deleted', 13, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":13,\"invoice_no\":\"0136\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"9.2500\"}}', NULL, '2023-12-16 17:47:41', '2023-12-16 17:47:41'),
-(245, 'default', 'added', 14, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6}}', NULL, '2023-12-16 17:48:30', '2023-12-16 17:48:30'),
-(246, 'default', 'sell_deleted', 14, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"id\":14,\"invoice_no\":\"0137\",\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"6.0000\"}}', NULL, '2023-12-16 17:49:04', '2023-12-16 17:49:04'),
-(247, 'default', 'added', 15, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":31.5}}', NULL, '2023-12-16 18:04:03', '2023-12-16 18:04:03'),
-(248, 'default', 'added', 16, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-12-16 19:57:52', '2023-12-16 19:57:52'),
-(249, 'default', 'added', 17, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-12-16 19:59:11', '2023-12-16 19:59:11'),
-(250, 'default', 'added', 18, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":9.25}}', NULL, '2023-12-16 20:00:49', '2023-12-16 20:00:49'),
-(251, 'default', 'added', 19, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":9.25}}', NULL, '2023-12-16 20:02:41', '2023-12-16 20:02:41'),
-(252, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":20.9}}', NULL, '2023-12-16 20:41:23', '2023-12-16 20:41:23'),
-(253, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":17}}', NULL, '2023-12-16 21:03:22', '2023-12-16 21:03:22'),
-(254, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":17}}', NULL, '2023-12-16 21:04:23', '2023-12-16 21:04:23'),
-(255, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5.4}}', NULL, '2023-12-17 20:10:49', '2023-12-17 20:10:49'),
-(256, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-19 21:30:14', '2023-12-19 21:30:14'),
-(257, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":5}}', NULL, '2023-12-19 21:40:12', '2023-12-19 21:40:12'),
-(258, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 15:17:53', '2023-12-21 15:17:53'),
-(259, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 15:22:17', '2023-12-21 15:22:17'),
-(260, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 15:23:52', '2023-12-21 15:23:52'),
-(261, 'default', 'added', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 15:33:28', '2023-12-21 15:33:28'),
-(262, 'default', 'added', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 16:10:12', '2023-12-21 16:10:12'),
-(263, 'default', 'added', 1, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 16:12:17', '2023-12-21 16:12:17'),
-(264, 'default', 'added', 2, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 16:15:38', '2023-12-21 16:15:38'),
-(265, 'default', 'added', 3, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":3}}', NULL, '2023-12-21 16:22:53', '2023-12-21 16:22:53'),
-(266, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":11.25}}', NULL, '2023-12-22 00:17:25', '2023-12-22 00:17:25'),
-(267, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":8}}', NULL, '2023-12-22 00:17:39', '2023-12-22 00:17:39'),
-(268, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":9.25}}', NULL, '2023-12-22 00:18:03', '2023-12-22 00:18:03'),
-(269, 'default', 'added', 7, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.88}}', NULL, '2023-12-22 00:18:16', '2023-12-22 00:18:16'),
-(270, 'default', 'added', 8, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-22 00:43:32', '2023-12-22 00:43:32'),
-(271, 'default', 'added', 9, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-22 00:48:08', '2023-12-22 00:48:08'),
-(272, 'default', 'added', 10, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":6.25}}', NULL, '2023-12-22 00:48:40', '2023-12-22 00:48:40');
+(1, 'default', 'added', 2, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-22 21:24:18', '2024-01-22 21:24:18'),
+(2, 'default', 'added', 3, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-23 21:31:30', '2024-01-23 21:31:30'),
+(3, 'default', 'added', 4, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-23 21:33:25', '2024-01-23 21:33:25'),
+(4, 'default', 'added', 5, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-23 21:35:50', '2024-01-23 21:35:50'),
+(5, 'default', 'added', 6, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-23 21:36:46', '2024-01-23 21:36:46'),
+(6, 'default', 'added', 7, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-23 23:12:53', '2024-01-23 23:12:53'),
+(7, 'default', 'added', 8, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-23 23:14:37', '2024-01-23 23:14:37'),
+(8, 'default', 'added', 10, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:22:05', '2024-01-24 19:22:05'),
+(9, 'default', 'added', 11, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:23:14', '2024-01-24 19:23:14'),
+(10, 'default', 'added', 12, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:25:28', '2024-01-24 19:25:28'),
+(11, 'default', 'added', 13, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:25:52', '2024-01-24 19:25:52'),
+(12, 'default', 'added', 14, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:32:22', '2024-01-24 19:32:22'),
+(13, 'default', 'added', 15, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:33:23', '2024-01-24 19:33:23'),
+(14, 'default', 'edited', 10, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:52:18', '2024-01-24 19:52:18'),
+(15, 'default', 'edited', 1, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:52:45', '2024-01-24 19:52:45'),
+(16, 'default', 'edited', 14, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-01-24 19:54:07', '2024-01-24 19:54:07');
 
 -- --------------------------------------------------------
 
@@ -723,7 +580,7 @@ CREATE TABLE `business` (
 --
 
 INSERT INTO `business` (`id`, `name`, `currency_id`, `start_date`, `tax_number_1`, `tax_label_1`, `tax_number_2`, `tax_label_2`, `code_label_1`, `code_1`, `code_label_2`, `code_2`, `default_sales_tax`, `default_profit_percent`, `owner_id`, `time_zone`, `fy_start_month`, `accounting_method`, `default_sales_discount`, `sell_price_tax`, `logo`, `sku_prefix`, `enable_product_expiry`, `expiry_type`, `on_product_expiry`, `stop_selling_before`, `enable_tooltip`, `purchase_in_diff_currency`, `purchase_currency_id`, `p_exchange_rate`, `transaction_edit_days`, `stock_expiry_alert_days`, `keyboard_shortcuts`, `pos_settings`, `essentials_settings`, `woocommerce_api_settings`, `woocommerce_skipped_orders`, `woocommerce_wh_oc_secret`, `woocommerce_wh_ou_secret`, `woocommerce_wh_od_secret`, `woocommerce_wh_or_secret`, `manufacturing_settings`, `weighing_scale_setting`, `enable_brand`, `enable_category`, `enable_sub_category`, `enable_price_tax`, `enable_purchase_status`, `enable_lot_number`, `default_unit`, `enable_sub_units`, `enable_racks`, `enable_row`, `enable_position`, `enable_editing_product_from_purchase`, `sales_cmsn_agnt`, `item_addition_method`, `enable_inline_tax`, `currency_symbol_placement`, `enabled_modules`, `date_format`, `time_format`, `currency_precision`, `quantity_precision`, `ref_no_prefixes`, `theme_color`, `created_by`, `crm_settings`, `asset_settings`, `repair_settings`, `accounting_settings`, `enable_rp`, `rp_name`, `amount_for_unit_rp`, `min_order_total_for_rp`, `max_rp_per_order`, `redeem_amount_per_unit_rp`, `min_order_total_for_redeem`, `min_redeem_point`, `max_redeem_point`, `rp_expiry_period`, `rp_expiry_type`, `email_settings`, `sms_settings`, `custom_labels`, `common_settings`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'test', 135, '2023-11-01', '12458789', 'ضريبة السل', '222', 'ضريبة السل', NULL, NULL, NULL, NULL, NULL, 25.00, 1, 'Asia/Kolkata', 1, 'fifo', 0.00, 'includes', '1699618846_371471728_318495687475862_8964458430160788678_n.png', NULL, 0, 'add_expiry', 'keep_selling', 0, 1, 0, NULL, 1.000, 30, 30, '{\"pos\":{\"express_checkout\":\"shift+e\",\"pay_n_ckeckout\":\"shift+p\",\"draft\":\"shift+d\",\"cancel\":\"shift+c\",\"recent_product_quantity\":\"f2\",\"weighing_scale\":null,\"edit_discount\":\"shift+i\",\"edit_order_tax\":\"shift+t\",\"add_payment_row\":\"shift+r\",\"finalize_payment\":\"shift+f\",\"add_new_product\":\"f4\"}}', '{\"amount_rounding_method\":null,\"allow_overselling\":\"1\",\"cmmsn_calculation_type\":\"invoice_value\",\"razor_pay_key_id\":null,\"razor_pay_key_secret\":null,\"stripe_public_key\":null,\"stripe_secret_key\":null,\"cash_denominations\":null,\"enable_cash_denomination_on\":\"pos_screen\",\"disable_pay_checkout\":0,\"disable_draft\":0,\"disable_express_checkout\":0,\"hide_product_suggestion\":0,\"hide_recent_trans\":0,\"disable_discount\":0,\"disable_order_tax\":0,\"is_pos_subtotal_editable\":0}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"label_prefix\":null,\"product_sku_length\":\"4\",\"qty_length\":\"3\",\"qty_length_decimal\":\"2\"}', 1, 1, 1, 1, 1, 1, NULL, 0, 0, 0, 0, 1, NULL, 1, 0, 'before', '[\"purchases\",\"add_sale\",\"pos_sale\",\"stock_transfers\",\"stock_adjustment\",\"expenses\",\"account\",\"tables\",\"modifiers\",\"service_staff\",\"booking\",\"kitchen\",\"subscription\",\"types_of_service\"]', 'm/d/Y', '24', 2, 2, '{\"purchase\":\"PO\",\"purchase_return\":null,\"purchase_requisition\":null,\"purchase_order\":null,\"stock_transfer\":\"ST\",\"stock_adjustment\":\"SA\",\"sell_return\":\"CN\",\"expense\":\"EP\",\"contacts\":\"CO\",\"purchase_payment\":\"PP\",\"sell_payment\":\"SP\",\"expense_payment\":null,\"business_location\":\"BL\",\"username\":null,\"subscription\":null,\"draft\":null,\"sales_order\":null}', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 1.0000, 1.0000, NULL, 1.0000, 1.0000, NULL, NULL, NULL, 'year', '{\"mail_driver\":\"smtp\",\"mail_host\":null,\"mail_port\":null,\"mail_username\":null,\"mail_password\":null,\"mail_encryption\":null,\"mail_from_address\":null,\"mail_from_name\":null}', '{\"sms_service\":\"other\",\"nexmo_key\":null,\"nexmo_secret\":null,\"nexmo_from\":null,\"twilio_sid\":null,\"twilio_token\":null,\"twilio_from\":null,\"url\":null,\"send_to_param_name\":\"to\",\"msg_param_name\":\"text\",\"request_method\":\"post\",\"header_1\":null,\"header_val_1\":null,\"header_2\":null,\"header_val_2\":null,\"header_3\":null,\"header_val_3\":null,\"param_1\":null,\"param_val_1\":null,\"param_2\":null,\"param_val_2\":null,\"param_3\":null,\"param_val_3\":null,\"param_4\":null,\"param_val_4\":null,\"param_5\":null,\"param_val_5\":null,\"param_6\":null,\"param_val_6\":null,\"param_7\":null,\"param_val_7\":null,\"param_8\":null,\"param_val_8\":null,\"param_9\":null,\"param_val_9\":null,\"param_10\":null,\"param_val_10\":null}', '{\"payments\":{\"custom_pay_1\":null,\"custom_pay_2\":null,\"custom_pay_3\":null,\"custom_pay_4\":null,\"custom_pay_5\":null,\"custom_pay_6\":null,\"custom_pay_7\":null},\"contact\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null},\"product\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null,\"custom_field_11\":null,\"custom_field_12\":null,\"custom_field_13\":null,\"custom_field_14\":null,\"custom_field_15\":null,\"custom_field_16\":null,\"custom_field_17\":null,\"custom_field_18\":null,\"custom_field_19\":null,\"custom_field_20\":null},\"product_cf_details\":{\"1\":{\"type\":null,\"dropdown_options\":null},\"2\":{\"type\":null,\"dropdown_options\":null},\"3\":{\"type\":null,\"dropdown_options\":null},\"4\":{\"type\":null,\"dropdown_options\":null},\"5\":{\"type\":null,\"dropdown_options\":null},\"6\":{\"type\":null,\"dropdown_options\":null},\"7\":{\"type\":null,\"dropdown_options\":null},\"8\":{\"type\":null,\"dropdown_options\":null},\"9\":{\"type\":null,\"dropdown_options\":null},\"10\":{\"type\":null,\"dropdown_options\":null},\"11\":{\"type\":null,\"dropdown_options\":null},\"12\":{\"type\":null,\"dropdown_options\":null},\"13\":{\"type\":null,\"dropdown_options\":null},\"14\":{\"type\":null,\"dropdown_options\":null},\"15\":{\"type\":null,\"dropdown_options\":null},\"16\":{\"type\":null,\"dropdown_options\":null},\"17\":{\"type\":null,\"dropdown_options\":null},\"18\":{\"type\":null,\"dropdown_options\":null},\"19\":{\"type\":null,\"dropdown_options\":null},\"20\":{\"type\":null,\"dropdown_options\":null}},\"location\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"user\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase_shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"sell\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"types_of_service\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null}}', '{\"default_credit_limit\":null,\"enable_purchase_order\":\"1\",\"enable_purchase_requisition\":\"1\",\"default_datatable_page_entries\":\"25\"}', 1, '2023-11-01 21:02:02', '2023-11-14 03:50:45');
+(1, 'test', 135, '2023-11-01', '12458789', 'ضريبة السل', '222', 'ضريبة السل', NULL, NULL, NULL, NULL, NULL, 25.00, 1, 'Asia/Kolkata', 1, 'fifo', 0.00, 'includes', '1699618846_371471728_318495687475862_8964458430160788678_n.png', NULL, 0, 'add_expiry', 'keep_selling', 0, 1, 0, NULL, 1.000, 30, 30, '{\"pos\":{\"express_checkout\":\"shift+e\",\"pay_n_ckeckout\":\"shift+p\",\"draft\":\"shift+d\",\"cancel\":\"shift+c\",\"recent_product_quantity\":\"f2\",\"weighing_scale\":null,\"edit_discount\":\"shift+i\",\"edit_order_tax\":\"shift+t\",\"add_payment_row\":\"shift+r\",\"finalize_payment\":\"shift+f\",\"add_new_product\":\"f4\"}}', '{\"amount_rounding_method\":null,\"allow_overselling\":\"1\",\"cmmsn_calculation_type\":\"invoice_value\",\"razor_pay_key_id\":null,\"razor_pay_key_secret\":null,\"stripe_public_key\":null,\"stripe_secret_key\":null,\"cash_denominations\":null,\"enable_cash_denomination_on\":\"pos_screen\",\"disable_pay_checkout\":0,\"disable_draft\":0,\"disable_express_checkout\":0,\"hide_product_suggestion\":0,\"hide_recent_trans\":0,\"disable_discount\":0,\"disable_order_tax\":0,\"is_pos_subtotal_editable\":0}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"label_prefix\":null,\"product_sku_length\":\"4\",\"qty_length\":\"3\",\"qty_length_decimal\":\"2\"}', 1, 1, 1, 1, 1, 1, NULL, 0, 0, 0, 0, 1, NULL, 1, 0, 'before', '[\"purchases\",\"add_sale\",\"pos_sale\",\"stock_transfers\",\"stock_adjustment\",\"expenses\",\"account\",\"tables\",\"modifiers\",\"service_staff\",\"booking\",\"kitchen\",\"subscription\",\"types_of_service\"]', 'm/d/Y', '24', 3, 2, '{\"purchase\":\"PO\",\"purchase_return\":null,\"purchase_requisition\":null,\"purchase_order\":null,\"stock_transfer\":\"ST\",\"stock_adjustment\":\"SA\",\"sell_return\":\"CN\",\"expense\":\"EP\",\"contacts\":\"CO\",\"purchase_payment\":\"PP\",\"sell_payment\":\"SP\",\"expense_payment\":null,\"business_location\":\"BL\",\"username\":null,\"subscription\":null,\"draft\":null,\"sales_order\":null}', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 1.0000, 1.0000, NULL, 1.0000, 1.0000, NULL, NULL, NULL, 'year', '{\"mail_driver\":\"smtp\",\"mail_host\":null,\"mail_port\":null,\"mail_username\":null,\"mail_password\":null,\"mail_encryption\":null,\"mail_from_address\":null,\"mail_from_name\":null}', '{\"sms_service\":\"other\",\"nexmo_key\":null,\"nexmo_secret\":null,\"nexmo_from\":null,\"twilio_sid\":null,\"twilio_token\":null,\"twilio_from\":null,\"url\":null,\"send_to_param_name\":\"to\",\"msg_param_name\":\"text\",\"request_method\":\"post\",\"header_1\":null,\"header_val_1\":null,\"header_2\":null,\"header_val_2\":null,\"header_3\":null,\"header_val_3\":null,\"param_1\":null,\"param_val_1\":null,\"param_2\":null,\"param_val_2\":null,\"param_3\":null,\"param_val_3\":null,\"param_4\":null,\"param_val_4\":null,\"param_5\":null,\"param_val_5\":null,\"param_6\":null,\"param_val_6\":null,\"param_7\":null,\"param_val_7\":null,\"param_8\":null,\"param_val_8\":null,\"param_9\":null,\"param_val_9\":null,\"param_10\":null,\"param_val_10\":null}', '{\"payments\":{\"custom_pay_1\":null,\"custom_pay_2\":null,\"custom_pay_3\":null,\"custom_pay_4\":null,\"custom_pay_5\":null,\"custom_pay_6\":null,\"custom_pay_7\":null},\"contact\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null},\"product\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null,\"custom_field_11\":null,\"custom_field_12\":null,\"custom_field_13\":null,\"custom_field_14\":null,\"custom_field_15\":null,\"custom_field_16\":null,\"custom_field_17\":null,\"custom_field_18\":null,\"custom_field_19\":null,\"custom_field_20\":null},\"product_cf_details\":{\"1\":{\"type\":null,\"dropdown_options\":null},\"2\":{\"type\":null,\"dropdown_options\":null},\"3\":{\"type\":null,\"dropdown_options\":null},\"4\":{\"type\":null,\"dropdown_options\":null},\"5\":{\"type\":null,\"dropdown_options\":null},\"6\":{\"type\":null,\"dropdown_options\":null},\"7\":{\"type\":null,\"dropdown_options\":null},\"8\":{\"type\":null,\"dropdown_options\":null},\"9\":{\"type\":null,\"dropdown_options\":null},\"10\":{\"type\":null,\"dropdown_options\":null},\"11\":{\"type\":null,\"dropdown_options\":null},\"12\":{\"type\":null,\"dropdown_options\":null},\"13\":{\"type\":null,\"dropdown_options\":null},\"14\":{\"type\":null,\"dropdown_options\":null},\"15\":{\"type\":null,\"dropdown_options\":null},\"16\":{\"type\":null,\"dropdown_options\":null},\"17\":{\"type\":null,\"dropdown_options\":null},\"18\":{\"type\":null,\"dropdown_options\":null},\"19\":{\"type\":null,\"dropdown_options\":null},\"20\":{\"type\":null,\"dropdown_options\":null}},\"location\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"user\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase_shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"sell\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"types_of_service\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null}}', '{\"default_credit_limit\":null,\"enable_purchase_order\":\"1\",\"enable_purchase_requisition\":\"1\",\"default_datatable_page_entries\":\"25\"}', 1, '2023-11-01 21:02:02', '2024-01-23 23:20:57');
 
 -- --------------------------------------------------------
 
@@ -982,6 +839,7 @@ INSERT INTO `cms_site_details` (`id`, `site_key`, `site_value`, `created_at`, `u
 CREATE TABLE `contacts` (
   `id` int(10) UNSIGNED NOT NULL,
   `business_id` int(10) UNSIGNED NOT NULL,
+  `account_id` bigint(11) UNSIGNED NOT NULL,
   `type` varchar(191) NOT NULL,
   `supplier_business_name` varchar(191) DEFAULT NULL,
   `name` varchar(191) DEFAULT NULL,
@@ -1046,8 +904,11 @@ CREATE TABLE `contacts` (
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `business_id`, `type`, `supplier_business_name`, `name`, `prefix`, `first_name`, `middle_name`, `last_name`, `email`, `contact_id`, `contact_status`, `tax_number`, `city`, `state`, `country`, `address_line_1`, `address_line_2`, `zip_code`, `dob`, `mobile`, `landline`, `alternate_number`, `pay_term_number`, `pay_term_type`, `credit_limit`, `created_by`, `converted_by`, `converted_on`, `balance`, `total_rp`, `total_rp_used`, `total_rp_expired`, `is_default`, `shipping_address`, `shipping_custom_field_details`, `is_export`, `export_custom_field_1`, `export_custom_field_2`, `export_custom_field_3`, `export_custom_field_4`, `export_custom_field_5`, `export_custom_field_6`, `position`, `customer_group_id`, `crm_source`, `crm_life_stage`, `custom_field1`, `custom_field2`, `custom_field3`, `custom_field4`, `custom_field5`, `custom_field6`, `custom_field7`, `custom_field8`, `custom_field9`, `custom_field10`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'customer', NULL, 'Walk-In Customer', NULL, NULL, NULL, NULL, NULL, 'CO0001', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 0.0000, 1, NULL, NULL, 0.0000, 0, 0, 0, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-11-01 21:02:02', '2023-11-01 21:02:02');
+INSERT INTO `contacts` (`id`, `business_id`, `account_id`, `type`, `supplier_business_name`, `name`, `prefix`, `first_name`, `middle_name`, `last_name`, `email`, `contact_id`, `contact_status`, `tax_number`, `city`, `state`, `country`, `address_line_1`, `address_line_2`, `zip_code`, `dob`, `mobile`, `landline`, `alternate_number`, `pay_term_number`, `pay_term_type`, `credit_limit`, `created_by`, `converted_by`, `converted_on`, `balance`, `total_rp`, `total_rp_used`, `total_rp_expired`, `is_default`, `shipping_address`, `shipping_custom_field_details`, `is_export`, `export_custom_field_1`, `export_custom_field_2`, `export_custom_field_3`, `export_custom_field_4`, `export_custom_field_5`, `export_custom_field_6`, `position`, `customer_group_id`, `crm_source`, `crm_life_stage`, `custom_field1`, `custom_field2`, `custom_field3`, `custom_field4`, `custom_field5`, `custom_field6`, `custom_field7`, `custom_field8`, `custom_field9`, `custom_field10`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 7, 'customer', NULL, 'mohamed fadol', NULL, 'mohamed', NULL, 'fadol', 'mohamedtapo@gmail.com', 'CO0001', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, 0.0000, 1, NULL, NULL, 0.0000, 0, 0, 0, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-11-01 21:02:02', '2024-01-24 19:52:45'),
+(10, 1, 22, 'customer', NULL, 'aa mohamed fadol', 'aa', 'mohamed', NULL, 'fadol', 'mohamedtapo@gmail.com', 'CO0009', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-24 19:22:05', '2024-01-24 19:22:05'),
+(14, 1, 15, 'supplier', NULL, 'aa mohamed wdwd fadol', 'aa', 'mohamed', 'wdwd', 'fadol', 'mohamedtapo@gmail.com', 'CO0013', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-24 19:32:22', '2024-01-24 19:54:07'),
+(15, 1, 16, 'supplier', NULL, 'aa mohamed wdwd fadol', 'aa', 'mohamed', 'wdwd', 'fadol', 'mohamedtapo@gmail.com', 'CO0014', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-24 19:33:23', '2024-01-24 19:33:23');
 
 -- --------------------------------------------------------
 
@@ -1860,6 +1721,32 @@ CREATE TABLE `expense_categories` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `financial_statements`
+--
+
+CREATE TABLE `financial_statements` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name_ar` varchar(191) NOT NULL,
+  `name_en` varchar(191) DEFAULT NULL,
+  `business_id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `financial_statements`
+--
+
+INSERT INTO `financial_statements` (`id`, `name_ar`, `name_en`, `business_id`, `parent_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(2, 'ميزانية عمومية', NULL, 1, 0, 1, '2024-01-19 01:16:58', '2024-01-19 01:16:58'),
+(3, 'قائمة دخل', NULL, 1, 0, 1, '2024-01-20 21:00:06', '2024-01-20 21:05:35'),
+(4, 'تدفقات نقدية', NULL, 1, 0, 1, '2024-01-20 21:00:17', '2024-01-20 21:05:57');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `group_sub_taxes`
 --
 
@@ -2051,14 +1938,14 @@ CREATE TABLE `main_accounts` (
   `name_en` varchar(191) DEFAULT NULL,
   `account_number` int(11) DEFAULT NULL,
   `business_id` int(10) UNSIGNED NOT NULL,
+  `account_category_id` bigint(20) UNSIGNED NOT NULL,
+  `financial_statement_id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `totalBalance` decimal(11,10) NOT NULL DEFAULT 0.0000000000,
-  `is_account_primary_type` tinyint(1) NOT NULL DEFAULT 1,
   `is_closed` int(11) NOT NULL DEFAULT 0,
   `description` text DEFAULT NULL,
-  `account_details` text DEFAULT NULL,
   `status` varchar(191) NOT NULL DEFAULT 'active',
   `show_balance` tinyint(1) NOT NULL DEFAULT 1,
+  `totalBalance` decimal(8,2) NOT NULL DEFAULT 6.00,
   `created_by` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -2068,24 +1955,28 @@ CREATE TABLE `main_accounts` (
 -- Dumping data for table `main_accounts`
 --
 
-INSERT INTO `main_accounts` (`id`, `name_ar`, `name_en`, `account_number`, `business_id`, `parent_id`, `totalBalance`, `is_account_primary_type`, `is_closed`, `description`, `account_details`, `status`, `show_balance`, `created_by`, `created_at`, `updated_at`) VALUES
-(11, 'الاصول', NULL, 1, 1, NULL, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:30:05', '2024-01-11 23:30:05'),
-(12, 'الالتزامات و الحقوق الملكية', NULL, 2, 1, NULL, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:30:18', '2024-01-11 23:30:18'),
-(13, 'تكلفة المبيعات', NULL, 3, 1, NULL, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:30:30', '2024-01-11 23:30:30'),
-(14, 'الاصول المتداولة', NULL, 11, 1, 11, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:30:45', '2024-01-11 23:30:45'),
-(15, 'الصندوق', NULL, 111, 1, 14, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:38:20', '2024-01-11 23:38:20'),
-(16, 'المبيعات', NULL, 31, 1, 13, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:38:49', '2024-01-11 23:38:49'),
-(17, 'التزامات متداولة', NULL, 21, 1, 12, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:42:00', '2024-01-11 23:42:00'),
-(18, 'قرض', NULL, 211, 1, 17, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:42:21', '2024-01-11 23:42:21'),
-(19, 'ذمة مدينة', NULL, 12, 1, 11, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:44:33', '2024-01-11 23:44:33'),
-(20, 'مصاريف', NULL, 4, 1, NULL, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:45:24', '2024-01-11 23:45:24'),
-(21, 'مصاريف ادارية', NULL, 41, 1, 20, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:45:39', '2024-01-11 23:45:39'),
-(22, 'مصاريف بنزين', NULL, 411, 1, 21, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:46:02', '2024-01-11 23:46:02'),
-(23, 'مصروف فراس بنزين', NULL, 4111, 1, 22, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:46:19', '2024-01-11 23:46:19'),
-(24, 'بنزين سيارة 1', NULL, 41111, 1, 23, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:46:36', '2024-01-11 23:46:36'),
-(25, 'بنزين سيارة 11', NULL, 411111, 1, 24, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:47:19', '2024-01-11 23:47:19'),
-(26, 'بنزين سيارة 2', NULL, 41112, 1, 23, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:52:32', '2024-01-11 23:52:32'),
-(27, 'بنزين سيارة 22', NULL, 411121, 1, 26, 0.0000000000, 0, 0, NULL, NULL, 'active', 1, 1, '2024-01-11 23:52:57', '2024-01-11 23:52:57');
+INSERT INTO `main_accounts` (`id`, `name_ar`, `name_en`, `account_number`, `business_id`, `account_category_id`, `financial_statement_id`, `parent_id`, `is_closed`, `description`, `status`, `show_balance`, `totalBalance`, `created_by`, `created_at`, `updated_at`) VALUES
+(2, 'الاصول', NULL, 2, 1, 2, 2, NULL, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:38:43', '2024-01-19 01:38:43'),
+(3, 'الاصول المتداولة', NULL, 32, 1, 2, 2, 12, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:39:53', '2024-01-20 21:11:07'),
+(4, 'النقد و ما في حكمه', NULL, 211, 1, 2, 2, 3, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:42:48', '2024-01-19 01:42:48'),
+(5, 'صناديق', NULL, 2111, 1, 2, 2, 4, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:43:33', '2024-01-19 01:43:33'),
+(6, 'صندوق فرع عمان', NULL, 21111, 1, 2, 2, 5, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:45:06', '2024-01-19 01:45:06'),
+(7, 'صندوق العهدات', NULL, 211111, 1, 2, 2, 6, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:46:45', '2024-01-19 01:46:45'),
+(8, 'صندوق فراس', NULL, 2111111, 1, 2, 2, 7, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:47:26', '2024-01-19 01:47:26'),
+(9, 'صتدوق نزار', NULL, 222, 1, 2, 2, 10, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 01:48:48', '2024-01-20 15:57:12'),
+(10, 'الاصول الثابتة', NULL, 22, 1, 2, 2, 2, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 02:08:30', '2024-01-19 02:08:30'),
+(11, 'اثاث', NULL, 221, 1, 2, 2, 10, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 02:09:02', '2024-01-19 02:09:02'),
+(12, 'الالتزامات و الحقوق الملكية', NULL, 3, 1, 2, 2, NULL, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 02:12:31', '2024-01-19 02:12:31'),
+(13, 'قروض طويلة الاجل', NULL, 31, 1, 2, 2, 12, 0, NULL, 'active', 1, 6.00, 1, '2024-01-19 02:13:03', '2024-01-19 02:13:03'),
+(14, 'البنك', NULL, 21112, 1, 3, 2, 5, 0, NULL, 'active', 1, 6.00, 1, '2024-01-22 21:13:57', '2024-01-22 21:13:57'),
+(15, 'عملاء', NULL, 322, 1, 3, 2, 3, 0, NULL, 'active', 1, 6.00, 1, '2024-01-22 21:16:30', '2024-01-22 21:16:30'),
+(16, 'موردين', NULL, 33, 1, 3, 4, 12, 0, NULL, 'active', 1, 6.00, 1, '2024-01-22 21:17:12', '2024-01-22 21:17:12'),
+(17, 'فراس عامر', NULL, 3221, 1, 2, 4, 15, 0, NULL, 'active', 1, 6.00, 1, '2024-01-22 21:24:50', '2024-01-22 21:24:50'),
+(18, 'dddd', NULL, 32211, 1, 4, 3, 17, 0, NULL, 'active', 1, 6.00, 1, '2024-01-22 21:31:44', '2024-01-22 21:31:44'),
+(19, 'dddddd', NULL, 322111, 1, 3, 4, 18, 0, NULL, 'active', 1, 6.00, 1, '2024-01-22 21:36:00', '2024-01-22 21:36:00'),
+(20, 'aa mohamed wdwd fadol', NULL, 4, 1, 2, 4, 17, 0, NULL, 'active', 1, 6.00, 1, '2024-01-23 21:33:25', '2024-01-23 21:33:25'),
+(21, '', NULL, 4, 1, 3, 2, 15, 0, NULL, 'active', 1, 6.00, 1, '2024-01-23 23:12:53', '2024-01-23 23:12:53'),
+(22, 'محمد سعيد', NULL, 4, 1, 3, 2, 15, 0, NULL, 'active', 1, 6.00, 1, '2024-01-23 23:14:37', '2024-01-23 23:14:37');
 
 -- --------------------------------------------------------
 
@@ -2621,7 +2512,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (439, '2023_12_11_013514_create_kitchen_table', 6),
 (440, '2023_12_11_013514_create_kitchens_table', 7),
 (442, '2023_12_12_012608_create_order_status_table', 8),
-(443, '2023_12_29_124646_create_main_accounts_table', 9);
+(447, '2023_01_18_011315_create_account_categories_table', 9),
+(448, '2023_01_18_011722_create_financial_statements_table', 9),
+(449, '2023_12_29_124646_create_main_accounts_table', 9);
 
 -- --------------------------------------------------------
 
@@ -3367,10 +3260,10 @@ CREATE TABLE `reference_counts` (
 --
 
 INSERT INTO `reference_counts` (`id`, `ref_type`, `ref_count`, `business_id`, `created_at`, `updated_at`) VALUES
-(1, 'contacts', 1, 1, '2023-11-01 21:02:02', '2023-11-01 21:02:02'),
+(1, 'contacts', 14, 1, '2023-11-01 21:02:02', '2024-01-24 19:33:23'),
 (2, 'business_location', 1, 1, '2023-11-01 21:02:02', '2023-11-01 21:02:02'),
 (3, 'sell_payment', 163, 1, '2023-11-01 21:18:45', '2023-12-22 00:48:39'),
-(4, 'journal_entry', 26, 1, '2023-12-28 23:02:10', '2024-01-13 15:32:10');
+(4, 'journal_entry', 32, 1, '2023-12-28 23:02:10', '2024-01-22 21:14:32');
 
 -- --------------------------------------------------------
 
@@ -3756,6 +3649,7 @@ INSERT INTO `system` (`id`, `key`, `value`) VALUES
 CREATE TABLE `tax_rates` (
   `id` int(10) UNSIGNED NOT NULL,
   `business_id` int(10) UNSIGNED NOT NULL,
+  `account_id` bigint(11) UNSIGNED NOT NULL,
   `name` varchar(191) NOT NULL,
   `amount` double(22,4) NOT NULL,
   `is_tax_group` tinyint(1) NOT NULL DEFAULT 0,
@@ -4019,6 +3913,13 @@ CREATE TABLE `types_of_services` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `types_of_services`
+--
+
+INSERT INTO `types_of_services` (`id`, `name`, `description`, `business_id`, `location_price_group`, `packing_charge`, `packing_charge_type`, `enable_custom_fields`, `created_at`, `updated_at`) VALUES
+(1, 'test business', NULL, 1, '{\"1\":\"0\"}', 0.0000, 'fixed', 0, '2024-01-18 21:38:31', '2024-01-18 21:38:31');
+
 -- --------------------------------------------------------
 
 --
@@ -4114,7 +4015,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_type`, `surname`, `first_name`, `last_name`, `username`, `email`, `password`, `language`, `contact_no`, `address`, `remember_token`, `business_id`, `essentials_department_id`, `essentials_designation_id`, `essentials_salary`, `essentials_pay_period`, `essentials_pay_cycle`, `available_at`, `paused_at`, `max_sales_discount_percent`, `allow_login`, `status`, `crm_contact_id`, `is_cmmsn_agnt`, `cmmsn_percent`, `selected_contacts`, `dob`, `gender`, `marital_status`, `blood_group`, `contact_number`, `alt_number`, `family_number`, `fb_link`, `twitter_link`, `social_media_1`, `social_media_2`, `permanent_address`, `current_address`, `guardian_name`, `custom_field_1`, `custom_field_2`, `custom_field_3`, `custom_field_4`, `bank_details`, `id_proof_name`, `id_proof_number`, `location_id`, `crm_department`, `crm_designation`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'user', 'mr', 'mohamed', 'fadol', 'mohamed', 'mohamedtapo@gmail.com', '$2y$10$na2gaZspZq1ngmkSEnYmZOGseiYBUrFv.Lm3vYP4.CFk5tCU7vuWq', 'ar', NULL, NULL, 'aTFCyokrV0jIboQM43ClKKaPZwxVbQCXUfDJgtEQ79bZJOz4NrB2RfDi2n4h', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'active', NULL, 0, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"account_holder_name\":null,\"account_number\":null,\"bank_name\":null,\"bank_code\":null,\"branch\":null,\"tax_payer_id\":null}', NULL, NULL, NULL, NULL, NULL, NULL, '2023-11-01 21:02:02', '2023-11-10 15:36:13');
+(1, 'user', 'mr', 'mohamed', 'fadol', 'mohamed', 'mohamedtapo@gmail.com', '$2y$10$na2gaZspZq1ngmkSEnYmZOGseiYBUrFv.Lm3vYP4.CFk5tCU7vuWq', 'ar', NULL, NULL, 'aTFCyokrV0jIboQM43ClKKaPZwxVbQCXUfDJgtEQ79bZJOz4NrB2RfDi2n4h', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'active', NULL, 0, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"account_holder_name\":null,\"account_number\":null,\"bank_name\":null,\"bank_code\":null,\"branch\":null,\"tax_payer_id\":null}', NULL, NULL, NULL, NULL, NULL, NULL, '2023-11-01 21:02:02', '2024-01-20 01:42:36');
 
 -- --------------------------------------------------------
 
@@ -4328,6 +4229,14 @@ ALTER TABLE `accounts`
   ADD KEY `accounts_created_by_index` (`created_by`);
 
 --
+-- Indexes for table `account_categories`
+--
+ALTER TABLE `account_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `account_categories_business_id_foreign` (`business_id`),
+  ADD KEY `account_categories_created_by_foreign` (`created_by`);
+
+--
 -- Indexes for table `account_transactions`
 --
 ALTER TABLE `account_transactions`
@@ -4517,7 +4426,8 @@ ALTER TABLE `contacts`
   ADD KEY `contacts_contact_status_index` (`contact_status`),
   ADD KEY `contacts_crm_source_index` (`crm_source`),
   ADD KEY `contacts_crm_life_stage_index` (`crm_life_stage`),
-  ADD KEY `contacts_converted_by_index` (`converted_by`);
+  ADD KEY `contacts_converted_by_index` (`converted_by`),
+  ADD KEY `account_id` (`account_id`);
 
 --
 -- Indexes for table `crm_call_logs`
@@ -4808,6 +4718,14 @@ ALTER TABLE `expense_categories`
   ADD KEY `expense_categories_business_id_foreign` (`business_id`);
 
 --
+-- Indexes for table `financial_statements`
+--
+ALTER TABLE `financial_statements`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `financial_statements_business_id_foreign` (`business_id`),
+  ADD KEY `financial_statements_created_by_foreign` (`created_by`);
+
+--
 -- Indexes for table `group_sub_taxes`
 --
 ALTER TABLE `group_sub_taxes`
@@ -4852,6 +4770,8 @@ ALTER TABLE `line_details`
 ALTER TABLE `main_accounts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `main_accounts_business_id_foreign` (`business_id`),
+  ADD KEY `main_accounts_account_category_id_foreign` (`account_category_id`),
+  ADD KEY `main_accounts_financial_statement_id_foreign` (`financial_statement_id`),
   ADD KEY `main_accounts_created_by_foreign` (`created_by`);
 
 --
@@ -5254,7 +5174,8 @@ ALTER TABLE `tax_rates`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tax_rates_business_id_foreign` (`business_id`),
   ADD KEY `tax_rates_created_by_foreign` (`created_by`),
-  ADD KEY `tax_rates_woocommerce_tax_rate_id_index` (`woocommerce_tax_rate_id`);
+  ADD KEY `tax_rates_woocommerce_tax_rate_id_index` (`woocommerce_tax_rate_id`),
+  ADD KEY `account_id` (`account_id`);
 
 --
 -- Indexes for table `transactions`
@@ -5443,7 +5364,7 @@ ALTER TABLE `accounting_accounts`
 -- AUTO_INCREMENT for table `accounting_accounts_transactions`
 --
 ALTER TABLE `accounting_accounts_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `accounting_account_types`
@@ -5455,7 +5376,7 @@ ALTER TABLE `accounting_account_types`
 -- AUTO_INCREMENT for table `accounting_acc_trans_mappings`
 --
 ALTER TABLE `accounting_acc_trans_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `accounting_budgets`
@@ -5468,6 +5389,12 @@ ALTER TABLE `accounting_budgets`
 --
 ALTER TABLE `accounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `account_categories`
+--
+ALTER TABLE `account_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `account_transactions`
@@ -5485,7 +5412,7 @@ ALTER TABLE `account_types`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `assets`
@@ -5587,7 +5514,7 @@ ALTER TABLE `cms_site_details`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `crm_call_logs`
@@ -5788,6 +5715,12 @@ ALTER TABLE `expense_categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `financial_statements`
+--
+ALTER TABLE `financial_statements`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `invoice_layouts`
 --
 ALTER TABLE `invoice_layouts`
@@ -5815,7 +5748,7 @@ ALTER TABLE `line_details`
 -- AUTO_INCREMENT for table `main_accounts`
 --
 ALTER TABLE `main_accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `media`
@@ -5845,7 +5778,7 @@ ALTER TABLE `mfg_recipe_ingredients`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=450;
 
 --
 -- AUTO_INCREMENT for table `notification_templates`
@@ -6049,7 +5982,7 @@ ALTER TABLE `system`
 -- AUTO_INCREMENT for table `tax_rates`
 --
 ALTER TABLE `tax_rates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -6079,7 +6012,7 @@ ALTER TABLE `transaction_sell_lines_purchase_lines`
 -- AUTO_INCREMENT for table `types_of_services`
 --
 ALTER TABLE `types_of_services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `units`
@@ -6150,6 +6083,13 @@ ALTER TABLE `woocommerce_sync_logs`
 --
 ALTER TABLE `accounting_accounts_transactions`
   ADD CONSTRAINT `accounting_account_id` FOREIGN KEY (`accounting_account_id`) REFERENCES `main_accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `account_categories`
+--
+ALTER TABLE `account_categories`
+  ADD CONSTRAINT `account_categories_business_id_foreign` FOREIGN KEY (`business_id`) REFERENCES `business` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `account_categories_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `assets`
@@ -6236,6 +6176,7 @@ ALTER TABLE `cms_page_metas`
 -- Constraints for table `contacts`
 --
 ALTER TABLE `contacts`
+  ADD CONSTRAINT `account_id` FOREIGN KEY (`account_id`) REFERENCES `main_accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `contacts_business_id_foreign` FOREIGN KEY (`business_id`) REFERENCES `business` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `contacts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
@@ -6313,6 +6254,13 @@ ALTER TABLE `expense_categories`
   ADD CONSTRAINT `expense_categories_business_id_foreign` FOREIGN KEY (`business_id`) REFERENCES `business` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `financial_statements`
+--
+ALTER TABLE `financial_statements`
+  ADD CONSTRAINT `financial_statements_business_id_foreign` FOREIGN KEY (`business_id`) REFERENCES `business` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `financial_statements_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `group_sub_taxes`
 --
 ALTER TABLE `group_sub_taxes`
@@ -6349,8 +6297,10 @@ ALTER TABLE `line_details`
 -- Constraints for table `main_accounts`
 --
 ALTER TABLE `main_accounts`
+  ADD CONSTRAINT `main_accounts_account_category_id_foreign` FOREIGN KEY (`account_category_id`) REFERENCES `account_categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `main_accounts_business_id_foreign` FOREIGN KEY (`business_id`) REFERENCES `business` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `main_accounts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `main_accounts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `main_accounts_financial_statement_id_foreign` FOREIGN KEY (`financial_statement_id`) REFERENCES `financial_statements` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mfg_recipe_ingredients`
