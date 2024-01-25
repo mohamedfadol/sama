@@ -50,6 +50,7 @@ use App\Http\Controllers\TypesOfServiceController;
 use App\Http\Controllers\AccountCategoryController;
 use App\Http\Controllers\DocumentAndNoteController;
 use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\SongsControllerController;
 use App\Http\Controllers\StockAdjustmentController;
 use App\Http\Controllers\BusinessLocationController;
 use App\Http\Controllers\LocationSettingsController;
@@ -139,6 +140,7 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::resource('payment-account', 'PaymentAccountController');
 
     Route::resource('tax-rates', TaxRateController::class);
+    Route::resource('songs-settings', SongsControllerController::class);
 
     Route::resource('units', UnitController::class);
 

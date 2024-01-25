@@ -2137,6 +2137,88 @@ $(document).ready(function() {
 
 
 
+    songs_table = $('#songs_table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: base_path + '/songs-settings',
+        columnDefs: [
+            {
+                targets: [2],
+                orderable: false,
+                searchable: false,
+            },
+        ],
+        aaSorting: [1, 'asc'],
+        columns: [
+            { data: 'song_name', name: 'song_name' },
+            { data: 'path', name: 'path' },
+            { data: 'nike_name', name: 'nike_name' },
+            { data: 'action', name: 'action' },
+        ],
+        fnDrawCallback: function(oSettings) {
+            __currency_convert_recursively($('#songs_table'));
+        },
+    });
+
+    $(document).on('submit', 'form#song_form', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var data = form.serialize();
+        $.ajax({
+            method: $(this).attr('method'),
+            url: $(this).attr('action'),
+            dataType: 'json',
+            data: data,
+            beforeSend: function(xhr) {
+                __disable_submit_button(form.find('button[type="submit"]'));
+            },
+            success: function(result) {
+                if (result.success == true) {
+                    $('div.songs_modal').modal('hide');
+                    toastr.success(result.msg);
+                    songs_table.ajax.reload();
+                } else {
+                    toastr.error(result.msg);
+                }
+            },
+        });
+    });
+    
+    
+    $(document).on('click', 'button.delete_song_button', function(e) {
+        e.preventDefault();
+        swal({
+            title: LANG.sure,
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then(willDelete => {
+            if (willDelete) {
+                var href = $(this).data('href');
+                var data = $(this).serialize();
+    
+                $.ajax({
+                    method: 'DELETE',
+                    url: href,
+                    dataType: 'json',
+                    data: data,
+                    success: function(result) {
+                        if (result.success == true) {
+                            toastr.success(result.msg);
+                            songs_table.ajax.reload();
+                        } else {
+                            toastr.error(result.msg);
+                        }
+                    },
+                });
+            }
+        });
+    });
+
+
+
+
+
 
 
 

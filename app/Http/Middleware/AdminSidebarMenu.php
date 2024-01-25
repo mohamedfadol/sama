@@ -738,7 +738,14 @@ class AdminSidebarMenu
                                 ['icon' => 'fa fas fa-share-alt', 'active' => request()->segment(1) == 'printers']
                             );
                         }
-
+ 
+                        $sub->url(
+                            action([\App\Http\Controllers\SongsControllerController::class, 'index']),
+                            __('songs.songs_settings'),
+                            ['icon' => 'fa fas fa-bolt', 'active' => request()->segment(1) == 'songs-settings']
+                        );
+                         
+                        
                         if (auth()->user()->can('tax_rate.view') || auth()->user()->can('tax_rate.create')) {
                             $sub->url(
                                 action([\App\Http\Controllers\TaxRateController::class, 'index']),
@@ -746,7 +753,6 @@ class AdminSidebarMenu
                                 ['icon' => 'fa fas fa-bolt', 'active' => request()->segment(1) == 'tax-rates']
                             );
                         }
-
 
                          //Kitchen home
                         if (in_array('kitchen', $enabled_modules)) {
