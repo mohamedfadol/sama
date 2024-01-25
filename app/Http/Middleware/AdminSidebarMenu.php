@@ -739,11 +739,11 @@ class AdminSidebarMenu
                             );
                         }
  
-                        $sub->url(
-                            action([\App\Http\Controllers\SongsControllerController::class, 'index']),
-                            __('songs.songs_settings'),
-                            ['icon' => 'fa fas fa-bolt', 'active' => request()->segment(1) == 'songs-settings']
-                        );
+                        // $sub->url(
+                        //     action([\App\Http\Controllers\SongsControllerController::class, 'index']),
+                        //     __('songs.songs_settings'),
+                        //     ['icon' => 'fa fas fa-bolt', 'active' => request()->segment(1) == 'songs-settings']
+                        // );
                          
                         
                         if (auth()->user()->can('tax_rate.view') || auth()->user()->can('tax_rate.create')) {

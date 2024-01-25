@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2024 at 09:09 PM
+-- Generation Time: Jan 25, 2024 at 10:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -2514,7 +2514,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (442, '2023_12_12_012608_create_order_status_table', 8),
 (447, '2023_01_18_011315_create_account_categories_table', 9),
 (448, '2023_01_18_011722_create_financial_statements_table', 9),
-(449, '2023_12_29_124646_create_main_accounts_table', 9);
+(449, '2023_12_29_124646_create_main_accounts_table', 9),
+(451, '2024_01_26_005939_create_songs_table', 10);
 
 -- --------------------------------------------------------
 
@@ -3504,6 +3505,32 @@ CREATE TABLE `sheet_spreadsheet_shares` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `songs`
+--
+
+CREATE TABLE `songs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `song_name` varchar(191) DEFAULT NULL,
+  `nike_name` varchar(191) DEFAULT NULL,
+  `path` varchar(191) DEFAULT NULL,
+  `business_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `songs`
+--
+
+INSERT INTO `songs` (`id`, `song_name`, `nike_name`, `path`, `business_id`, `created_at`, `updated_at`) VALUES
+(2, 'textssss', 'pesapal-ipn', '3.wav', 1, '2024-01-25 23:12:26', '2024-01-26 00:11:05'),
+(3, 'textssss', 'log-viewer::logs.delete', '4.mp3', 1, '2024-01-25 23:13:21', '2024-01-26 00:10:49'),
+(6, 'aaa', NULL, '3.wav', 1, '2024-01-25 23:42:12', '2024-01-25 23:42:12'),
+(7, 'sss', 'log-viewer::logs.show', '2.mp4', 1, '2024-01-26 00:11:48', '2024-01-26 00:11:48');
 
 -- --------------------------------------------------------
 
@@ -5131,6 +5158,12 @@ ALTER TABLE `sheet_spreadsheet_shares`
   ADD KEY `sheet_spreadsheet_shares_shared_id_index` (`shared_id`);
 
 --
+-- Indexes for table `songs`
+--
+ALTER TABLE `songs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stock_adjustment_lines`
 --
 ALTER TABLE `stock_adjustment_lines`
@@ -5778,7 +5811,7 @@ ALTER TABLE `mfg_recipe_ingredients`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=450;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=452;
 
 --
 -- AUTO_INCREMENT for table `notification_templates`
@@ -5947,6 +5980,12 @@ ALTER TABLE `sheet_spreadsheets`
 --
 ALTER TABLE `sheet_spreadsheet_shares`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `songs`
+--
+ALTER TABLE `songs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `stock_adjustment_lines`
