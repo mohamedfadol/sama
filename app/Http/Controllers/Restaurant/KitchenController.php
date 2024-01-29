@@ -276,7 +276,7 @@ class KitchenController extends Controller
     /**
      * Marks an order as all cooked
      *
-     * @return json $output
+     * @return json $output 
      */
     public function markAsAllCooked($id, $kitchen_id)
     {
@@ -412,10 +412,10 @@ class KitchenController extends Controller
     public function viewPage() {
         $business_id = request()->session()->get('user.business_id');
         $orders = $this->restUtil->getAllOrdersCooked($business_id, ['line_order_status' => 'cooked']);
-        $ervedOrders = $this->restUtil->getAllOrdersRerved($business_id, ['line_order_status' => 'served']);
-        return view('restaurant.partials.hole_view', compact('orders','ervedOrders'));
+        $resrvedOrders = $this->restUtil->getAllOrdersRerved($business_id, ['line_order_status' => 'served']);
+        return view('restaurant.partials.hole_view', compact('orders','resrvedOrders'));
     }
-
+ 
 
     /**
      * Marks an order as done

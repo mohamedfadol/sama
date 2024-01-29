@@ -1,37 +1,37 @@
-@extends('layouts.restaurant_notify')
-@section('css')
+
+<?php $__env->startSection('css'); ?>
     <style>
         .no-print  {
             display: none;
         }
         
     </style>
-@endsection
-@section('title', __( 'restaurant.hole_views' ))
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('title', __( 'restaurant.hole_views' )); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Main content -->
 <section class="content">
 <div class="row col-lg-12" style=" ">
     <div class="col-lg-6">
-        <img src="{{asset('uploads/business_logos/'.session()->get('business')->logo)}}" style="width=80; float: inline-start;" height="90" alt="{{env('APP_NAME')}}">
+        <img src="<?php echo e(asset('uploads/business_logos/'.session()->get('business')->logo), false); ?>" style="width=80; float: inline-start;" height="90" alt="<?php echo e(env('APP_NAME'), false); ?>">
     </div>
 
      
     <div class="col-lg-6">
-        <img style="float: left !important;" src="{{asset('img/logo33.PNG')}}" style="width=90; float: inline-start;" height="90" alt="{{env('APP_NAME')}}">
+        <img style="float: left !important;" src="<?php echo e(asset('img/logo33.PNG'), false); ?>" style="width=90; float: inline-start;" height="90" alt="<?php echo e(env('APP_NAME'), false); ?>">
     </div>
 </div>
 <div class="row">
     <div class="col-md-12 text-center">
-        <h1>@lang( 'restaurant.hole_views' ) - @lang( 'restaurant.orders' )</h1>
+        <h1><?php echo app('translator')->get( 'restaurant.hole_views' ); ?> - <?php echo app('translator')->get( 'restaurant.orders' ); ?></h1>
     </div>
 </div>
 	<div class="box" style="height: 100%;">
         <div class="box-body">
             <input type="hidden" id="orders_for" value="kitchen">
         	<div class="row" id="orders_div"> 
-             @include('restaurant.partials.hole_view_details', array('orders_for' => 'kitchen'))   
+             <?php echo $__env->make('restaurant.partials.hole_view_details', array('orders_for' => 'kitchen'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>   
             </div>
         </div>
         <div class="overlay hide">
@@ -40,9 +40,9 @@
     </div> 
 </section>
 <!-- /.content -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('javascript')
+<?php $__env->startSection('javascript'); ?>
     <script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', 'a.mark_as_cooked_btn', function(e){
@@ -104,4 +104,5 @@
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.restaurant_notify', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/hole_view.blade.php ENDPATH**/ ?>

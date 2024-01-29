@@ -40,6 +40,7 @@ use App\Warranty;
 use App\Variation;
 use Stripe\Charge;
 use Stripe\Stripe;
+use App\MainAccount;
 use App\Transaction;
 use Razorpay\Api\Api;
 use App\CustomerGroup;
@@ -261,6 +262,7 @@ class SellPosController extends Controller
 
         //Added check because $users is of no use if enable_contact_assign if false
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
 
         return view('sale_pos.create')
             ->with(compact(
@@ -294,7 +296,8 @@ class SellPosController extends Controller
                 'invoice_schemes',
                 'default_invoice_schemes',
                 'invoice_layouts',
-                'users'
+                'users',
+                'account_types'
             ));
     }
 
@@ -1072,7 +1075,8 @@ class SellPosController extends Controller
         //Added check because $users is of no use if enable_contact_assign if false
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
         $only_payment = request()->segment(2) == 'payment';
-
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
+        
         return view('sale_pos.edit')
             ->with(compact('business_details', 'taxes', 'payment_types', 'walk_in_customer',
             'sell_details', 'transaction', 'payment_lines', 'location_printer_type', 'shortcuts',
@@ -1080,7 +1084,7 @@ class SellPosController extends Controller
             'brands', 'accounts', 'waiters', 'redeem_details', 'edit_price', 'edit_discount',
             'shipping_statuses', 'warranties', 'sub_type', 'pos_module_data', 'invoice_schemes',
             'default_invoice_schemes', 'invoice_layouts', 'featured_products', 'customer_due',
-            'users', 'only_payment'));
+            'users', 'only_payment','account_types'));
     }
 
     /**

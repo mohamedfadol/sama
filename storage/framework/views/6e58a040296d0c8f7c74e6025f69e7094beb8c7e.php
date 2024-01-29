@@ -78,12 +78,12 @@
                       <span class="input-group-addon">
                           <i class="fa fa-users"></i>
                       </span>
-                      <select class="form-control accounts-dropdown select2" name="account_parent" id="account_sub_type" required>
-                        <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
-                        <?php $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($account->id, false); ?>"><?php echo e($account->name_ar, false); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
+                        <select class="form-control accounts-dropdown select2" name="account_id" id="account_sub_type" required>
+                            <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
+                            <?php $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($account->id, false); ?>"><?php echo e($account->name_ar, false); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
                   </div>
                 </div>
             </div>

@@ -160,22 +160,19 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
     @endforelse
  
     <script>
-        <?php foreach ($orders as $index => $order): ?>
-            var laravelCreatedAt = "{{ $order->created_at->toIso8601String() }}";
-            var countdownInterval_<?php echo $index; ?> = setInterval(function () {
-            // Convert Laravel created_at to JavaScript Date object
-            var createdAtDate = new Date(laravelCreatedAt);
+    <?php foreach ($orders as $index => $order): ?>
+        var laravelCreatedAt_<?php echo $index; ?> = new Date("{{ $order->created_at->toIso8601String() }}");
+        var countdownInterval_<?php echo $index; ?> = setInterval(function () {
             // Get the current system time
             var now = new Date();
             // Calculate the difference in milliseconds
-            var difference = now - createdAtDate;
+            var difference = now - laravelCreatedAt_<?php echo $index; ?>;
             // Convert milliseconds to seconds and minutes
-            var seconds = Math.floor(difference / 1000);
-            var minutes = Math.floor(seconds / 60);
-            document.getElementById('countdown_<?php echo $index; ?>').innerHTML = minutes + 'm ' + seconds %60 + 's';
-            // console.log("Minutes: " + minutes + ", Seconds: " + seconds);
+            var seconds = Math.floor((difference / 1000) % 60);
+            var minutes = Math.floor((difference / (1000 * 60)) % 60);
+            document.getElementById('countdown_<?php echo $index; ?>').innerHTML = minutes + 'm ' + seconds + 's';
         }, 1000);
-        <?php endforeach; ?>
-    </script>
+    <?php endforeach; ?>
+</script>
 
  

@@ -210,14 +210,21 @@ class RestaurantUtil extends Util
                 ->where('transactions.type', 'sell')
                 // ->where('transactions.info','served')
                 ->where('transactions.status', 'final');
-
+                $ids =  $query->pluck('transactions.id');
         if (! empty($filter['line_order_status'])) {
             if ($filter['line_order_status'] == 'served') {
-                $query->whereHas('sell_lines', function ($q) {
-                    $q->where('res_line_order_status', 'served');
+                $query->whereHas('sell_lines', function ($q) use($ids){
+                   
+                             
+                    $q->whereIn('transaction_id' ,$ids)
+                    ->where('res_line_order_status', 'served')
+                    ->orWhere('res_line_order_status','cooked');
                 }, '>=', 1);
+
+                
             }
         }
+       
         $permitted_locations = auth()->user()->permitted_locations();
         if ($permitted_locations != 'all') {
             $query->whereIn('transactions.location_id', $permitted_locations);
@@ -228,9 +235,13 @@ class RestaurantUtil extends Util
             'contacts.name as customer_name',
             'bl.name as business_location',
             'rt.name as table_name'
-        )->with(['sell_lines' => function ($q) {
-            $q->whereNull('parent_sell_line_id');
-        }, 'sell_lines.product','sell_lines.modifiers'])->orderBy('created_at', 'desc')->get();
+        )->with([
+            'sell_lines' => function ($q) {
+                $q->whereNull('parent_sell_line_id');
+            }, 
+            'sell_lines.product',
+            'sell_lines.modifiers'
+        ])->groupBy('transactions.id')->orderBy('created_at', 'desc')->get();
 
         return $orders;
     }
