@@ -23,13 +23,21 @@
                         <li <?php if(request()->segment(2) == 'journal-entry'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry'); ?></a></li>
                     <?php endif; ?>
 
-                    <?php if(auth()->user()->can('accounting.view_transfer')): ?>
+                    <?php if(auth()->user()->can('accounting.view_journal')): ?>
+                        <li <?php if(request()->segment(2) == 'journal-entry'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry'); ?></a></li>
+                    <?php endif; ?>
+
+                    <?php if(auth()->user()->can('accounting.view_journal')): ?>
+                        <li <?php if(request()->segment(2) == 'journal-entry'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry'); ?></a></li>
+                    <?php endif; ?>
+                    
+                    <!-- <?php if(auth()->user()->can('accounting.view_transfer')): ?>
                         <li <?php if(request()->segment(2) == 'transfer'): ?> class="active" <?php endif; ?>>
                             <a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\TransferController::class, 'index']), false); ?>">
                                 <?php echo app('translator')->get('accounting::lang.transfer'); ?>
                             </a>
                         </li>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
 
                     <li <?php if(request()->segment(2) == 'transactions'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\TransactionController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.transactions'); ?></a></li>
 
@@ -40,6 +48,7 @@
                             </a>
                         </li>
                     <?php endif; ?>
+
                     <?php if(auth()->user()->can('accounting.view_reports')): ?>
                     <li <?php if(request()->segment(2) == 'reports'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\ReportController::class, 'index']), false); ?>">
                         <?php echo app('translator')->get('accounting::lang.reports'); ?>

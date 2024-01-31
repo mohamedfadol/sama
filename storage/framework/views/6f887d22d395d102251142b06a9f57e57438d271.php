@@ -114,7 +114,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									<?php echo Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ); ?>
 
@@ -123,7 +123,7 @@
 									'id' => $business_location->id . '_sale_deposit_to']); ?>
 
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						<hr>
@@ -140,7 +140,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									<?php echo Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ); ?>
 
@@ -150,7 +150,7 @@
 									]); ?>
 
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						<hr>
@@ -167,7 +167,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									<?php echo Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ); ?>
 
@@ -176,7 +176,7 @@
 									'id' => $business_location->id . '_purchases_deposit_to']); ?>
 
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						<hr>
@@ -193,7 +193,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									<?php echo Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ); ?>
 
@@ -202,7 +202,7 @@
 									'id' => $business_location->id . '_purchase_payments_deposit_to']); ?>
 
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						<?php echo $__env->renderComponent(); ?>

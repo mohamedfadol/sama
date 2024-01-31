@@ -48,7 +48,7 @@ class Transaction extends Model
     { 
         return $this->hasMany(\App\TransactionSellLine::class);
     }
-
+ 
     public function lineDetails() 
     { 
         return $this->hasOne(\App\LineDetails::class, 'transaction_id');

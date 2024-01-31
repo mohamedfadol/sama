@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Account;
-use App\BusinessLocation;
+use App\Utils\Util;
+use App\MainAccount;
 use App\InvoiceLayout;
 use App\InvoiceScheme;
-use App\SellingPriceGroup;
+use App\BusinessLocation;
 use App\Utils\ModuleUtil;
-use App\Utils\Util;
+use App\SellingPriceGroup;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
@@ -131,6 +132,7 @@ class BusinessLocationController extends Controller
         $accounts = [];
         if ($this->commonUtil->isModuleEnabled('account')) {
             $accounts = Account::forDropdown($business_id, true, false);
+            $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         }
 
         return view('business_location.create')
@@ -139,6 +141,7 @@ class BusinessLocationController extends Controller
                         'invoice_schemes',
                         'price_groups',
                         'payment_types',
+                        'account_types',
                         'accounts'
                     ));
     }
@@ -239,9 +242,10 @@ class BusinessLocationController extends Controller
         $accounts = [];
         if ($this->commonUtil->isModuleEnabled('account')) {
             $accounts = Account::forDropdown($business_id, true, false);
+            $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         }
         $featured_products = $location->getFeaturedProducts(true, false);
-
+        
         return view('business_location.edit')
                 ->with(compact(
                     'location',
@@ -250,6 +254,7 @@ class BusinessLocationController extends Controller
                     'price_groups',
                     'payment_types',
                     'accounts',
+                    'account_types',
                     'featured_products'
                 ));
     }

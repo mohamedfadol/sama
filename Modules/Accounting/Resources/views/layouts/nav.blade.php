@@ -23,13 +23,21 @@
                         <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry')</a></li>
                     @endif
 
-                    @if(auth()->user()->can('accounting.view_transfer'))
+                    @if(auth()->user()->can('accounting.view_journal'))
+                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry')</a></li>
+                    @endif
+
+                    @if(auth()->user()->can('accounting.view_journal'))
+                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry')</a></li>
+                    @endif
+                    
+                    <!-- @if(auth()->user()->can('accounting.view_transfer'))
                         <li @if(request()->segment(2) == 'transfer') class="active" @endif>
                             <a href="{{action([\Modules\Accounting\Http\Controllers\TransferController::class, 'index'])}}">
                                 @lang('accounting::lang.transfer')
                             </a>
                         </li>
-                    @endif
+                    @endif -->
 
                     <li @if(request()->segment(2) == 'transactions') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\TransactionController::class, 'index'])}}">@lang('accounting::lang.transactions')</a></li>
 
@@ -40,6 +48,7 @@
                             </a>
                         </li>
                     @endif
+
                     @if(auth()->user()->can('accounting.view_reports'))
                     <li @if(request()->segment(2) == 'reports') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\ReportController::class, 'index'])}}">
                         @lang('accounting::lang.reports')

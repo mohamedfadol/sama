@@ -101,14 +101,14 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									{!! Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ) !!}
 									{!! Form::select('deposit_to', !is_null($sale_deposit_to) ?
 									[$sale_deposit_to->id => $sale_deposit_to->name] : [], $sale_deposit_to->id ?? null, ['class' => 'form-control accounts-dropdown width-100','placeholder' => __('accounting::lang.deposit_to'), 'name' => "accounting_default_map[$business_location->id][sale][deposit_to]",
 									'id' => $business_location->id . '_sale_deposit_to']); !!}
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						<hr>
@@ -123,7 +123,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									{!! Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ) !!}
 									{!! Form::select('deposit_to', !is_null($sales_payments_deposit_to) ?
@@ -131,7 +131,7 @@
 									'id' => $business_location->id . 'sales_payments_deposit_to'
 									]); !!}
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						<hr>
@@ -146,14 +146,14 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									{!! Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ) !!}
 									{!! Form::select('deposit_to', !is_null($purchases_deposit_to) ?
 									[$purchases_deposit_to->id => $purchases_deposit_to->name] : [], $purchases_deposit_to->id ?? null, ['class' => 'form-control accounts-dropdown width-100','placeholder' => __('accounting::lang.deposit_to'), 'name' => "accounting_default_map[$business_location->id][purchases][deposit_to]",
 									'id' => $business_location->id . '_purchases_deposit_to']); !!}
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						<hr>
@@ -168,14 +168,14 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									{!! Form::label('deposit_to', __('accounting::lang.deposit_to') . ':' ) !!}
 									{!! Form::select('deposit_to', !is_null($purchase_payments_deposit_to) ?
 									[$purchase_payments_deposit_to->id => $purchase_payments_deposit_to->name] : [], $purchase_payments_deposit_to->id ?? null, ['class' => 'form-control accounts-dropdown width-100','placeholder' => __('accounting::lang.deposit_to'), 'name' => "accounting_default_map[$business_location->id][purchase_payment][deposit_to]",
 									'id' => $business_location->id . '_purchase_payments_deposit_to']); !!}
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 						@endcomponent
