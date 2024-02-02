@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\User;
+use App\Media;
 use App\Account;
-use App\Business;
-use App\BusinessLocation;
 use App\Contact;
+use App\Product;
+use App\TaxRate;
+use App\Business;
+use App\Warranty;
+use App\MainAccount;
+use App\Transaction;
 use App\CustomerGroup;
 use App\InvoiceScheme;
-use App\Media;
-use App\Product;
-use App\SellingPriceGroup;
-use App\TaxRate;
-use App\Transaction;
-use App\TransactionSellLine;
 use App\TypesOfService;
-use App\User;
-use App\Utils\BusinessUtil;
-use App\Utils\ContactUtil;
+use App\BusinessLocation;
 use App\Utils\ModuleUtil;
+use App\SellingPriceGroup;
+use App\Utils\ContactUtil;
 use App\Utils\ProductUtil;
-use App\Utils\TransactionUtil;
-use App\Warranty;
-use DB;
+use App\Utils\BusinessUtil;
+use App\TransactionSellLine;
 use Illuminate\Http\Request;
+use App\Utils\TransactionUtil;
 use Illuminate\Support\Facades\Artisan;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\Facades\DataTables;
@@ -729,7 +730,7 @@ class SellController extends Controller
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
 
         $change_return = $this->dummyPaymentLine;
-
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('sell.create')
             ->with(compact(
                 'business_details',
@@ -757,7 +758,8 @@ class SellController extends Controller
                 'is_order_request_enabled',
                 'users',
                 'default_price_group_id',
-                'change_return'
+                'change_return',
+                'account_types'
             ));
     }
 
@@ -1163,9 +1165,9 @@ class SellController extends Controller
 
         //Added check because $users is of no use if enable_contact_assign if false
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
-
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('sell.edit')
-            ->with(compact('business_details', 'taxes', 'sell_details', 'transaction', 'commission_agent', 'types', 'customer_groups', 'pos_settings', 'waiters', 'invoice_schemes', 'default_invoice_schemes', 'redeem_details', 'edit_discount', 'edit_price', 'shipping_statuses', 'warranties', 'statuses', 'sales_orders', 'payment_types', 'accounts', 'payment_lines', 'change_return', 'is_order_request_enabled', 'customer_due', 'users'));
+            ->with(compact('account_types','business_details', 'taxes', 'sell_details', 'transaction', 'commission_agent', 'types', 'customer_groups', 'pos_settings', 'waiters', 'invoice_schemes', 'default_invoice_schemes', 'redeem_details', 'edit_discount', 'edit_price', 'shipping_statuses', 'warranties', 'statuses', 'sales_orders', 'payment_types', 'accounts', 'payment_lines', 'change_return', 'is_order_request_enabled', 'customer_due', 'users'));
     }
 
     /**

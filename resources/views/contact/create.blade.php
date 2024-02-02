@@ -74,9 +74,10 @@
                       </span>
                         <select class="form-control accounts-dropdown select2" name="account_id" id="account_sub_type" required>
                             <option value="">@lang('messages.please_select')</option>
-                            @foreach($account_types as $account)
+                            @forelse($account_types as $account)
                                 <option value="{{$account->id}}">{{$account->name_ar}}</option>
-                            @endforeach
+                                @empty
+                            @endforelse
                         </select>
                   </div>
                 </div>

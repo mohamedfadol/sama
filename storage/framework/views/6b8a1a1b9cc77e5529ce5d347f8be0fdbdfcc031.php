@@ -58,4 +58,7 @@
 
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('javascript'); ?>
+<?php echo $__env->make('accounting::accounting.common_js', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\resources\views/business_location/index.blade.php ENDPATH**/ ?>

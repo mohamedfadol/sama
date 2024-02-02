@@ -132,7 +132,9 @@ class BusinessLocationController extends Controller
         $accounts = [];
         if ($this->commonUtil->isModuleEnabled('account')) {
             $accounts = Account::forDropdown($business_id, true, false);
-            $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
+            $account_types = MainAccount::where('business_id', $business_id)->whereNotNull('parent_id')
+                                            ->whereDoesntHave('child_accounts')
+                                            ->where('status', 'active')->orderBy('id','DESC')->get();
         }
 
         return view('business_location.create')
@@ -242,7 +244,9 @@ class BusinessLocationController extends Controller
         $accounts = [];
         if ($this->commonUtil->isModuleEnabled('account')) {
             $accounts = Account::forDropdown($business_id, true, false);
-            $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
+            $account_types = MainAccount::where('business_id', $business_id)->whereNotNull('parent_id')
+            ->whereDoesntHave('child_accounts')
+            ->where('status', 'active')->orderBy('id','DESC')->get();
         }
         $featured_products = $location->getFeaturedProducts(true, false);
         

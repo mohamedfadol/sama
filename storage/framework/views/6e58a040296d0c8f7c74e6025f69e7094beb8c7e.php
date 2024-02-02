@@ -80,9 +80,10 @@
                       </span>
                         <select class="form-control accounts-dropdown select2" name="account_id" id="account_sub_type" required>
                             <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
-                            <?php $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__empty_1 = true; $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <option value="<?php echo e($account->id, false); ?>"><?php echo e($account->name_ar, false); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <?php endif; ?>
                         </select>
                   </div>
                 </div>

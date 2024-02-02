@@ -1016,7 +1016,7 @@ class ProductUtil extends Util
             $variation = Variation::find($variation_id);
             $price_inc_tax = $this->calc_percentage($variation->sell_price_inc_tax, $price_group->price_inc_tax);
         } else {
-            $price_inc_tax = $price_group->price_inc_tax;
+            $price_inc_tax = $price_group->price_inc_tax ?? 0;
         }
 
         $price_exc_tax = $price_inc_tax;

@@ -58,3 +58,7 @@
 <!-- /.content -->
 
 @endsection
+
+@section('javascript')
+@include('accounting::accounting.common_js')
+@endsection
