@@ -22,64 +22,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <?php $__env->startComponent('components.widget', ['class' => 'box-primary', 
-                'title' => __('accounting::lang.chart_of_account_overview')]); ?>
-                    <div class="col-md-4">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th><?php echo app('translator')->get('accounting::lang.account_type'); ?></th>
-                                    <th><?php echo app('translator')->get('accounting::lang.current_balance'); ?></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php
-                                        $bal = 0;
-                                        foreach($coa_overview as $overview) {
-                                            if($overview->account_primary_type==$k && !empty($overview->balance)) {
-                                                $bal = (float)$overview->balance;
-                                            }
-                                        }
-                                    ?>
-
-                                    <tr>
-                                        <td>
-                                            <?php echo e($v['label'], false); ?>
-
-
-                                            
-                                            <?php if($bal < 0): ?>
-                                                <?php echo e((in_array($v['label'], ['Asset', 'Expenses']) ? ' (CR)' : ' (DR)'), false); ?>
-
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php 
-            $formated_number = "";
-            if (session("business.currency_symbol_placement") == "before") {
-                $formated_number .= session("currency")["symbol"] . " ";
-            } 
-            $formated_number .= number_format((float) abs($bal), session("business.currency_precision", 2) , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
-
-            if (session("business.currency_symbol_placement") == "after") {
-                $formated_number .= " " . session("currency")["symbol"];
-            }
-            echo $formated_number; ?>
-                                        </td>
-                                    </tr>
-                                    
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $coa_overview_chart->container(); ?>
-
-                    </div>
-                <?php echo $__env->renderComponent(); ?>
-            </div>
+            
         </div>
 
         <div class="row">

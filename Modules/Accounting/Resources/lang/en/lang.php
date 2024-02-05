@@ -431,6 +431,9 @@ return [
     'account_category' => 'Account Category',
     'account_categories' => 'Account Categories',
     'financial_statement' => 'Financial Statement',
-    'account_name' => 'Account Name'
+    'account_name' => 'Account Name',
+    'journal_entry_1' => 'Dialy Restriction',
+    'journal_entry_2' => 'Opening Restriction',
+    'journal_entry_3' => 'General Restriction',
 
 ];

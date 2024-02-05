@@ -461,4 +461,7 @@ return [
     'debit_credit'=> 'إظهار المجاميع',
     'debit_credit_balance'=> 'إظهار الأرصدة',
     'account_name' => 'إسم الحساب',
+    'journal_entry_1' => 'قيد يومية',
+    'journal_entry_2' => 'قيد افتتاحي',
+    'journal_entry_3' => 'قيد رئيسي لشركة',
 ];

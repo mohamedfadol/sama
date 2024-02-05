@@ -21,51 +21,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                @component('components.widget', ['class' => 'box-primary', 
-                'title' => __('accounting::lang.chart_of_account_overview')])
-                    <div class="col-md-4">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>@lang('accounting::lang.account_type')</th>
-                                    <th>@lang('accounting::lang.current_balance')</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($account_types as $k => $v)
-                                    @php
-                                        $bal = 0;
-                                        foreach($coa_overview as $overview) {
-                                            if($overview->account_primary_type==$k && !empty($overview->balance)) {
-                                                $bal = (float)$overview->balance;
-                                            }
-                                        }
-                                    @endphp
-
-                                    <tr>
-                                        <td>
-                                            {{$v['label']}}
-
-                                            {{-- Suffix CR/DR as per value --}}
-                                            @if($bal < 0)
-                                                {{ (in_array($v['label'], ['Asset', 'Expenses']) ? ' (CR)' : ' (DR)') }}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @format_currency(abs($bal))
-                                        </td>
-                                    </tr>
-                                    
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-8">
-                        {!! $coa_overview_chart->container() !!}
-                    </div>
-                @endcomponent
-            </div>
+            
         </div>
 
         <div class="row">

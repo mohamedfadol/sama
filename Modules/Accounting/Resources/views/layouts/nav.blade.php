@@ -11,7 +11,7 @@
                 </button>
                 <a class="navbar-brand" href="{{action([\Modules\Accounting\Http\Controllers\AccountingController::class, 'dashboard'])}}"><i class="fas fa fa-broadcast-tower"></i> {{__('accounting::lang.accounting')}}</a>
             </div>
-
+ 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -20,15 +20,15 @@
                     @endif
                     
                     @if(auth()->user()->can('accounting.view_journal'))
-                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry')</a></li>
+                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry_1')</a></li>
+                    @endif
+ 
+                    @if(auth()->user()->can('accounting.view_journal'))
+                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry_2')</a></li>
                     @endif
 
                     @if(auth()->user()->can('accounting.view_journal'))
-                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry')</a></li>
-                    @endif
-
-                    @if(auth()->user()->can('accounting.view_journal'))
-                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry')</a></li>
+                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry_3')</a></li>
                     @endif
                     
                     <!-- @if(auth()->user()->can('accounting.view_transfer'))
