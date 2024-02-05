@@ -745,7 +745,13 @@ class AdminSidebarMenu
                         //     ['icon' => 'fa fas fa-bolt', 'active' => request()->segment(1) == 'songs-settings']
                         // );
                          
-                        
+                         $sub->url(
+                            action([\App\Http\Controllers\GlobalCurrencyController::class, 'index']),
+                            __('lang_v1.galobal_currencies'),
+                            ['icon' => 'fa fas fa-bolt', 'active' => request()->segment(1) == 'galobal-currencies']
+                        );
+                         
+
                         if (auth()->user()->can('tax_rate.view') || auth()->user()->can('tax_rate.create')) {
                             $sub->url(
                                 action([\App\Http\Controllers\TaxRateController::class, 'index']),

@@ -59,6 +59,7 @@
 	 @if(!empty($sale_type))
 	 	<input type="hidden" id="sale_type" name="type" value="{{$sale_type}}">
 	 @endif
+	 <input type="text" id="sale_type" name="type" value="{{$sale_type == null ? 'sell' : $sale_type }}">
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
 			@component('components.widget', ['class' => 'box-solid'])
@@ -116,6 +117,7 @@
 					<div class="modal fade types_of_service_modal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel"></div>
 				@endif
 				
+				 
 				@if(in_array('subscription', $enabled_modules))
 					<div class="col-md-4 pull-right col-sm-6">
 						<div class="checkbox">
@@ -332,6 +334,26 @@
 	                </div>
 	            </div>
 		        <div class="clearfix"></div>
+				 
+
+				<div class="col-sm-3">
+					<div class="form-group">
+					{!! Form::label('select_currency', __('lang_v1.select_currency').':') !!}
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fas fa-money-check-alt"></i>
+						</span> 
+							<select class="form-control accounts-dropdown select2" name="global_currenc_id" required>
+								<option value="">@lang('messages.please_select')</option>
+								@forelse($global_currencies as $currency)
+									<option value="{{$currency->id}}">{{$currency->global_currency_name}}</option>
+									@empty
+								@endforelse
+							</select>
+					</div>
+					</div>
+				</div>
+
 
 		        @if((!empty($pos_settings['enable_sales_order']) && $sale_type != 'sales_order') || $is_order_request_enabled)
 					<div class="col-sm-3">
@@ -342,6 +364,8 @@
 					</div>
 					<div class="clearfix"></div>
 				@endif
+
+				
 				<!-- Call restaurant module if defined -->
 		        @if(in_array('tables' ,$enabled_modules) || in_array('service_staff' ,$enabled_modules))
 		        	<span id="restaurant_module_span">

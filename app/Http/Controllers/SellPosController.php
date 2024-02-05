@@ -62,6 +62,7 @@ use App\Utils\TransactionUtil;
 use App\Utils\CashRegisterUtil;
 use App\Utils\NotificationUtil;
 use Illuminate\Support\Facades\DB;
+use App\Services\RestrictionService;
 use App\Events\SellCreatedOrModified;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -85,6 +86,8 @@ class SellPosController extends Controller
 
     protected $notificationUtil;
 
+    protected $restrictionService;
+
     /**
      * Constructor
      *
@@ -98,7 +101,8 @@ class SellPosController extends Controller
         TransactionUtil $transactionUtil,
         CashRegisterUtil $cashRegisterUtil,
         ModuleUtil $moduleUtil,
-        NotificationUtil $notificationUtil
+        NotificationUtil $notificationUtil,
+        RestrictionService $restrictionService
     ) {
         $this->contactUtil = $contactUtil;
         $this->productUtil = $productUtil;
@@ -107,6 +111,7 @@ class SellPosController extends Controller
         $this->cashRegisterUtil = $cashRegisterUtil;
         $this->moduleUtil = $moduleUtil;
         $this->notificationUtil = $notificationUtil;
+        $this->restrictionService = $restrictionService;
 
         $this->dummyPaymentLine = ['method' => 'cash', 'amount' => 0, 'note' => '', 'card_transaction_number' => '', 'card_number' => '', 'card_type' => '', 'card_holder_name' => '', 'card_month' => '', 'card_year' => '', 'card_security' => '', 'cheque_number' => '', 'bank_account_number' => '',
             'is_return' => 0, 'transaction_no' => '', ];
@@ -309,6 +314,7 @@ class SellPosController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->payment);
         if (! auth()->user()->can('sell.create') && ! auth()->user()->can('direct_sell.access') && ! auth()->user()->can('so.create')) {
             abort(403, 'Unauthorized action.');
         }
@@ -325,7 +331,7 @@ class SellPosController extends Controller
 
         try {
             $input = $request->except('_token');
-
+            // dd($input);
             $input['is_quotation'] = 0;
             //status is send as quotation from Add sales screen.
             if ($input['status'] == 'quotation') {
@@ -403,6 +409,7 @@ class SellPosController extends Controller
                 //Customer group details
                 $contact_id = $request->get('contact_id', null);
                 $cg = $this->contactUtil->getCustomerGroup($business_id, $contact_id);
+                
                 $input['customer_group_id'] = (empty($cg) || empty($cg->id)) ? null : $cg->id;
 
                 //set selling price group id
@@ -486,7 +493,13 @@ class SellPosController extends Controller
                 Media::uploadMedia($business_id, $transaction, $request, 'shipping_documents', false, 'shipping_document');
 
                 $this->transactionUtil->createOrUpdateSellLines($transaction, $input['products'], $input['location_id']);
+                $contact = $this->contactUtil->getContactInfo($business_id, $contact_id);
+                $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
+                // dd($deposit_to); 
+                 // restriction Service 
+                $this->restrictionService->create($input['type'], $transaction->id, $user_id, $business_id,  $deposit_to->id, $payment_account = 5);
 
+                
                 $change_return['amount'] = $input['change_return'] ?? 0;
                 $change_return['is_return'] = 1;
 

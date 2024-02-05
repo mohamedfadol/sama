@@ -500,7 +500,7 @@
 <!-- quick product modal -->
 <div class="modal fade quick_add_product_modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"></div>
 <div class="modal fade contact_modal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-	@include('contact.create', ['quick_add' => true])
+	@include('contact.create', ['quick_add' => true, 'account_types' => $account_types]) 
 </div>
 <!-- /.content -->
 @endsection

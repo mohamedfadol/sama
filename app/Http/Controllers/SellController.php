@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\User;
+use App\GlobalCurrency;
 use App\Media;
 use App\Account;
 use App\Contact;
@@ -693,7 +694,7 @@ class SellController extends Controller
                                         ->findorfail($default_location->sale_invoice_scheme_id);
         }
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
-
+    
         //Types of service
         $types_of_service = [];
         if ($this->moduleUtil->isModuleEnabled('types_of_service')) {
@@ -705,14 +706,14 @@ class SellController extends Controller
         if ($this->moduleUtil->isModuleEnabled('account')) {
             $accounts = Account::forDropdown($business_id, true, false);
         }
-
+        // dd($accounts);
         $status = request()->get('status', '');
 
         $statuses = Transaction::sell_statuses();
 
-        if ($sale_type == 'sales_order') {
+        if ($sale_type == 'sales_order') {   
             $status = 'ordered';
-        }
+        } 
 
         $is_order_request_enabled = false;
         $is_crm = $this->moduleUtil->isModuleInstalled('Crm');
@@ -728,9 +729,10 @@ class SellController extends Controller
 
         //Added check because $users is of no use if enable_contact_assign if false
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
-
+        // dd($sale_type);
         $change_return = $this->dummyPaymentLine;
         $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
+        $global_currencies = GlobalCurrency::where('business_id',$business_id)->orderBy('id','DESC')->get();
         return view('sell.create')
             ->with(compact(
                 'business_details',
@@ -750,7 +752,7 @@ class SellController extends Controller
                 'invoice_schemes',
                 'default_invoice_schemes',
                 'types_of_service',
-                'accounts',
+                'accounts', 
                 'shipping_statuses',
                 'status',
                 'sale_type',
@@ -759,7 +761,8 @@ class SellController extends Controller
                 'users',
                 'default_price_group_id',
                 'change_return',
-                'account_types'
+                'account_types',
+                'global_currencies'
             ));
     }
 

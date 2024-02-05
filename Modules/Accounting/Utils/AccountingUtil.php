@@ -156,11 +156,12 @@ class AccountingUtil extends Util
             ->delete();
     }
 
-    /**
+    /** 
      * Function to save a mapping
-     */
+     */   
     public function saveMap($type, $id, $user_id, $business_id, $deposit_to, $payment_account){
-        if ($type == 'sell') {
+        // dd($type, $id, $user_id, $business_id, $deposit_to, $payment_account);
+        if ($type == 'sell' || $type == 'sales_order') {
             $transaction = Transaction::where('business_id', $business_id)->where('id', $id)->firstorFail();
 
             //$payment_account will increase = sales = credit

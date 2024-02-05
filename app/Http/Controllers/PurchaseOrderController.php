@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Business;
-use App\BusinessLocation;
-use App\Contact;
-use App\CustomerGroup;
-use App\Media;
-use App\PurchaseLine;
-use App\TaxRate;
-use App\Transaction;
 use App\User;
-use App\Utils\BusinessUtil;
+use App\Media;
+use App\Contact;
+use App\TaxRate;
+use App\Business;
+use App\MainAccount;
+use App\Transaction;
+use App\PurchaseLine;
+use App\CustomerGroup;
+use App\BusinessLocation;
 use App\Utils\ModuleUtil;
 use App\Utils\ProductUtil;
-use App\Utils\TransactionUtil;
+use App\Utils\BusinessUtil;
 use Illuminate\Http\Request;
+use App\Utils\TransactionUtil;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\Facades\DataTables;
@@ -282,9 +283,9 @@ class PurchaseOrderController extends Controller
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
 
         $common_settings = ! empty(session('business.common_settings')) ? session('business.common_settings') : [];
-
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('purchase_order.create')
-            ->with(compact('taxes', 'business_locations', 'currency_details', 'customer_groups', 'types', 'shortcuts', 'bl_attributes', 'shipping_statuses', 'users', 'common_settings'));
+            ->with(compact('account_types','taxes', 'business_locations', 'currency_details', 'customer_groups', 'types', 'shortcuts', 'bl_attributes', 'shipping_statuses', 'users', 'common_settings'));
     }
 
     /**
@@ -586,9 +587,10 @@ class PurchaseOrderController extends Controller
                                         })
                                         ->pluck('ref_no', 'id');
         }
-
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('purchase_order.edit')
             ->with(compact(
+                'account_types',
                 'taxes',
                 'purchase',
                 'business_locations',

@@ -1539,5 +1539,13 @@ return [
     'add_financial_statement' => 'add Financial Statement',
     'parent_id' => 'Parent',
     'add_account_category' => 'Add Account Category',
-    'account_name' => 'Account Name'
+    'account_name' => 'Account Name',
+    'galobal_currencies' => 'Currency Setting',
+    'global_currency_name' => 'Global Currency Name',
+    'global_currency_value' => 'Global Currency Value',
+    'local_currency_name' => 'Local Currency Name',
+    'local_currency_value' => 'Local Currency Value',
+    'manage_your_galobal_currencies' => 'Manage Your Galobal Currencies',
+    'add_galobal_currencies' => 'add Galobal Currencies',
+    'select_currency' => 'Select Currency'
 ];

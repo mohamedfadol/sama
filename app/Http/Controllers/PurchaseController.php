@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\AccountTransaction;
-use App\Business;
-use App\BusinessLocation;
-use App\Contact;
-use App\CustomerGroup;
-use App\Product;
-use App\PurchaseLine;
-use App\TaxRate;
-use App\Transaction;
+use Excel;
 use App\User;
-use App\Utils\BusinessUtil;
+use App\Contact;
+use App\Product;
+use App\TaxRate;
+use App\Business;
+use App\Variation;
+use App\MainAccount;
+use App\Transaction;
+use App\PurchaseLine;
+use App\CustomerGroup;
+use App\BusinessLocation;
 use App\Utils\ModuleUtil;
 use App\Utils\ProductUtil;
-use App\Utils\TransactionUtil;
-use App\Variation;
-use Excel;
+use App\AccountTransaction;
+use App\Utils\BusinessUtil;
 use Illuminate\Http\Request;
+use App\Utils\TransactionUtil;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\Facades\DataTables;
@@ -277,9 +278,9 @@ class PurchaseController extends Controller
         $accounts = $this->moduleUtil->accountsDropdown($business_id, true);
 
         $common_settings = ! empty(session('business.common_settings')) ? session('business.common_settings') : [];
-
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('purchase.create')
-            ->with(compact('taxes', 'orderStatuses', 'business_locations', 'currency_details', 'default_purchase_status', 'customer_groups', 'types', 'shortcuts', 'payment_line', 'payment_types', 'accounts', 'bl_attributes', 'common_settings'));
+            ->with(compact('account_types','taxes', 'orderStatuses', 'business_locations', 'currency_details', 'default_purchase_status', 'customer_groups', 'types', 'shortcuts', 'payment_line', 'payment_types', 'accounts', 'bl_attributes', 'common_settings'));
     }
 
     /**
@@ -615,8 +616,10 @@ class PurchaseController extends Controller
                                         ->pluck('ref_no', 'id');
         }
 
+        $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('purchase.edit')
             ->with(compact(
+                'account_types',
                 'taxes',
                 'purchase',
                 'orderStatuses',

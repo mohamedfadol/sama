@@ -65,6 +65,7 @@
 	 <?php if(!empty($sale_type)): ?>
 	 	<input type="hidden" id="sale_type" name="type" value="<?php echo e($sale_type, false); ?>">
 	 <?php endif; ?>
+	 <input type="text" id="sale_type" name="type" value="<?php echo e($sale_type == null ? 'sell' : $sale_type, false); ?>">
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
 			<?php $__env->startComponent('components.widget', ['class' => 'box-solid']); ?>
@@ -141,6 +142,7 @@
 					<div class="modal fade types_of_service_modal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel"></div>
 				<?php endif; ?>
 				
+				 
 				<?php if(in_array('subscription', $enabled_modules)): ?>
 					<div class="col-md-4 pull-right col-sm-6">
 						<div class="checkbox">
@@ -395,6 +397,27 @@
 	                </div>
 	            </div>
 		        <div class="clearfix"></div>
+				 
+
+				<div class="col-sm-3">
+					<div class="form-group">
+					<?php echo Form::label('select_currency', __('lang_v1.select_currency').':'); ?>
+
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fas fa-money-check-alt"></i>
+						</span> 
+							<select class="form-control accounts-dropdown select2" name="global_currenc_id" required>
+								<option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
+								<?php $__empty_1 = true; $__currentLoopData = $global_currencies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $currency): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+									<option value="<?php echo e($currency->id, false); ?>"><?php echo e($currency->global_currency_name, false); ?></option>
+									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+								<?php endif; ?>
+							</select>
+					</div>
+					</div>
+				</div>
+
 
 		        <?php if((!empty($pos_settings['enable_sales_order']) && $sale_type != 'sales_order') || $is_order_request_enabled): ?>
 					<div class="col-sm-3">
@@ -407,6 +430,8 @@
 					</div>
 					<div class="clearfix"></div>
 				<?php endif; ?>
+
+				
 				<!-- Call restaurant module if defined -->
 		        <?php if(in_array('tables' ,$enabled_modules) || in_array('service_staff' ,$enabled_modules)): ?>
 		        	<span id="restaurant_module_span">

@@ -76,8 +76,8 @@
 
                   <div class="input-group">
                       <span class="input-group-addon">
-                          <i class="fa fa-users"></i>
-                      </span>
+                          <i class="fas fa-money-bill-alt"></i>
+                      </span> 
                         <select class="form-control accounts-dropdown select2" name="account_id" id="account_sub_type" required>
                             <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
                             <?php $__empty_1 = true; $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>

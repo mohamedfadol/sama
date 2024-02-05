@@ -164,7 +164,7 @@ class JournalEntryController extends Controller
 
                 //Generate reference number
                 $ref_no = $this->util->generateReferenceNumber('journal_entry', $ref_count, $business_id, $prefix);
-            }
+            } 
 
             $acc_trans_mapping = new AccountingAccTransMapping();
             $acc_trans_mapping->business_id = $business_id;

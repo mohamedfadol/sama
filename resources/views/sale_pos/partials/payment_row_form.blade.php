@@ -119,7 +119,7 @@
             </div>
             <div class="clearfix"></div>
         @endif
-	@if(!empty($accounts))
+	@if(!empty($account_types))
 		<div class="{{$col_class}}">
 			<div class="form-group @if($readonly) hide @endif">
 				{!! Form::label("account_$row_index" , __('lang_v1.payment_account') . ':') !!}
@@ -127,7 +127,9 @@
 					<span class="input-group-addon">
 						<i class="fas fa-money-bill-alt"></i>
 					</span>
-					{!! Form::select("payment[$row_index][account_id]", $accounts, !empty($payment_line['account_id']) ? $payment_line['account_id'] : '' , ['class' => 'form-control select2 account-dropdown', 'id' => !$readonly ? "account_$row_index" : "account_advance_$row_index", 'style' => 'width:100%;', 'disabled' => $readonly]); !!}
+
+					 
+					{!! Form::select("payment[$row_index][account_id]", $account_types->pluck('name_ar'), !empty($payment_line['account_id']) ? $payment_line['account_id'] : '' , ['class' => 'form-control select2 account-dropdown', 'id' => !$readonly ? "account_$row_index" : "account_advance_$row_index", 'style' => 'width:100%;', 'disabled' => $readonly]); !!}
 				</div>
 			</div>
 		</div>

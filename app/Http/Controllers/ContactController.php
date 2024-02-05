@@ -606,7 +606,7 @@ class ContactController extends Controller
 
             $input['name'] = trim(implode(' ', $name_array));
             $input['business_id']  = $request->session()->get('user.business_id');
-            $account_types = MainAccount::createNewAccount($input);
+            
             if (! empty($request->input('is_export'))) {
                 $input['is_export'] = true;
                 $input['export_custom_field_1'] = $request->input('export_custom_field_1');
@@ -628,7 +628,9 @@ class ContactController extends Controller
 
             DB::beginTransaction();
             $output = $this->contactUtil->createNewContact($input);
-
+            // dd($output['data']['id']);
+            $input['contact_id_for_account'] = $output['data']['id'];
+            $account_types = MainAccount::createNewAccount($input);
             $this->moduleUtil->getModuleData('after_contact_saved', ['contact' => $output['data'], 'input' => $request->input()]);
 
             $this->contactUtil->activityLog($output['data'], 'added');

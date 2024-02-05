@@ -88,7 +88,7 @@ class ContactUtil extends Util
     }
 
     public function createNewContact($input)
-    {
+    { 
         //Check Contact id
         $count = 0;
         if (! empty($input['contact_id'])) {

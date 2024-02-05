@@ -2,7 +2,7 @@
 @section('title', __('lang_v1.edit_purchase_order'))
 
 @section('content')
-
+ 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>@lang('lang_v1.edit_purchase_order') <i class="fa fa-keyboard-o hover-q text-muted" aria-hidden="true" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@include('purchase.partials.keyboard_shortcuts_details')" data-html="true" data-trigger="hover" data-original-title="" title=""></i></h1>
@@ -484,7 +484,7 @@
 <!-- quick product modal -->
 <div class="modal fade quick_add_product_modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"></div>
 <div class="modal fade contact_modal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-  @include('contact.create', ['quick_add' => true])
+  @include('contact.create', ['quick_add' => true, 'account_types' => $account_types])
 </div>
 
 @endsection

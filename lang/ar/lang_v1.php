@@ -1355,4 +1355,12 @@ return [
     'parent_id' => 'الأب',
     'add_account_category' => 'إضافة تصنيف حساب',
     'account_name' => 'إسم الحساب',
+    'galobal_currencies' => 'إعداد العملات',
+    'global_currency_name' => 'إسم العملة العالمية',
+    'global_currency_value' => 'قمية العملة العالمية',
+    'local_currency_name' => 'إسم العملة المحلية',
+    'local_currency_value' => 'قمية العملةالمحلية',
+    'manage_your_galobal_currencies' => 'إعداد عملاتك العالمية',
+    'add_galobal_currencies' => 'إضافة عملات',
+    'select_currency' => 'إختر العملة'
 ];

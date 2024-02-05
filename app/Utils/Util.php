@@ -227,7 +227,7 @@ class Util
      * @param  bool  $time (default = false)
      * @return strin
      */
-    public function uf_date($date, $time = false)
+    public function uf_date($date, $time = false) 
     {
         $date_format = session('business.date_format');
         $mysql_format = 'Y-m-d';

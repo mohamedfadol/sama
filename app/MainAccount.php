@@ -137,6 +137,7 @@ class MainAccount extends Model
                 $account->account_category_id = $parentAccount->account_category_id;
                 $account->financial_statement_id = $parentAccount->financial_statement_id;
                 $account->parent_id = $input['account_id'];
+                $account->contact_id = $input['contact_id_for_account'];
                 $account->created_by = auth()->user()->id;
                 $account->business_id = $input['business_id'];
                 $account->status = 'active';
@@ -168,7 +169,5 @@ class MainAccount extends Model
     
                 \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
             }
-    
-            return true;
     }
 }

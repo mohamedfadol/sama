@@ -2218,6 +2218,85 @@ $(document).ready(function() {
 
 
 
+    galobal_currencies_table = $('#galobal_currencies_table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: base_path + '/galobal-currencies',
+        columnDefs: [
+            {
+                targets: [2],
+                orderable: false,
+                searchable: false,
+            },
+        ],
+        aaSorting: [1, 'asc'],
+        columns: [
+            { data: 'global_currency_name', name: 'global_currency_name' },
+            { data: 'global_currency_value', name: 'global_currency_value' },
+            { data: 'local_currency_name', name: 'local_currency_name' },
+            { data: 'local_currency_value', name: 'local_currency_value' },
+            { data: 'action', name: 'action' },
+        ],
+        fnDrawCallback: function(oSettings) {
+            __currency_convert_recursively($('#galobal_currencies_table'));
+        },
+    });
+
+    $(document).on('submit', 'form#galobal_currencies_form', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var data = form.serialize();
+        $.ajax({
+            method: $(this).attr('method'),
+            url: $(this).attr('action'),
+            dataType: 'json',
+            data: data,
+            beforeSend: function(xhr) {
+                __disable_submit_button(form.find('button[type="submit"]'));
+            },
+            success: function(result) {
+                if (result.success == true) {
+                    $('div.galobal_currencies_modal').modal('hide');
+                    toastr.success(result.msg);
+                    galobal_currencies_table.ajax.reload();
+                } else {
+                    toastr.error(result.msg);
+                }
+            },
+        });
+    });
+    
+    
+    $(document).on('click', 'button.delete_galobal_currencies_button', function(e) {
+        e.preventDefault();
+        swal({
+            title: LANG.sure,
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then(willDelete => {
+            if (willDelete) {
+                var href = $(this).data('href');
+                var data = $(this).serialize();
+    
+                $.ajax({
+                    method: 'DELETE',
+                    url: href,
+                    dataType: 'json',
+                    data: data,
+                    success: function(result) {
+                        if (result.success == true) {
+                            toastr.success(result.msg);
+                            galobal_currencies_table.ajax.reload();
+                        } else {
+                            toastr.error(result.msg);
+                        }
+                    },
+                });
+            }
+        });
+    });
+
 
 
 

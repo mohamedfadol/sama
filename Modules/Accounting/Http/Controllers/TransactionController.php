@@ -422,7 +422,7 @@ class TransactionController extends Controller
                 //Get all payment lines and map for each
 
                 //if not paid - Payment account = Sales
-                //Deposit to = Account Receivable
+                //Deposit to = Account Receivable   
 
                 $existing_payment = AccountingAccountsTransaction::where('transaction_id', $id)
                                         ->where('map_type', 'payment_account')
@@ -488,7 +488,7 @@ class TransactionController extends Controller
         }
 
         try {
-            if (request()->ajax()) {
+            if (request()->ajax()) { 
                 DB::beginTransaction();
 
                 $type = $request->get('type');
