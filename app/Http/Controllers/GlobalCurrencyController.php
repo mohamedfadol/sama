@@ -101,8 +101,8 @@ class GlobalCurrencyController  extends Controller
                 GlobalCurrency::create([
                     'global_currency_name' => $input['global_currency_name'], 
                     'global_currency_value' => $input['global_currency_value'],
-                    'local_currency_name' => $input['local_currency_name'],
-                    'local_currency_value'  => $input['local_currency_value'],
+                    // 'local_currency_name' => $input['local_currency_name'],
+                    // 'local_currency_value'  => $input['local_currency_value'],
                     'created_by'  => $user_id,
                     'business_id'  => $business_id,
                     ]);
@@ -231,8 +231,8 @@ class GlobalCurrencyController  extends Controller
                 $currency = GlobalCurrency::where('business_id', $business_id)->findOrFail($id);
                 $currency->global_currency_name = $input['global_currency_name']; 
                 $currency->global_currency_value = $input['global_currency_value'];
-                $currency->local_currency_name = $input['local_currency_name'];
-                $currency->local_currency_value = $input['local_currency_value'];
+                // $currency->local_currency_name = $input['local_currency_name'];
+                // $currency->local_currency_value = $input['local_currency_value'];
                 $currency->created_by = $user_id;
                 $currency->business_id = $business_id;
                 $currency->save();

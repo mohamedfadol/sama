@@ -17,7 +17,7 @@
             {!! Form::label('global_currency_value', __( 'lang_v1.global_currency_value' ) . ':*') !!} @show_tooltip(__('lang_v1.global_currency_exempt_help'))
             {!! Form::text('global_currency_value', $galobal_currency->global_currency_value, ['class' => 'form-control ', 'required' , 'placeholder' => __( 'lang_v1.global_currency_value' )]); !!}
         </div>
-
+<!-- 
         <div class="form-group">
             {!! Form::label('name', __( 'lang_v1.local_currency_name' ) . ':*') !!}
             {!! Form::text('local_currency_name', $galobal_currency->local_currency_name, ['class' => 'form-control', 'required', 'placeholder' => __( 'lang_v1.local_currency_name' )]); !!}
@@ -26,7 +26,7 @@
         <div class="form-group">
             {!! Form::label('local_currency_value', __( 'lang_v1.local_currency_value' ) . ':*') !!} @show_tooltip(__('lang_v1.local_currency_exempt_help'))
             {!! Form::text('local_currency_value', $galobal_currency->local_currency_value, ['class' => 'form-control ', 'required' , 'placeholder' => __( 'lang_v1.local_currency_value' )]); !!}
-        </div>
+        </div> -->
     </div>
 
     <div class="modal-footer">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2024 at 12:34 AM
+-- Generation Time: Feb 05, 2024 at 09:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -164,16 +164,14 @@ CREATE TABLE `accounting_accounts_transactions` (
 --
 
 INSERT INTO `accounting_accounts_transactions` (`id`, `accounting_account_id`, `acc_trans_mapping_id`, `transaction_id`, `transaction_payment_id`, `amount`, `type`, `sub_type`, `map_type`, `created_by`, `operation_date`, `note`, `created_at`, `updated_at`) VALUES
-(5, 3, 1, NULL, NULL, 100.0000, 'debit', 'journal_entry', NULL, 1, '2024-02-03 04:57:00', NULL, '2024-02-03 01:57:59', '2024-02-03 01:57:59'),
-(6, 4, 1, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-02-03 04:57:00', NULL, '2024-02-03 01:57:59', '2024-02-03 01:57:59'),
-(7, 5, 1, NULL, NULL, 100.0000, 'debit', 'journal_entry', NULL, 1, '2024-02-03 04:57:00', NULL, '2024-02-03 01:57:59', '2024-02-03 01:57:59'),
-(8, 3, 1, NULL, NULL, 100.0000, 'credit', 'journal_entry', NULL, 1, '2024-02-03 04:57:00', NULL, '2024-02-03 01:57:59', '2024-02-03 01:57:59'),
-(9, 3, 2, NULL, NULL, 300.0000, 'debit', 'journal_entry', NULL, 1, '2024-02-03 04:59:00', NULL, '2024-02-03 02:00:09', '2024-02-03 02:00:09'),
-(10, 4, 2, NULL, NULL, 300.0000, 'credit', 'journal_entry', NULL, 1, '2024-02-03 04:59:00', NULL, '2024-02-03 02:00:09', '2024-02-03 02:00:09'),
-(11, 5, 2, NULL, NULL, 50.0000, 'debit', 'journal_entry', NULL, 1, '2024-02-03 04:59:00', NULL, '2024-02-03 02:00:09', '2024-02-03 02:00:09'),
-(12, 3, 2, NULL, NULL, 50.0000, 'credit', 'journal_entry', NULL, 1, '2024-02-03 04:59:00', NULL, '2024-02-03 02:00:09', '2024-02-03 02:00:09'),
-(13, 5, 3, NULL, NULL, 250.0000, 'debit', 'journal_entry', NULL, 1, '2024-02-03 05:01:00', NULL, '2024-02-03 02:01:25', '2024-02-03 02:01:25'),
-(14, 3, 3, NULL, NULL, 250.0000, 'credit', 'journal_entry', NULL, 1, '2024-02-03 05:01:00', NULL, '2024-02-03 02:01:25', '2024-02-03 02:01:25');
+(1, 5, NULL, 31, NULL, 100.0000, 'credit', 'sales_order', 'payment_account', 1, '2024-02-04 01:23:38', NULL, '2024-02-03 22:23:38', '2024-02-03 22:23:38'),
+(2, 1, NULL, 31, NULL, 100.0000, 'debit', 'sales_order', 'deposit_to', 1, '2024-02-04 01:23:38', NULL, '2024-02-03 22:23:38', '2024-02-03 22:23:38'),
+(3, 5, NULL, 33, NULL, 100.0000, 'credit', 'sell', 'payment_account', 1, '2024-02-04 17:58:58', NULL, '2024-02-04 14:58:58', '2024-02-04 14:58:58'),
+(4, 1, NULL, 33, NULL, 100.0000, 'debit', 'sell', 'deposit_to', 1, '2024-02-04 17:58:58', NULL, '2024-02-04 14:58:58', '2024-02-04 14:58:58'),
+(5, 5, NULL, 34, NULL, 100.0000, 'credit', 'sell', 'payment_account', 1, '2024-02-04 18:00:37', NULL, '2024-02-04 15:00:37', '2024-02-04 15:00:37'),
+(6, 1, NULL, 34, NULL, 100.0000, 'debit', 'sell', 'deposit_to', 1, '2024-02-04 18:00:37', NULL, '2024-02-04 15:00:37', '2024-02-04 15:00:37'),
+(7, 5, NULL, 41, NULL, 100.0000, 'credit', 'sales_order', 'payment_account', 1, '2024-02-04 20:41:13', NULL, '2024-02-04 17:41:13', '2024-02-04 17:41:13'),
+(8, 9, NULL, 41, NULL, 100.0000, 'debit', 'sales_order', 'deposit_to', 1, '2024-02-04 20:41:13', NULL, '2024-02-04 17:41:13', '2024-02-04 17:41:13');
 
 -- --------------------------------------------------------
 
@@ -219,9 +217,10 @@ CREATE TABLE `accounting_acc_trans_mappings` (
 --
 
 INSERT INTO `accounting_acc_trans_mappings` (`id`, `business_id`, `ref_no`, `type`, `created_by`, `operation_date`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, '2024/0001', 'journal_entry', 1, '2024-02-03 04:57:00', NULL, '2024-02-03 01:57:59', '2024-02-03 01:57:59'),
-(2, 1, '2024/0002', 'journal_entry', 1, '2024-02-03 04:59:00', NULL, '2024-02-03 02:00:09', '2024-02-03 02:00:09'),
-(3, 1, '2024/0003', 'journal_entry', 1, '2024-02-03 05:01:00', NULL, '2024-02-03 02:01:25', '2024-02-03 02:01:25');
+(4, 1, '2024/0004', 'journal_entry', 1, '2024-02-04 01:23:38', NULL, '2024-02-03 22:23:38', '2024-02-03 22:23:38'),
+(5, 1, '2024/0005', 'journal_entry', 1, '2024-02-04 17:58:58', NULL, '2024-02-04 14:58:58', '2024-02-04 14:58:58'),
+(6, 1, '2024/0006', 'journal_entry', 1, '2024-02-04 18:00:37', NULL, '2024-02-04 15:00:37', '2024-02-04 15:00:37'),
+(7, 1, '2024/0007', 'journal_entry', 1, '2024-02-04 20:41:13', NULL, '2024-02-04 17:41:13', '2024-02-04 17:41:13');
 
 -- --------------------------------------------------------
 
@@ -275,6 +274,13 @@ CREATE TABLE `accounts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `business_id`, `name`, `account_number`, `account_details`, `account_type_id`, `note`, `created_by`, `is_closed`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'ddd', '2122', NULL, NULL, NULL, 1, 0, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -323,6 +329,14 @@ CREATE TABLE `account_transactions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `account_transactions`
+--
+
+INSERT INTO `account_transactions` (`id`, `account_id`, `type`, `sub_type`, `amount`, `reff_no`, `operation_date`, `created_by`, `transaction_id`, `transaction_payment_id`, `transfer_transaction_id`, `note`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'credit', NULL, 100.0000, NULL, '2024-02-04 17:58:00', 1, 33, 1, NULL, NULL, NULL, '2024-02-04 14:58:58', '2024-02-04 14:58:58'),
+(2, 3, 'credit', NULL, 100.0000, NULL, '2024-02-04 18:00:00', 1, 34, 2, NULL, NULL, NULL, '2024-02-04 15:00:37', '2024-02-04 15:00:37');
+
 -- --------------------------------------------------------
 
 --
@@ -369,7 +383,17 @@ INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_id`, `subj
 (2, 'default', 'added', 4, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":100}}', NULL, '2024-02-03 01:52:39', '2024-02-03 01:52:39'),
 (3, 'default', 'added', 5, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":100}}', NULL, '2024-02-03 01:54:02', '2024-02-03 01:54:02'),
 (4, 'default', 'added', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"partial\",\"final_total\":300}}', NULL, '2024-02-03 01:59:15', '2024-02-03 01:59:15'),
-(5, 'default', 'payment_edited', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"300.0000\"},\"old\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"partial\",\"final_total\":\"300.0000\"}}', NULL, '2024-02-03 02:00:59', '2024-02-03 02:00:59');
+(5, 'default', 'payment_edited', 6, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":\"300.0000\"},\"old\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"partial\",\"final_total\":\"300.0000\"}}', NULL, '2024-02-03 02:00:59', '2024-02-03 02:00:59'),
+(6, 'default', 'added', 27, 'App\\Transaction', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-03 18:37:58', '2024-02-03 18:37:58'),
+(7, 'default', 'added', 28, 'App\\Transaction', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-03 19:25:21', '2024-02-03 19:25:21'),
+(8, 'default', 'added', 31, 'App\\Transaction', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-03 22:23:38', '2024-02-03 22:23:38'),
+(9, 'default', 'added', 17, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-04 13:04:27', '2024-02-04 13:04:27'),
+(10, 'default', 'added', 33, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":100}}', NULL, '2024-02-04 14:58:58', '2024-02-04 14:58:58'),
+(11, 'default', 'added', 34, 'App\\Transaction', NULL, 1, 1, 'App\\User', '{\"attributes\":{\"type\":\"sell\",\"status\":\"final\",\"payment_status\":\"paid\",\"final_total\":100}}', NULL, '2024-02-04 15:00:37', '2024-02-04 15:00:37'),
+(12, 'default', 'added', 27, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-04 16:50:55', '2024-02-04 16:50:55'),
+(13, 'default', 'added', 28, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-04 16:53:41', '2024-02-04 16:53:41'),
+(14, 'default', 'added', 29, 'App\\Contact', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-04 16:55:36', '2024-02-04 16:55:36'),
+(15, 'default', 'added', 41, 'App\\Transaction', NULL, 1, 1, 'App\\User', '[]', NULL, '2024-02-04 17:41:13', '2024-02-04 17:41:13');
 
 -- --------------------------------------------------------
 
@@ -642,7 +666,7 @@ CREATE TABLE `business` (
 --
 
 INSERT INTO `business` (`id`, `name`, `currency_id`, `start_date`, `tax_number_1`, `tax_label_1`, `tax_number_2`, `tax_label_2`, `code_label_1`, `code_1`, `code_label_2`, `code_2`, `default_sales_tax`, `default_profit_percent`, `owner_id`, `time_zone`, `fy_start_month`, `accounting_method`, `default_sales_discount`, `sell_price_tax`, `logo`, `sku_prefix`, `enable_product_expiry`, `expiry_type`, `on_product_expiry`, `stop_selling_before`, `enable_tooltip`, `purchase_in_diff_currency`, `purchase_currency_id`, `p_exchange_rate`, `transaction_edit_days`, `stock_expiry_alert_days`, `keyboard_shortcuts`, `pos_settings`, `essentials_settings`, `woocommerce_api_settings`, `woocommerce_skipped_orders`, `woocommerce_wh_oc_secret`, `woocommerce_wh_ou_secret`, `woocommerce_wh_od_secret`, `woocommerce_wh_or_secret`, `manufacturing_settings`, `weighing_scale_setting`, `enable_brand`, `enable_category`, `enable_sub_category`, `enable_price_tax`, `enable_purchase_status`, `enable_lot_number`, `default_unit`, `enable_sub_units`, `enable_racks`, `enable_row`, `enable_position`, `enable_editing_product_from_purchase`, `sales_cmsn_agnt`, `item_addition_method`, `enable_inline_tax`, `currency_symbol_placement`, `enabled_modules`, `date_format`, `time_format`, `currency_precision`, `quantity_precision`, `ref_no_prefixes`, `theme_color`, `created_by`, `crm_settings`, `asset_settings`, `repair_settings`, `accounting_settings`, `enable_rp`, `rp_name`, `amount_for_unit_rp`, `min_order_total_for_rp`, `max_rp_per_order`, `redeem_amount_per_unit_rp`, `min_order_total_for_redeem`, `min_redeem_point`, `max_redeem_point`, `rp_expiry_period`, `rp_expiry_type`, `email_settings`, `sms_settings`, `custom_labels`, `common_settings`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'test', 135, '2023-11-01', '12458789', 'ضريبة السل', '222', 'ضريبة السل', NULL, NULL, NULL, NULL, NULL, 25.00, 1, 'Asia/Kolkata', 1, 'fifo', 0.00, 'includes', '1699618846_371471728_318495687475862_8964458430160788678_n.png', NULL, 0, 'add_expiry', 'keep_selling', 0, 1, 0, NULL, 1.000, 30, 30, '{\"pos\":{\"express_checkout\":\"shift+e\",\"pay_n_ckeckout\":\"shift+p\",\"draft\":\"shift+d\",\"cancel\":\"shift+c\",\"recent_product_quantity\":\"f2\",\"weighing_scale\":null,\"edit_discount\":\"shift+i\",\"edit_order_tax\":\"shift+t\",\"add_payment_row\":\"shift+r\",\"finalize_payment\":\"shift+f\",\"add_new_product\":\"f4\"}}', '{\"amount_rounding_method\":null,\"allow_overselling\":\"1\",\"enable_sales_order\":\"1\",\"cmmsn_calculation_type\":\"invoice_value\",\"razor_pay_key_id\":null,\"razor_pay_key_secret\":null,\"stripe_public_key\":null,\"stripe_secret_key\":null,\"cash_denominations\":null,\"enable_cash_denomination_on\":\"pos_screen\",\"disable_pay_checkout\":0,\"disable_draft\":0,\"disable_express_checkout\":0,\"hide_product_suggestion\":0,\"hide_recent_trans\":0,\"disable_discount\":0,\"disable_order_tax\":0,\"is_pos_subtotal_editable\":0}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"label_prefix\":null,\"product_sku_length\":\"4\",\"qty_length\":\"3\",\"qty_length_decimal\":\"2\"}', 1, 1, 1, 1, 1, 1, NULL, 0, 0, 0, 0, 1, NULL, 1, 0, 'before', '[\"purchases\",\"add_sale\",\"pos_sale\",\"stock_transfers\",\"stock_adjustment\",\"expenses\",\"account\",\"tables\",\"modifiers\",\"service_staff\",\"booking\",\"kitchen\",\"subscription\",\"types_of_service\"]', 'm/d/Y', '24', 3, 2, '{\"purchase\":\"PO\",\"purchase_return\":null,\"purchase_requisition\":null,\"purchase_order\":null,\"stock_transfer\":\"ST\",\"stock_adjustment\":\"SA\",\"sell_return\":\"CN\",\"expense\":\"EP\",\"contacts\":\"CO\",\"purchase_payment\":\"PP\",\"sell_payment\":\"SP\",\"expense_payment\":null,\"business_location\":\"BL\",\"username\":null,\"subscription\":null,\"draft\":null,\"sales_order\":null}', NULL, NULL, NULL, NULL, NULL, '{\"journal_entry_prefix\":null,\"transfer_prefix\":null,\"accounting_default_map\":{\"1\":{\"sale\":{\"payment_account\":\"4\"},\"sell_payment\":{\"payment_account\":null},\"purchases\":{\"payment_account\":null},\"purchase_payment\":{\"payment_account\":null}}}}', 0, NULL, 1.0000, 1.0000, NULL, 1.0000, 1.0000, NULL, NULL, NULL, 'year', '{\"mail_driver\":\"smtp\",\"mail_host\":null,\"mail_port\":null,\"mail_username\":null,\"mail_password\":null,\"mail_encryption\":null,\"mail_from_address\":null,\"mail_from_name\":null}', '{\"sms_service\":\"other\",\"nexmo_key\":null,\"nexmo_secret\":null,\"nexmo_from\":null,\"twilio_sid\":null,\"twilio_token\":null,\"twilio_from\":null,\"url\":null,\"send_to_param_name\":\"to\",\"msg_param_name\":\"text\",\"request_method\":\"post\",\"header_1\":null,\"header_val_1\":null,\"header_2\":null,\"header_val_2\":null,\"header_3\":null,\"header_val_3\":null,\"param_1\":null,\"param_val_1\":null,\"param_2\":null,\"param_val_2\":null,\"param_3\":null,\"param_val_3\":null,\"param_4\":null,\"param_val_4\":null,\"param_5\":null,\"param_val_5\":null,\"param_6\":null,\"param_val_6\":null,\"param_7\":null,\"param_val_7\":null,\"param_8\":null,\"param_val_8\":null,\"param_9\":null,\"param_val_9\":null,\"param_10\":null,\"param_val_10\":null}', '{\"payments\":{\"custom_pay_1\":null,\"custom_pay_2\":null,\"custom_pay_3\":null,\"custom_pay_4\":null,\"custom_pay_5\":null,\"custom_pay_6\":null,\"custom_pay_7\":null},\"contact\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null},\"product\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null,\"custom_field_11\":null,\"custom_field_12\":null,\"custom_field_13\":null,\"custom_field_14\":null,\"custom_field_15\":null,\"custom_field_16\":null,\"custom_field_17\":null,\"custom_field_18\":null,\"custom_field_19\":null,\"custom_field_20\":null},\"product_cf_details\":{\"1\":{\"type\":null,\"dropdown_options\":null},\"2\":{\"type\":null,\"dropdown_options\":null},\"3\":{\"type\":null,\"dropdown_options\":null},\"4\":{\"type\":null,\"dropdown_options\":null},\"5\":{\"type\":null,\"dropdown_options\":null},\"6\":{\"type\":null,\"dropdown_options\":null},\"7\":{\"type\":null,\"dropdown_options\":null},\"8\":{\"type\":null,\"dropdown_options\":null},\"9\":{\"type\":null,\"dropdown_options\":null},\"10\":{\"type\":null,\"dropdown_options\":null},\"11\":{\"type\":null,\"dropdown_options\":null},\"12\":{\"type\":null,\"dropdown_options\":null},\"13\":{\"type\":null,\"dropdown_options\":null},\"14\":{\"type\":null,\"dropdown_options\":null},\"15\":{\"type\":null,\"dropdown_options\":null},\"16\":{\"type\":null,\"dropdown_options\":null},\"17\":{\"type\":null,\"dropdown_options\":null},\"18\":{\"type\":null,\"dropdown_options\":null},\"19\":{\"type\":null,\"dropdown_options\":null},\"20\":{\"type\":null,\"dropdown_options\":null}},\"location\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"user\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase_shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"sell\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"types_of_service\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null}}', '{\"default_credit_limit\":null,\"enable_purchase_order\":\"1\",\"enable_purchase_requisition\":\"1\",\"default_datatable_page_entries\":\"25\"}', 1, '2023-11-01 21:02:02', '2024-02-03 01:25:48');
+(1, 'test', 1, '2023-11-01', '12458789', 'ضريبة السل', '222', 'ضريبة السل', NULL, NULL, NULL, NULL, NULL, 25.00, 1, 'Asia/Kolkata', 1, 'fifo', 0.00, 'includes', '1699618846_371471728_318495687475862_8964458430160788678_n.png', NULL, 0, 'add_expiry', 'keep_selling', 0, 1, 0, NULL, 1.000, 30, 30, '{\"pos\":{\"express_checkout\":\"shift+e\",\"pay_n_ckeckout\":\"shift+p\",\"draft\":\"shift+d\",\"cancel\":\"shift+c\",\"recent_product_quantity\":\"f2\",\"weighing_scale\":null,\"edit_discount\":\"shift+i\",\"edit_order_tax\":\"shift+t\",\"add_payment_row\":\"shift+r\",\"finalize_payment\":\"shift+f\",\"add_new_product\":\"f4\"}}', '{\"amount_rounding_method\":null,\"allow_overselling\":\"1\",\"enable_sales_order\":\"1\",\"cmmsn_calculation_type\":\"invoice_value\",\"razor_pay_key_id\":null,\"razor_pay_key_secret\":null,\"stripe_public_key\":null,\"stripe_secret_key\":null,\"cash_denominations\":null,\"enable_cash_denomination_on\":\"pos_screen\",\"disable_pay_checkout\":0,\"disable_draft\":0,\"disable_express_checkout\":0,\"hide_product_suggestion\":0,\"hide_recent_trans\":0,\"disable_discount\":0,\"disable_order_tax\":0,\"is_pos_subtotal_editable\":0}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"label_prefix\":null,\"product_sku_length\":\"4\",\"qty_length\":\"3\",\"qty_length_decimal\":\"2\"}', 1, 1, 1, 1, 1, 1, NULL, 0, 0, 0, 0, 1, NULL, 1, 1, 'before', '[\"purchases\",\"add_sale\",\"pos_sale\",\"stock_transfers\",\"stock_adjustment\",\"expenses\",\"account\",\"tables\",\"modifiers\",\"service_staff\",\"booking\",\"kitchen\",\"subscription\",\"types_of_service\"]', 'd/m/Y', '12', 3, 3, '{\"purchase\":\"PO\",\"purchase_return\":null,\"purchase_requisition\":null,\"purchase_order\":null,\"stock_transfer\":\"ST\",\"stock_adjustment\":\"SA\",\"sell_return\":\"CN\",\"expense\":\"EP\",\"contacts\":\"CO\",\"purchase_payment\":\"PP\",\"sell_payment\":\"SP\",\"expense_payment\":null,\"business_location\":\"BL\",\"username\":null,\"subscription\":null,\"draft\":null,\"sales_order\":null}', NULL, NULL, NULL, NULL, NULL, '{\"journal_entry_prefix\":null,\"transfer_prefix\":null,\"accounting_default_map\":{\"1\":{\"sale\":{\"payment_account\":\"4\"},\"sell_payment\":{\"payment_account\":null},\"purchases\":{\"payment_account\":null},\"purchase_payment\":{\"payment_account\":null}}}}', 0, NULL, 1.0000, 1.0000, NULL, 1.0000, 1.0000, NULL, NULL, NULL, 'year', '{\"mail_driver\":\"smtp\",\"mail_host\":null,\"mail_port\":null,\"mail_username\":null,\"mail_password\":null,\"mail_encryption\":null,\"mail_from_address\":null,\"mail_from_name\":null}', '{\"sms_service\":\"other\",\"nexmo_key\":null,\"nexmo_secret\":null,\"nexmo_from\":null,\"twilio_sid\":null,\"twilio_token\":null,\"twilio_from\":null,\"url\":null,\"send_to_param_name\":\"to\",\"msg_param_name\":\"text\",\"request_method\":\"post\",\"header_1\":null,\"header_val_1\":null,\"header_2\":null,\"header_val_2\":null,\"header_3\":null,\"header_val_3\":null,\"param_1\":null,\"param_val_1\":null,\"param_2\":null,\"param_val_2\":null,\"param_3\":null,\"param_val_3\":null,\"param_4\":null,\"param_val_4\":null,\"param_5\":null,\"param_val_5\":null,\"param_6\":null,\"param_val_6\":null,\"param_7\":null,\"param_val_7\":null,\"param_8\":null,\"param_val_8\":null,\"param_9\":null,\"param_val_9\":null,\"param_10\":null,\"param_val_10\":null}', '{\"payments\":{\"custom_pay_1\":null,\"custom_pay_2\":null,\"custom_pay_3\":null,\"custom_pay_4\":null,\"custom_pay_5\":null,\"custom_pay_6\":null,\"custom_pay_7\":null},\"contact\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null},\"product\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null,\"custom_field_7\":null,\"custom_field_8\":null,\"custom_field_9\":null,\"custom_field_10\":null,\"custom_field_11\":null,\"custom_field_12\":null,\"custom_field_13\":null,\"custom_field_14\":null,\"custom_field_15\":null,\"custom_field_16\":null,\"custom_field_17\":null,\"custom_field_18\":null,\"custom_field_19\":null,\"custom_field_20\":null},\"product_cf_details\":{\"1\":{\"type\":null,\"dropdown_options\":null},\"2\":{\"type\":null,\"dropdown_options\":null},\"3\":{\"type\":null,\"dropdown_options\":null},\"4\":{\"type\":null,\"dropdown_options\":null},\"5\":{\"type\":null,\"dropdown_options\":null},\"6\":{\"type\":null,\"dropdown_options\":null},\"7\":{\"type\":null,\"dropdown_options\":null},\"8\":{\"type\":null,\"dropdown_options\":null},\"9\":{\"type\":null,\"dropdown_options\":null},\"10\":{\"type\":null,\"dropdown_options\":null},\"11\":{\"type\":null,\"dropdown_options\":null},\"12\":{\"type\":null,\"dropdown_options\":null},\"13\":{\"type\":null,\"dropdown_options\":null},\"14\":{\"type\":null,\"dropdown_options\":null},\"15\":{\"type\":null,\"dropdown_options\":null},\"16\":{\"type\":null,\"dropdown_options\":null},\"17\":{\"type\":null,\"dropdown_options\":null},\"18\":{\"type\":null,\"dropdown_options\":null},\"19\":{\"type\":null,\"dropdown_options\":null},\"20\":{\"type\":null,\"dropdown_options\":null}},\"location\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"user\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"purchase_shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"sell\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null},\"shipping\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null},\"types_of_service\":{\"custom_field_1\":null,\"custom_field_2\":null,\"custom_field_3\":null,\"custom_field_4\":null,\"custom_field_5\":null,\"custom_field_6\":null}}', '{\"default_credit_limit\":null,\"enable_purchase_order\":\"1\",\"enable_purchase_requisition\":\"1\",\"default_datatable_page_entries\":\"25\"}', 1, '2023-11-01 21:02:02', '2024-02-05 23:09:04');
 
 -- --------------------------------------------------------
 
@@ -756,13 +780,6 @@ CREATE TABLE `cash_register_transactions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `cash_register_transactions`
---
-
-INSERT INTO `cash_register_transactions` (`id`, `cash_register_id`, `amount`, `pay_method`, `type`, `transaction_type`, `transaction_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 15.0000, 'cash', 'credit', 'initial', NULL, '2024-02-02 18:50:53', '2024-02-02 18:50:53');
-
 -- --------------------------------------------------------
 
 --
@@ -872,11 +889,11 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `business_id`, `account_id`, `type`, `supplier_business_name`, `name`, `prefix`, `first_name`, `middle_name`, `last_name`, `email`, `contact_id`, `contact_status`, `tax_number`, `city`, `state`, `country`, `address_line_1`, `address_line_2`, `zip_code`, `dob`, `mobile`, `landline`, `alternate_number`, `pay_term_number`, `pay_term_type`, `credit_limit`, `created_by`, `converted_by`, `converted_on`, `balance`, `total_rp`, `total_rp_used`, `total_rp_expired`, `is_default`, `shipping_address`, `shipping_custom_field_details`, `is_export`, `export_custom_field_1`, `export_custom_field_2`, `export_custom_field_3`, `export_custom_field_4`, `export_custom_field_5`, `export_custom_field_6`, `position`, `customer_group_id`, `crm_source`, `crm_life_stage`, `custom_field1`, `custom_field2`, `custom_field3`, `custom_field4`, `custom_field5`, `custom_field6`, `custom_field7`, `custom_field8`, `custom_field9`, `custom_field10`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 7, 'customer', NULL, 'mohamed fadol', NULL, 'mohamed', NULL, 'fadol', 'mohamedtapo@gmail.com', 'CO0001', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, 0.0000, 1, NULL, NULL, 0.0000, 0, 0, 0, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-11-01 18:02:02', '2024-01-24 16:52:45'),
-(10, 1, 22, 'customer', NULL, 'aa mohamed fadol', 'aa', 'mohamed', NULL, 'fadol', 'mohamedtapo@gmail.com', 'CO0009', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-24 16:22:05', '2024-01-24 16:22:05'),
+(10, 1, 22, 'customer', NULL, 'aa mohamed fadol', 'aa', 'mohamed', NULL, 'fadol', 'mohamedtapo@gmail.com', 'CO0009', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-24 16:22:05', '2024-01-24 16:22:05'),
 (14, 1, 15, 'supplier', NULL, 'aa mohamed wdwd fadol', 'aa', 'mohamed', 'wdwd', 'fadol', 'mohamedtapo@gmail.com', 'CO0013', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-24 16:32:22', '2024-01-24 16:54:07'),
 (15, 1, 16, 'supplier', NULL, 'aa mohamed wdwd fadol', 'aa', 'mohamed', 'wdwd', 'fadol', 'mohamedtapo@gmail.com', 'CO0014', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0535447543', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-24 16:33:23', '2024-01-24 16:33:23'),
-(16, 1, 2, 'customer', NULL, 'فراس', NULL, 'فراس', NULL, NULL, NULL, 'CO0001', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '078776012', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 01:23:43', '2024-02-03 01:23:43');
+(16, 1, 2, 'customer', NULL, 'فراس', NULL, 'فراس', NULL, NULL, NULL, 'CO0001', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '078776012', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 01:23:43', '2024-02-03 01:23:43'),
+(29, 1, 6, 'customer', NULL, 'qqq qq qqqq', 'qqq', 'qq', NULL, 'qqqq', 'mohamedtapoqqqq@gmail.com', 'CO0005', 'active', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '212344444', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0.0000, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-04 16:55:36', '2024-02-04 16:55:36');
 
 -- --------------------------------------------------------
 
@@ -1714,6 +1731,31 @@ INSERT INTO `financial_statements` (`id`, `name_ar`, `name_en`, `business_id`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `global_currencies`
+--
+
+CREATE TABLE `global_currencies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `global_currency_name` varchar(191) DEFAULT NULL,
+  `global_currency_value` decimal(18,9) NOT NULL DEFAULT 6.000000000,
+  `local_currency_name` varchar(191) DEFAULT NULL,
+  `local_currency_value` decimal(18,9) DEFAULT 6.000000000,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `business_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `global_currencies`
+--
+
+INSERT INTO `global_currencies` (`id`, `global_currency_name`, `global_currency_value`, `local_currency_name`, `local_currency_value`, `created_by`, `business_id`, `created_at`, `updated_at`) VALUES
+(4, 'دولار', 0.710000000, 'دينار اردني', 1.000000000, 1, 1, '2024-02-05 23:03:43', '2024-02-05 23:03:43');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `group_sub_taxes`
 --
 
@@ -1850,7 +1892,7 @@ CREATE TABLE `invoice_schemes` (
 
 INSERT INTO `invoice_schemes` (`id`, `business_id`, `name`, `scheme_type`, `number_type`, `prefix`, `start_number`, `invoice_count`, `total_digits`, `is_default`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Default', 'blank', 'sequential', '', 1, 163, 4, 1, '2023-11-01 18:02:02', '2023-12-21 21:48:39'),
-(2, 1, 'mohamed fadol', 'blank', 'sequential', NULL, 0, 3, 4, 0, '2023-11-15 13:24:19', '2024-02-03 01:59:15');
+(2, 1, 'mohamed fadol', 'blank', 'sequential', NULL, 0, 5, 4, 0, '2023-11-15 13:24:19', '2024-02-04 15:00:37');
 
 -- --------------------------------------------------------
 
@@ -1905,19 +1947,22 @@ CREATE TABLE `main_accounts` (
   `totalBalance` decimal(8,2) NOT NULL DEFAULT 6.00,
   `created_by` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `contact_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `main_accounts`
 --
 
-INSERT INTO `main_accounts` (`id`, `name_ar`, `name_en`, `account_number`, `business_id`, `account_category_id`, `financial_statement_id`, `parent_id`, `is_closed`, `description`, `status`, `show_balance`, `totalBalance`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'تكلفة المبيعات', NULL, 1, 1, 1, 1, NULL, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:22:47', '2024-02-03 01:25:06'),
-(2, 'الاصول', NULL, 2, 1, 1, 2, NULL, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:23:12', '2024-02-03 01:23:12'),
-(3, 'فراس', NULL, 21, 1, 1, 2, 2, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:23:43', '2024-02-03 01:23:43'),
-(4, 'صافي المبيعات', NULL, 11, 1, 1, 1, 1, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:25:35', '2024-02-03 01:25:35'),
-(5, 'صندوق', NULL, 22, 1, 1, 2, 2, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:57:00', '2024-02-03 01:57:00');
+INSERT INTO `main_accounts` (`id`, `name_ar`, `name_en`, `account_number`, `business_id`, `account_category_id`, `financial_statement_id`, `parent_id`, `is_closed`, `description`, `status`, `show_balance`, `totalBalance`, `created_by`, `created_at`, `updated_at`, `contact_id`) VALUES
+(1, 'تكلفة المبيعات', NULL, 1, 1, 1, 1, NULL, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:22:47', '2024-02-03 01:25:06', NULL),
+(2, 'الاصول', NULL, 2, 1, 1, 2, NULL, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:23:12', '2024-02-03 01:23:12', NULL),
+(3, 'فراس', NULL, 21, 1, 1, 2, 2, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:23:43', '2024-02-03 01:23:43', NULL),
+(4, 'صافي المبيعات', NULL, 11, 1, 1, 1, 1, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:25:35', '2024-02-03 01:25:35', NULL),
+(5, 'صندوق', NULL, 22, 1, 1, 2, 2, 0, NULL, 'active', 1, 6.00, 1, '2024-02-03 01:57:00', '2024-02-03 01:57:00', NULL),
+(6, 'العملاء', NULL, 23, 1, 1, 1, 2, 0, NULL, 'active', 1, 6.00, 1, '2024-02-04 13:03:47', '2024-02-04 13:03:47', NULL),
+(9, 'qqq qq qqqq', NULL, 231, 1, 1, 1, 6, 0, NULL, 'active', 1, 6.00, 1, '2024-02-04 16:55:36', '2024-02-04 16:55:36', 29);
 
 -- --------------------------------------------------------
 
@@ -2456,7 +2501,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (447, '2023_01_18_011315_create_account_categories_table', 9),
 (448, '2023_01_18_011722_create_financial_statements_table', 9),
 (449, '2023_12_29_124646_create_main_accounts_table', 9),
-(451, '2024_01_26_005939_create_songs_table', 10);
+(451, '2024_01_26_005939_create_songs_table', 10),
+(452, '2024_02_05_224747_create_global_currencies_table', 11);
 
 -- --------------------------------------------------------
 
@@ -3216,9 +3262,10 @@ CREATE TABLE `reference_counts` (
 --
 
 INSERT INTO `reference_counts` (`id`, `ref_type`, `ref_count`, `business_id`, `created_at`, `updated_at`) VALUES
-(1, 'contacts', 1, 1, '2024-02-03 01:23:43', '2024-02-03 01:23:43'),
-(2, 'sell_payment', 5, 1, '2024-02-03 01:52:39', '2024-02-03 02:00:59'),
-(3, 'journal_entry', 3, 1, '2024-02-03 01:57:59', '2024-02-03 02:01:25');
+(1, 'contacts', 5, 1, '2024-02-03 01:23:43', '2024-02-04 16:55:36'),
+(2, 'sell_payment', 7, 1, '2024-02-03 01:52:39', '2024-02-04 15:00:37'),
+(3, 'journal_entry', 7, 1, '2024-02-03 01:57:59', '2024-02-04 17:41:13'),
+(12, 'sales_order', 4, 1, '2024-02-03 18:37:58', '2024-02-04 17:41:13');
 
 -- --------------------------------------------------------
 
@@ -3730,6 +3777,13 @@ CREATE TABLE `tax_rates` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `tax_rates`
+--
+
+INSERT INTO `tax_rates` (`id`, `business_id`, `account_id`, `name`, `amount`, `is_tax_group`, `for_tax_group`, `created_by`, `woocommerce_tax_rate_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(12, 1, 3, 'ضريبة 16%', 16.0000, 0, 0, 1, NULL, NULL, '2024-02-05 23:08:26', '2024-02-05 23:08:26');
+
 -- --------------------------------------------------------
 
 --
@@ -3742,6 +3796,7 @@ CREATE TABLE `transactions` (
   `location_id` int(10) UNSIGNED DEFAULT NULL,
   `res_table_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'fields to restaurant module',
   `res_waiter_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'fields to restaurant module',
+  `global_currenc_id` bigint(20) NOT NULL,
   `res_order_status` enum('received','cooked','served') DEFAULT NULL,
   `type` varchar(191) DEFAULT NULL,
   `sub_type` varchar(20) DEFAULT NULL,
@@ -3873,11 +3928,8 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `business_id`, `location_id`, `res_table_id`, `res_waiter_id`, `res_order_status`, `type`, `sub_type`, `status`, `sub_status`, `is_quotation`, `payment_status`, `adjustment_type`, `contact_id`, `customer_group_id`, `invoice_no`, `ref_no`, `source`, `subscription_no`, `subscription_repeat_on`, `transaction_date`, `total_before_tax`, `tax_id`, `tax_amount`, `discount_type`, `discount_amount`, `rp_redeemed`, `rp_redeemed_amount`, `shipping_details`, `shipping_address`, `delivery_date`, `shipping_status`, `delivered_to`, `shipping_charges`, `shipping_custom_field_1`, `shipping_custom_field_2`, `shipping_custom_field_3`, `shipping_custom_field_4`, `shipping_custom_field_5`, `additional_notes`, `staff_note`, `is_export`, `export_custom_fields_info`, `round_off_amount`, `additional_expense_key_1`, `additional_expense_value_1`, `additional_expense_key_2`, `additional_expense_value_2`, `additional_expense_key_3`, `additional_expense_value_3`, `additional_expense_key_4`, `additional_expense_value_4`, `final_total`, `expense_category_id`, `expense_sub_category_id`, `expense_for`, `commission_agent`, `document`, `is_direct_sale`, `is_suspend`, `exchange_rate`, `total_amount_recovered`, `transfer_parent_id`, `return_parent_id`, `opening_stock_product_id`, `created_by`, `crm_is_order_request`, `essentials_duration`, `essentials_duration_unit`, `essentials_amount_per_unit_duration`, `essentials_allowances`, `essentials_deductions`, `repair_completed_on`, `repair_warranty_id`, `repair_brand_id`, `repair_status_id`, `repair_model_id`, `repair_job_sheet_id`, `repair_defects`, `repair_serial_no`, `repair_checklist`, `repair_security_pwd`, `repair_security_pattern`, `repair_due_date`, `repair_device_id`, `repair_updates_notif`, `woocommerce_order_id`, `mfg_parent_production_purchase_id`, `mfg_wasted_units`, `mfg_production_cost`, `mfg_production_cost_type`, `mfg_is_final`, `purchase_requisition_ids`, `prefer_payment_method`, `prefer_payment_account`, `sales_order_ids`, `purchase_order_ids`, `custom_field_1`, `custom_field_2`, `custom_field_3`, `custom_field_4`, `import_batch`, `import_time`, `types_of_service_id`, `packing_charge`, `packing_charge_type`, `service_custom_field_1`, `service_custom_field_2`, `service_custom_field_3`, `service_custom_field_4`, `service_custom_field_5`, `service_custom_field_6`, `is_created_from_api`, `rp_earned`, `order_addresses`, `is_recurring`, `recur_interval`, `recur_interval_type`, `recur_repetitions`, `recur_stopped_on`, `recur_parent_id`, `invoice_token`, `pay_term_number`, `pay_term_type`, `pjt_project_id`, `pjt_title`, `selling_price_group_id`, `info`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, NULL, NULL, 'opening_stock', NULL, 'received', NULL, 0, 'paid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-01 04:26:59', 1.0000, NULL, 0.0000, NULL, 0.0000, 0, 0.0000, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, 1000.0000, NULL, NULL, NULL, NULL, NULL, 0, 0, 1.000, NULL, NULL, NULL, 1, 1, 0, 0.00, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0.0000, 'percentage', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 01:26:59', '2024-02-03 01:26:59'),
-(4, 1, 1, NULL, NULL, NULL, 'sell', NULL, 'final', NULL, 0, 'paid', NULL, 1, NULL, '0000', '', NULL, NULL, NULL, '2024-02-03 04:52:00', 100.0000, NULL, 0.0000, 'percentage', 0.0000, 0, 0.0000, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, 100.0000, NULL, NULL, NULL, NULL, NULL, 1, 0, 1.000, NULL, NULL, NULL, NULL, 1, 0, 0.00, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0.0000, 'percentage', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 1.0000, 'days', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 01:52:39', '2024-02-03 01:52:39'),
-(5, 1, 1, NULL, NULL, NULL, 'sell', NULL, 'final', NULL, 0, 'paid', NULL, 16, NULL, '0001', '', NULL, NULL, NULL, '2024-02-03 04:53:00', 100.0000, NULL, 0.0000, 'percentage', 0.0000, 0, 0.0000, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, 100.0000, NULL, NULL, NULL, NULL, NULL, 1, 0, 1.000, NULL, NULL, NULL, NULL, 1, 0, 0.00, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0.0000, 'percentage', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 1.0000, 'days', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 01:54:01', '2024-02-03 01:54:02'),
-(6, 1, 1, NULL, NULL, NULL, 'sell', NULL, 'final', NULL, 0, 'paid', NULL, 16, NULL, '0002', '', NULL, NULL, NULL, '2024-02-03 04:58:00', 300.0000, NULL, 0.0000, 'percentage', 0.0000, 0, 0.0000, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, 300.0000, NULL, NULL, NULL, NULL, NULL, 1, 0, 1.000, NULL, NULL, NULL, NULL, 1, 0, 0.00, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0.0000, 'percentage', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 1.0000, 'days', 0, NULL, NULL, 'b02d3ec2ee001174a9056dc93a1cf21f', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 01:59:15', '2024-02-03 02:00:59');
+INSERT INTO `transactions` (`id`, `business_id`, `location_id`, `res_table_id`, `res_waiter_id`, `global_currenc_id`, `res_order_status`, `type`, `sub_type`, `status`, `sub_status`, `is_quotation`, `payment_status`, `adjustment_type`, `contact_id`, `customer_group_id`, `invoice_no`, `ref_no`, `source`, `subscription_no`, `subscription_repeat_on`, `transaction_date`, `total_before_tax`, `tax_id`, `tax_amount`, `discount_type`, `discount_amount`, `rp_redeemed`, `rp_redeemed_amount`, `shipping_details`, `shipping_address`, `delivery_date`, `shipping_status`, `delivered_to`, `shipping_charges`, `shipping_custom_field_1`, `shipping_custom_field_2`, `shipping_custom_field_3`, `shipping_custom_field_4`, `shipping_custom_field_5`, `additional_notes`, `staff_note`, `is_export`, `export_custom_fields_info`, `round_off_amount`, `additional_expense_key_1`, `additional_expense_value_1`, `additional_expense_key_2`, `additional_expense_value_2`, `additional_expense_key_3`, `additional_expense_value_3`, `additional_expense_key_4`, `additional_expense_value_4`, `final_total`, `expense_category_id`, `expense_sub_category_id`, `expense_for`, `commission_agent`, `document`, `is_direct_sale`, `is_suspend`, `exchange_rate`, `total_amount_recovered`, `transfer_parent_id`, `return_parent_id`, `opening_stock_product_id`, `created_by`, `crm_is_order_request`, `essentials_duration`, `essentials_duration_unit`, `essentials_amount_per_unit_duration`, `essentials_allowances`, `essentials_deductions`, `repair_completed_on`, `repair_warranty_id`, `repair_brand_id`, `repair_status_id`, `repair_model_id`, `repair_job_sheet_id`, `repair_defects`, `repair_serial_no`, `repair_checklist`, `repair_security_pwd`, `repair_security_pattern`, `repair_due_date`, `repair_device_id`, `repair_updates_notif`, `woocommerce_order_id`, `mfg_parent_production_purchase_id`, `mfg_wasted_units`, `mfg_production_cost`, `mfg_production_cost_type`, `mfg_is_final`, `purchase_requisition_ids`, `prefer_payment_method`, `prefer_payment_account`, `sales_order_ids`, `purchase_order_ids`, `custom_field_1`, `custom_field_2`, `custom_field_3`, `custom_field_4`, `import_batch`, `import_time`, `types_of_service_id`, `packing_charge`, `packing_charge_type`, `service_custom_field_1`, `service_custom_field_2`, `service_custom_field_3`, `service_custom_field_4`, `service_custom_field_5`, `service_custom_field_6`, `is_created_from_api`, `rp_earned`, `order_addresses`, `is_recurring`, `recur_interval`, `recur_interval_type`, `recur_repetitions`, `recur_stopped_on`, `recur_parent_id`, `invoice_token`, `pay_term_number`, `pay_term_type`, `pjt_project_id`, `pjt_title`, `selling_price_group_id`, `info`, `created_at`, `updated_at`) VALUES
+(41, 1, 1, NULL, NULL, 0, NULL, 'sales_order', NULL, 'ordered', NULL, 0, NULL, NULL, 29, NULL, '2024/0004', '', NULL, NULL, NULL, '2024-02-04 20:12:00', 100.0000, NULL, 0.0000, 'percentage', 0.0000, 0, 0.0000, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, NULL, 0.0000, 100.0000, NULL, NULL, NULL, NULL, NULL, 1, 0, 1.000, NULL, NULL, NULL, NULL, 1, 0, 0.00, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0.0000, 'percentage', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.0000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 1.0000, 'days', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-04 17:41:13', '2024-02-04 17:41:13');
 
 -- --------------------------------------------------------
 
@@ -3917,17 +3969,6 @@ CREATE TABLE `transaction_payments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `transaction_payments`
---
-
-INSERT INTO `transaction_payments` (`id`, `transaction_id`, `business_id`, `is_return`, `amount`, `method`, `payment_type`, `transaction_no`, `card_transaction_number`, `card_number`, `card_type`, `card_holder_name`, `card_month`, `card_year`, `card_security`, `cheque_number`, `bank_account_number`, `paid_on`, `created_by`, `paid_through_link`, `gateway`, `is_advance`, `payment_for`, `parent_id`, `note`, `document`, `payment_ref_no`, `account_id`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, 0, 100.0000, 'cash', NULL, NULL, NULL, NULL, 'credit', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 04:52:00', 1, 0, NULL, 0, 1, NULL, NULL, NULL, 'SP2024/0001', NULL, '2024-02-03 01:52:39', '2024-02-03 01:52:39'),
-(2, 5, 1, 0, 100.0000, 'cash', NULL, NULL, NULL, NULL, 'credit', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 04:53:00', 1, 0, NULL, 0, 16, NULL, NULL, NULL, 'SP2024/0002', NULL, '2024-02-03 01:54:01', '2024-02-03 01:54:01'),
-(3, 6, 1, 0, 50.0000, 'cash', NULL, NULL, NULL, NULL, 'credit', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 04:58:00', 1, 0, NULL, 0, 16, NULL, NULL, NULL, 'SP2024/0003', NULL, '2024-02-03 01:59:15', '2024-02-03 01:59:15'),
-(4, NULL, 1, 0, 250.0000, 'cash', 'credit', NULL, NULL, NULL, 'credit', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 05:00:00', 1, 0, NULL, 1, 16, NULL, NULL, NULL, 'SP2024/0004', NULL, '2024-02-03 02:00:59', '2024-02-03 02:00:59'),
-(5, 6, 1, 0, 250.0000, 'cash', NULL, 'cash', NULL, NULL, 'credit', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-03 05:00:00', 1, 0, NULL, 0, 16, 4, NULL, NULL, 'SP2024/0005', NULL, '2024-02-03 02:00:59', '2024-02-03 02:00:59');
 
 -- --------------------------------------------------------
 
@@ -3972,9 +4013,7 @@ CREATE TABLE `transaction_sell_lines` (
 --
 
 INSERT INTO `transaction_sell_lines` (`id`, `transaction_id`, `product_id`, `kitchen_id`, `variation_id`, `quantity`, `mfg_waste_percent`, `mfg_ingredient_group_id`, `secondary_unit_quantity`, `quantity_returned`, `unit_price_before_discount`, `unit_price`, `line_discount_type`, `line_discount_amount`, `unit_price_inc_tax`, `item_tax`, `tax_id`, `discount_id`, `lot_no_line_id`, `sell_line_note`, `so_line_id`, `so_quantity_invoiced`, `res_service_staff_id`, `res_line_order_status`, `parent_sell_line_id`, `children_type`, `sub_unit_id`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, NULL, 1, 1.0000, 0.0000, NULL, 0.0000, 0.0000, 100.0000, 100.0000, 'fixed', 0.0000, 100.0000, 0.0000, NULL, NULL, NULL, '', NULL, 0.0000, NULL, NULL, NULL, '', NULL, '2024-02-03 01:52:39', '2024-02-03 01:52:39'),
-(2, 5, 1, NULL, 1, 1.0000, 0.0000, NULL, 0.0000, 0.0000, 100.0000, 100.0000, 'fixed', 0.0000, 100.0000, 0.0000, NULL, NULL, NULL, '', NULL, 0.0000, NULL, NULL, NULL, '', NULL, '2024-02-03 01:54:01', '2024-02-03 01:54:01'),
-(3, 6, 1, NULL, 1, 3.0000, 0.0000, NULL, 0.0000, 0.0000, 100.0000, 100.0000, 'fixed', 0.0000, 100.0000, 0.0000, NULL, NULL, NULL, '', NULL, 0.0000, NULL, NULL, NULL, '', NULL, '2024-02-03 01:59:15', '2024-02-03 01:59:15');
+(38, 41, 1, NULL, 1, 1.0000, 0.0000, NULL, 0.0000, 0.0000, 100.0000, 100.0000, 'fixed', 0.0000, 100.0000, 0.0000, NULL, NULL, NULL, '', NULL, 0.0000, NULL, NULL, NULL, '', NULL, '2024-02-04 17:41:13', '2024-02-04 17:41:13');
 
 -- --------------------------------------------------------
 
@@ -3998,9 +4037,8 @@ CREATE TABLE `transaction_sell_lines_purchase_lines` (
 --
 
 INSERT INTO `transaction_sell_lines_purchase_lines` (`id`, `sell_line_id`, `stock_adjustment_line_id`, `purchase_line_id`, `quantity`, `qty_returned`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 1, 1.0000, 0.0000, '2024-02-03 01:52:39', '2024-02-03 01:52:39'),
-(2, 2, NULL, 1, 1.0000, 0.0000, '2024-02-03 01:54:02', '2024-02-03 01:54:02'),
-(3, 3, NULL, 1, 3.0000, 0.0000, '2024-02-03 01:59:15', '2024-02-03 01:59:15');
+(1, 30, NULL, 0, 1.0000, 0.0000, '2024-02-04 14:58:58', '2024-02-04 14:58:58'),
+(2, 31, NULL, 0, 1.0000, 0.0000, '2024-02-04 15:00:37', '2024-02-04 15:00:37');
 
 -- --------------------------------------------------------
 
@@ -4200,7 +4238,7 @@ CREATE TABLE `variation_location_details` (
 --
 
 INSERT INTO `variation_location_details` (`id`, `product_id`, `product_variation_id`, `variation_id`, `location_id`, `qty_available`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1, 995.0000, '2024-02-03 01:26:59', '2024-02-03 01:59:15');
+(1, 1, 1, 1, 1, 993.0000, '2024-02-03 01:26:59', '2024-02-04 15:00:37');
 
 -- --------------------------------------------------------
 
@@ -4789,6 +4827,12 @@ ALTER TABLE `financial_statements`
   ADD KEY `financial_statements_created_by_foreign` (`created_by`);
 
 --
+-- Indexes for table `global_currencies`
+--
+ALTER TABLE `global_currencies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `group_sub_taxes`
 --
 ALTER TABLE `group_sub_taxes`
@@ -5285,7 +5329,8 @@ ALTER TABLE `transactions`
   ADD KEY `transactions_repair_status_id_index` (`repair_status_id`),
   ADD KEY `transactions_repair_device_id_index` (`repair_device_id`),
   ADD KEY `transactions_repair_job_sheet_id_index` (`repair_job_sheet_id`),
-  ADD KEY `transactions_woocommerce_order_id_index` (`woocommerce_order_id`);
+  ADD KEY `transactions_woocommerce_order_id_index` (`woocommerce_order_id`),
+  ADD KEY `global_currenc_id` (`global_currenc_id`);
 
 --
 -- Indexes for table `transaction_payments`
@@ -5433,7 +5478,7 @@ ALTER TABLE `accounting_accounts`
 -- AUTO_INCREMENT for table `accounting_accounts_transactions`
 --
 ALTER TABLE `accounting_accounts_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `accounting_account_types`
@@ -5445,7 +5490,7 @@ ALTER TABLE `accounting_account_types`
 -- AUTO_INCREMENT for table `accounting_acc_trans_mappings`
 --
 ALTER TABLE `accounting_acc_trans_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `accounting_budgets`
@@ -5457,7 +5502,7 @@ ALTER TABLE `accounting_budgets`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `account_categories`
@@ -5469,7 +5514,7 @@ ALTER TABLE `account_categories`
 -- AUTO_INCREMENT for table `account_transactions`
 --
 ALTER TABLE `account_transactions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `account_types`
@@ -5481,7 +5526,7 @@ ALTER TABLE `account_types`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `assets`
@@ -5553,7 +5598,7 @@ ALTER TABLE `cash_registers`
 -- AUTO_INCREMENT for table `cash_register_transactions`
 --
 ALTER TABLE `cash_register_transactions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -5565,7 +5610,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `crm_call_logs`
@@ -5772,6 +5817,12 @@ ALTER TABLE `financial_statements`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `global_currencies`
+--
+ALTER TABLE `global_currencies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `invoice_layouts`
 --
 ALTER TABLE `invoice_layouts`
@@ -5799,7 +5850,7 @@ ALTER TABLE `line_details`
 -- AUTO_INCREMENT for table `main_accounts`
 --
 ALTER TABLE `main_accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `media`
@@ -5829,7 +5880,7 @@ ALTER TABLE `mfg_recipe_ingredients`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=452;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=453;
 
 --
 -- AUTO_INCREMENT for table `notification_templates`
@@ -5949,7 +6000,7 @@ ALTER TABLE `purchase_lines`
 -- AUTO_INCREMENT for table `reference_counts`
 --
 ALTER TABLE `reference_counts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `repair_device_models`
@@ -6039,31 +6090,31 @@ ALTER TABLE `system`
 -- AUTO_INCREMENT for table `tax_rates`
 --
 ALTER TABLE `tax_rates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `transaction_payments`
 --
 ALTER TABLE `transaction_payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transaction_sell_lines`
 --
 ALTER TABLE `transaction_sell_lines`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `transaction_sell_lines_purchase_lines`
 --
 ALTER TABLE `transaction_sell_lines_purchase_lines`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `types_of_services`
