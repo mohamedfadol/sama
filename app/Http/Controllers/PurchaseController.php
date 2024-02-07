@@ -20,6 +20,8 @@ use App\AccountTransaction;
 use App\Utils\BusinessUtil;
 use Illuminate\Http\Request;
 use App\Utils\TransactionUtil;
+use App\Services\RestrictionService;
+use App\Utils\ContactUtil;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\Facades\DataTables;
@@ -35,6 +37,8 @@ class PurchaseController extends Controller
     protected $transactionUtil;
 
     protected $moduleUtil;
+    protected $restrictionService;
+    protected $contactUtil;
 
     /**
      * Constructor
@@ -42,8 +46,10 @@ class PurchaseController extends Controller
      * @param  ProductUtils  $product
      * @return void
      */
-    public function __construct(ProductUtil $productUtil, TransactionUtil $transactionUtil, BusinessUtil $businessUtil, ModuleUtil $moduleUtil)
+    public function __construct(RestrictionService $restrictionService , ContactUtil $contactUtil,ProductUtil $productUtil, TransactionUtil $transactionUtil, BusinessUtil $businessUtil, ModuleUtil $moduleUtil)
     {
+        $this->contactUtil = $contactUtil;
+        $this->restrictionService = $restrictionService;
         $this->productUtil = $productUtil;
         $this->transactionUtil = $transactionUtil;
         $this->businessUtil = $businessUtil;
@@ -303,7 +309,7 @@ class PurchaseController extends Controller
                 return $this->moduleUtil->expiredResponse(action([\App\Http\Controllers\PurchaseController::class, 'index']));
             }
 
-            $transaction_data = $request->only(['ref_no', 'status', 'contact_id', 'transaction_date', 'total_before_tax', 'location_id', 'discount_type', 'discount_amount', 'tax_id', 'tax_amount', 'shipping_details', 'shipping_charges', 'final_total', 'additional_notes', 'exchange_rate', 'pay_term_number', 'pay_term_type', 'purchase_order_ids']);
+            $transaction_data = $request->only(['account_id','ref_no', 'status', 'contact_id', 'transaction_date', 'total_before_tax', 'location_id', 'discount_type', 'discount_amount', 'tax_id', 'tax_amount', 'shipping_details', 'shipping_charges', 'final_total', 'additional_notes', 'exchange_rate', 'pay_term_number', 'pay_term_type', 'purchase_order_ids']);
 
             $exchange_rate = $transaction_data['exchange_rate'];
 
@@ -396,6 +402,14 @@ class PurchaseController extends Controller
             }
 
             $transaction = Transaction::create($transaction_data);
+
+               $contact = $this->contactUtil->getContactInfo($business_id, $request->contact_id);
+                $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
+                // dd($input['payment'][0]["account_id"], $deposit_to->id); 
+                // dd($deposit_to->id); 
+                //  restriction Service 
+                $this->restrictionService->create($transaction_data['type'], $transaction->id, $user_id, $business_id,  $deposit_to->id, $transaction_data["account_id"]);
+
 
             $purchase_lines = [];
             $purchases = $request->input('purchases');

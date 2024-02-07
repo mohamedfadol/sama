@@ -29,7 +29,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </span>
-              <?php echo Form::text("payment[$row_index][paid_on]", isset($payment_line['paid_on']) ? \Carbon::createFromTimestamp(strtotime($payment_line['paid_on']))->format(session('business.date_format') . ' ' . 'H:i') : \Carbon::createFromTimestamp(strtotime('now'))->format(session('business.date_format') . ' ' . 'H:i'), ['class' => 'form-control paid_on', 'readonly', 'required']); ?>
+              <?php echo Form::text("payment[$row_index][paid_on]", isset($payment_line['paid_on']) ? \Carbon::createFromTimestamp(strtotime($payment_line['paid_on']))->format(session('business.date_format') . ' ' . 'h:i A') : \Carbon::createFromTimestamp(strtotime('now'))->format(session('business.date_format') . ' ' . 'h:i A'), ['class' => 'form-control paid_on', 'readonly', 'required']); ?>
 
             </div>
 		</div>
@@ -135,11 +135,15 @@
 					<span class="input-group-addon">
 						<i class="fas fa-money-bill-alt"></i>
 					</span>
-
-					 
-					<?php echo Form::select("payment[$row_index][account_id]", $account_types->pluck('name_ar'), !empty($payment_line['account_id']) ? $payment_line['account_id'] : '' , ['class' => 'form-control select2 account-dropdown', 'id' => !$readonly ? "account_$row_index" : "account_advance_$row_index", 'style' => 'width:100%;', 'disabled' => $readonly]); ?>
-
-				</div>
+					<select class="form-control accounts-dropdown select2" name="account_id" required>
+                            <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
+                            <?php $__empty_1 = true; $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <option value="<?php echo e($account->id, false); ?>"><?php echo e($account->name_ar, false); ?></option>
+								<input type="hidden" name="payment[<?php echo e($row_index, false); ?>][account_id]" value="<?php echo e($account->id, false); ?>">
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <?php endif; ?>
+                    </select>
+ 				</div>
 			</div>
 		</div>
 	<?php endif; ?>

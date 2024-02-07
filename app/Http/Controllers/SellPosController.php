@@ -314,7 +314,7 @@ class SellPosController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->payment);
+        // dd($request->all());
         if (! auth()->user()->can('sell.create') && ! auth()->user()->can('direct_sell.access') && ! auth()->user()->can('so.create')) {
             abort(403, 'Unauthorized action.');
         }
@@ -495,9 +495,10 @@ class SellPosController extends Controller
                 $this->transactionUtil->createOrUpdateSellLines($transaction, $input['products'], $input['location_id']);
                 $contact = $this->contactUtil->getContactInfo($business_id, $contact_id);
                 $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
-                // dd($deposit_to); 
+                // dd($input['payment'][0]["account_id"], $deposit_to->id); 
+                // dd($deposit_to->id); 
                  // restriction Service 
-                $this->restrictionService->create($input['type'], $transaction->id, $user_id, $business_id,  $deposit_to->id, $payment_account = 5);
+                $this->restrictionService->create($input['type'], $transaction->id, $user_id, $business_id,  $deposit_to->id, $input['payment'][0]["account_id"]);
 
                 
                 $change_return['amount'] = $input['change_return'] ?? 0;

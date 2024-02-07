@@ -14,9 +14,11 @@ use App\CustomerGroup;
 use App\BusinessLocation;
 use App\Utils\ModuleUtil;
 use App\Utils\ProductUtil;
+use App\Utils\ContactUtil;
 use App\Utils\BusinessUtil;
 use Illuminate\Http\Request;
 use App\Utils\TransactionUtil;
+use App\Services\RestrictionService;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\Facades\DataTables;
@@ -32,19 +34,24 @@ class PurchaseOrderController extends Controller
 
     protected $moduleUtil;
 
+    protected $contactUtil;
+
+    protected $restrictionService;
+
     /**
      * Constructor
      *
      * @param  ProductUtils  $product
      * @return void
      */
-    public function __construct(ProductUtil $productUtil, TransactionUtil $transactionUtil, BusinessUtil $businessUtil, ModuleUtil $moduleUtil)
+    public function __construct(RestrictionService $restrictionService , ContactUtil $contactUtil, ProductUtil $productUtil, TransactionUtil $transactionUtil, BusinessUtil $businessUtil, ModuleUtil $moduleUtil)
     {
+        $this->contactUtil = $contactUtil;
+        $this->restrictionService = $restrictionService;
         $this->productUtil = $productUtil;
         $this->transactionUtil = $transactionUtil;
         $this->businessUtil = $businessUtil;
         $this->moduleUtil = $moduleUtil;
-
         $this->purchaseOrderStatuses = [
             'ordered' => [
                 'label' => __('lang_v1.ordered'),
@@ -285,9 +292,10 @@ class PurchaseOrderController extends Controller
         $common_settings = ! empty(session('business.common_settings')) ? session('business.common_settings') : [];
         $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
         return view('purchase_order.create')
-            ->with(compact('account_types','taxes', 'business_locations', 'currency_details', 'customer_groups', 'types', 'shortcuts', 'bl_attributes', 'shipping_statuses', 'users', 'common_settings'));
+            ->with(compact('account_types','taxes', 'business_locations', 'currency_details', 
+                            'customer_groups', 'types', 'shortcuts', 'bl_attributes', 'shipping_statuses', 'users', 'common_settings'));
     }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -296,6 +304,7 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         if (! auth()->user()->can('purchase_order.create')) {
             abort(403, 'Unauthorized action.');
         }
@@ -308,7 +317,7 @@ class PurchaseOrderController extends Controller
                 return $this->moduleUtil->expiredResponse(action([\App\Http\Controllers\PurchaseController::class, 'index']));
             }
 
-            $transaction_data = $request->only(['ref_no', 'contact_id', 'transaction_date', 'total_before_tax', 'location_id', 'discount_type', 'discount_amount', 'tax_id', 'tax_amount', 'shipping_details', 'shipping_charges', 'final_total', 'additional_notes', 'exchange_rate', 'pay_term_number', 'pay_term_type', 'shipping_address', 'shipping_status', 'delivered_to', 'delivery_date', 'purchase_requisition_ids']);
+            $transaction_data = $request->only(['account_id','ref_no', 'contact_id', 'transaction_date', 'total_before_tax', 'location_id', 'discount_type', 'discount_amount', 'tax_id', 'tax_amount', 'shipping_details', 'shipping_charges', 'final_total', 'additional_notes', 'exchange_rate', 'pay_term_number', 'pay_term_type', 'shipping_address', 'shipping_status', 'delivered_to', 'delivery_date', 'purchase_requisition_ids']);
 
             $exchange_rate = $transaction_data['exchange_rate'];
 
@@ -403,6 +412,13 @@ class PurchaseOrderController extends Controller
             }
 
             $transaction = Transaction::create($transaction_data);
+
+            // $contact = $this->contactUtil->getContactInfo($business_id, $contact_id);
+                // $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
+                // dd($input['payment'][0]["account_id"], $deposit_to->id); 
+                // dd($deposit_to->id); 
+                 // restriction Service 
+                // $this->restrictionService->create($transaction_data['type'], $transaction->id, $user_id, $business_id,  $deposit_to->id, $input["account_id"]);
 
             //Upload Shipping documents
             Media::uploadMedia($business_id, $transaction, $request, 'shipping_documents', false, 'shipping_document');

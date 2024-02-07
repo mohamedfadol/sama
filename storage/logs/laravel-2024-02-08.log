@@ -1,0 +1,34 @@
+[2024-02-08 01:33:12] production.EMERGENCY: File:C:\xampp\htdocs\pos\app\Http\Controllers\PurchaseController.phpLine:406Message:Undefined variable $contact_id  
+[2024-02-08 01:34:29] production.EMERGENCY: File:C:\xampp\htdocs\pos\app\Http\Controllers\PurchaseController.phpLine:411Message:Undefined variable $input  
+[2024-02-08 01:34:45] production.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Model')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Model')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 {main}
+"} 
+[2024-02-08 01:36:38] production.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Model')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Model')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 {main}
+"} 

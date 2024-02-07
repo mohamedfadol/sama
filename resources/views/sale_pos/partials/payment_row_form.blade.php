@@ -127,10 +127,15 @@
 					<span class="input-group-addon">
 						<i class="fas fa-money-bill-alt"></i>
 					</span>
-
-					 
-					{!! Form::select("payment[$row_index][account_id]", $account_types->pluck('name_ar'), !empty($payment_line['account_id']) ? $payment_line['account_id'] : '' , ['class' => 'form-control select2 account-dropdown', 'id' => !$readonly ? "account_$row_index" : "account_advance_$row_index", 'style' => 'width:100%;', 'disabled' => $readonly]); !!}
-				</div>
+					<select class="form-control accounts-dropdown select2" name="account_id" required>
+                            <option value="">@lang('messages.please_select')</option>
+                            @forelse($account_types as $account)
+                                <option value="{{$account->id}}">{{$account->name_ar}}</option>
+								<input type="hidden" name="payment[{{$row_index}}][account_id]" value="{{$account->id}}">
+                                @empty
+                            @endforelse
+                    </select>
+ 				</div>
 			</div>
 		</div>
 	@endif

@@ -31,7 +31,7 @@ class RestrictionService {
     }
 
     
-    public function create($type, $transactionId ,$user_id, $business_id, $deposit_to, $payment_account = 5) {
+    public function create($type, $transactionId ,$user_id, $business_id, $deposit_to, $payment_account) {
         // try {
               
                 // DB::beginTransaction();

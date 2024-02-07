@@ -210,7 +210,7 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::get('/sells/draft-dt', 'SellController@getDraftDatables');
     Route::resource('sells', 'SellController')->except(['show']);
     Route::get('/sells/copy-quotation/{id}', [SellPosController::class, 'copyQuotation']);
-
+ 
     Route::post('/import-purchase-products', [PurchaseController::class, 'importPurchaseProducts']);
     Route::post('/purchases/update-status', [PurchaseController::class, 'updateStatus']);
     Route::get('/purchases/get_products', [PurchaseController::class, 'getProducts']);
@@ -490,7 +490,7 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::get('get-document-note-page', [DocumentAndNoteController::class, 'getDocAndNoteIndexPage']);
     Route::post('post-document-upload', [DocumentAndNoteController::class, 'postMedia']);
     Route::resource('note-documents', DocumentAndNoteController::class);
-    Route::resource('purchase-order', PurchaseOrderController::class);
+    Route::resource('purchase-order', PurchaseOrderController::class);  
     Route::get('get-purchase-orders/{contact_id}', [PurchaseOrderController::class, 'getPurchaseOrders']);
     Route::get('get-purchase-order-lines/{purchase_order_id}', [PurchaseController::class, 'getPurchaseOrderLines']);
     Route::get('edit-purchase-orders/{id}/status', [PurchaseOrderController::class, 'getEditPurchaseOrderStatus']);
