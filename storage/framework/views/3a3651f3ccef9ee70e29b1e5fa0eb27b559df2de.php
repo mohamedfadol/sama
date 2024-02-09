@@ -65,8 +65,8 @@
 	 <?php if(!empty($sale_type)): ?>
 	 	<input type="hidden" id="sale_type" name="type" value="<?php echo e($sale_type, false); ?>">
 	 <?php endif; ?>
-	 <input type="text" id="sale_type" name="type" value="<?php echo e($sale_type == null ? 'sell' : $sale_type, false); ?>">
-	<div class="row">
+	 <!-- <input type="text" id="sale_type" name="type" value="<?php echo e($sale_type == null ? 'sell' : $sale_type, false); ?>"> -->
+	<div class="row"> 
 		<div class="col-md-12 col-sm-12">
 			<?php $__env->startComponent('components.widget', ['class' => 'box-solid']); ?>
 				<?php echo Form::hidden('location_id', !empty($default_location) ? $default_location->id : null , ['id' => 'location_id', 'data-receipt_printer_type' => !empty($default_location->receipt_printer_type) ? $default_location->receipt_printer_type : 'browser', 'data-default_payment_accounts' => !empty($default_location) ? $default_location->default_payment_accounts : '']); ?>

@@ -18,17 +18,20 @@
                     <?php if(auth()->user()->can('accounting.manage_accounts')): ?>
                         <li <?php if(request()->segment(2) == 'chart-of-accounts'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\CoaController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.chart_of_accounts'); ?></a></li>
                     <?php endif; ?>
-                    
+                     
                     <?php if(auth()->user()->can('accounting.view_journal')): ?>
-                        <li <?php if(request()->segment(2) == 'journal-entry'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry_1'); ?></a></li>
+                        <li <?php if(request()->segment(2) == 'journal-entry' && request()->get('type') == 'journal_entry'): ?>  class="active" <?php endif; ?>>
+                        <a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'], ['type' => 'journal_entry']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry_1'); ?></a></li>
                     <?php endif; ?>
  
                     <?php if(auth()->user()->can('accounting.view_journal')): ?>
-                        <li <?php if(request()->segment(2) == 'journal-entry'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry_2'); ?></a></li>
+                        <li <?php if(request()->segment(2) == 'journal-entry' && request()->get('type') == 'journal_openning'): ?> class="active" <?php endif; ?>>
+                        <a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'], ['type' => 'journal_openning']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry_2'); ?></a></li>
                     <?php endif; ?>
 
                     <?php if(auth()->user()->can('accounting.view_journal')): ?>
-                        <li <?php if(request()->segment(2) == 'journal-entry'): ?> class="active" <?php endif; ?>><a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry_3'); ?></a></li>
+                        <li <?php if(request()->segment(2) == 'journal-entry' && request()->get('type') == 'journal_company_general'): ?> class="active" <?php endif; ?>>
+                        <a href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'], ['type' => 'journal_company_general']), false); ?>"><?php echo app('translator')->get('accounting::lang.journal_entry_3'); ?></a></li>
                     <?php endif; ?>
                     
                     <!-- <?php if(auth()->user()->can('accounting.view_transfer')): ?>

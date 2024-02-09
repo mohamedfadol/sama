@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\User;
-use App\Utils\Util;
+use App\Utils\Util; 
 use App\Transaction;
 use App\TransactionSellLine;
 use Illuminate\Http\Request;
@@ -89,11 +89,10 @@ class OrderController extends Controller
             if ($this->restUtil->is_service_staff($user_id)) {
                 $query->where('res_waiter_id', $user_id);
             }
-            
+             
             $query->update(['res_line_order_status' => 'served']);
 
-            TransactionSellLine::
-            leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
+            TransactionSellLine::leftJoin('transactions as t', 't.id', '=', 'transaction_sell_lines.transaction_id')
                         ->where('t.business_id', $business_id)
                         ->whereIn('parent_sell_line_id',$transaction_sell_lines_ids)
                         ->update(['res_line_order_status' => 'served']);
@@ -278,10 +277,15 @@ class OrderController extends Controller
                                                 
             if($t_Lines->count() > 0):  
             else:
-                DB::table('order_status')->where('transaction_id',$id)->where('business_id', $business_id)
-                    ->update(['status' => 'done']);
-                TransactionSellLine::where('transaction_id',$id)->update(['res_line_order_status' => 'done']);
                 $t->update(['info' => 'done']);
+                $orders_status_list =  DB::table('order_status')->where('transaction_id',$id)
+                                        ->where('business_id', $business_id)
+                                            ->where('kitchen_id', $kitchen_id)->update(['status' => 'done']);
+                 
+                $transaction_sell_lines_list =  TransactionSellLine::where('transaction_id',$id)->get();
+                foreach ($transaction_sell_lines_list as  $line) {
+                    $line ->update(['res_line_order_status' => 'done']);
+                }
             endif;
             $msgs = 'New Order Coming ...';
             event(new NewOrdersEvent($msgs));

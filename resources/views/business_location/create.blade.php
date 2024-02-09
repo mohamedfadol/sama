@@ -175,7 +175,7 @@
                                 <tr>
                                     <th class="text-center">@lang('lang_v1.payment_method')</th>
                                     <th class="text-center">@lang('lang_v1.enable')</th>
-                                    <th class="text-center @if(empty($accounts)) hide @endif">@lang('lang_v1.default_accounts') @show_tooltip(__('lang_v1.default_account_help'))</th>
+                                    <th class="text-center @if(empty($account_types)) hide @endif">@lang('lang_v1.default_accounts') @show_tooltip(__('lang_v1.default_account_help'))</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -187,7 +187,7 @@
                                 <tr>
                                     <td class="text-center">{{$value}}</td>
                                     <td class="text-center">{!! Form::checkbox('default_payment_accounts[' . $key . '][is_enabled]', 1, !empty($default_payment_accounts[$key]['is_enabled'])); !!}</td>
-                                    <td class="text-center @if(empty($accounts)) hide @endif">
+                                    <td class="text-center @if(empty($account_types)) hide @endif">
                                     <!-- {!! Form::label('parent_id', __( 'accounting::lang.parent_type' ) . ':*') !!} -->
                                     <select class="form-control" style="width: 100%;" name="parent_id" id="parent_id">
                                         <option value="">@lang('messages.please_select')</option>

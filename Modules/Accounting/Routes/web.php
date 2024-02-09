@@ -24,7 +24,7 @@ Route::middleware('web', 'SetSessionData', 'auth', 'language', 'timezone', 'Admi
     Route::get('create-default-accounts', [\Modules\Accounting\Http\Controllers\CoaController::class, 'createDefaultAccounts'])->name('accounting.create-default-accounts');
   
     Route::resource('journal-entry', \Modules\Accounting\Http\Controllers\JournalEntryController::class);
-
+ 
     Route::get('settings', [\Modules\Accounting\Http\Controllers\SettingsController::class, 'index']);
     Route::get('reset-data', [\Modules\Accounting\Http\Controllers\SettingsController::class, 'resetData']);
 

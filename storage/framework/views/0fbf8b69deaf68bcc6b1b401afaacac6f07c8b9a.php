@@ -29,7 +29,7 @@
 
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <?php echo Form::label('name', __( 'lang_v1.local_currency_name' ) . ':*'); ?>
 
           <?php echo Form::text('local_currency_name', null, ['class' => 'form-control', 'required', 'placeholder' => __( 'lang_v1.local_currency_name' )]); ?>
@@ -46,7 +46,7 @@
                 ?>
           <?php echo Form::text('local_currency_value', null, ['class' => 'form-control ', 'required' , 'placeholder' => __( 'lang_v1.local_currency_value' )]); ?>
 
-      </div>
+      </div> -->
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary"><?php echo app('translator')->get( 'messages.save' ); ?></button>

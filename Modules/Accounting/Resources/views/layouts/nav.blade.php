@@ -18,17 +18,20 @@
                     @if(auth()->user()->can('accounting.manage_accounts'))
                         <li @if(request()->segment(2) == 'chart-of-accounts') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\CoaController::class, 'index'])}}">@lang('accounting::lang.chart_of_accounts')</a></li>
                     @endif
-                    
+                     
                     @if(auth()->user()->can('accounting.view_journal'))
-                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry_1')</a></li>
+                        <li @if(request()->segment(2) == 'journal-entry' && request()->get('type') == 'journal_entry')  class="active" @endif>
+                        <a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'], ['type' => 'journal_entry'])}}">@lang('accounting::lang.journal_entry_1')</a></li>
                     @endif
  
                     @if(auth()->user()->can('accounting.view_journal'))
-                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry_2')</a></li>
+                        <li @if(request()->segment(2) == 'journal-entry' && request()->get('type') == 'journal_openning') class="active" @endif>
+                        <a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'], ['type' => 'journal_openning'])}}">@lang('accounting::lang.journal_entry_2')</a></li>
                     @endif
 
                     @if(auth()->user()->can('accounting.view_journal'))
-                        <li @if(request()->segment(2) == 'journal-entry') class="active" @endif><a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'])}}">@lang('accounting::lang.journal_entry_3')</a></li>
+                        <li @if(request()->segment(2) == 'journal-entry' && request()->get('type') == 'journal_company_general') class="active" @endif>
+                        <a href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'index'], ['type' => 'journal_company_general'])}}">@lang('accounting::lang.journal_entry_3')</a></li>
                     @endif
                     
                     <!-- @if(auth()->user()->can('accounting.view_transfer'))

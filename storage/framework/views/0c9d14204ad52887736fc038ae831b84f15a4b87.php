@@ -126,27 +126,8 @@
             </div>
             <div class="clearfix"></div>
         <?php endif; ?>
-	<?php if(!empty($account_types)): ?>
-		<div class="<?php echo e($col_class, false); ?>">
-			<div class="form-group <?php if($readonly): ?> hide <?php endif; ?>">
-				<?php echo Form::label("account_$row_index" , __('lang_v1.payment_account') . ':'); ?>
-
-				<div class="input-group">
-					<span class="input-group-addon">
-						<i class="fas fa-money-bill-alt"></i>
-					</span>
-					<select class="form-control accounts-dropdown select2" name="account_id" required>
-                            <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
-                            <?php $__empty_1 = true; $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                <option value="<?php echo e($account->id, false); ?>"><?php echo e($account->name_ar, false); ?></option>
-								<input type="hidden" name="payment[<?php echo e($row_index, false); ?>][account_id]" value="<?php echo e($account->id, false); ?>">
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                            <?php endif; ?>
-                    </select>
- 				</div>
-			</div>
-		</div>
-	<?php endif; ?>
+		 
+ 
 	<div class="clearfix"></div>
 		<?php echo $__env->make('sale_pos.partials.payment_type_details', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 	<div class="col-md-12">

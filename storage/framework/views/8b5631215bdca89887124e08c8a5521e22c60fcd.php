@@ -17,7 +17,8 @@
 
  
 	<?php $__env->startComponent('components.widget', ['class' => 'box-primary']); ?>
-
+         
+        <input type="hidden" name="type" value="<?php echo e(request()->query('type'), false); ?>">
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
@@ -43,7 +44,7 @@
 						<span class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</span>
-						<?php echo Form::text('journal_date', \Carbon::createFromTimestamp(strtotime('now'))->format(session('business.date_format') . ' ' . 'H:i'), ['class' => 'form-control datetimepicker', 'readonly', 'required']); ?>
+						<?php echo Form::text('journal_date', \Carbon::createFromTimestamp(strtotime('now'))->format(session('business.date_format') . ' ' . 'h:i A'), ['class' => 'form-control datetimepicker', 'readonly', 'required']); ?>
 
 					</div>
 				</div>

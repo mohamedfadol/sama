@@ -493,12 +493,15 @@ class SellPosController extends Controller
                 Media::uploadMedia($business_id, $transaction, $request, 'shipping_documents', false, 'shipping_document');
 
                 $this->transactionUtil->createOrUpdateSellLines($transaction, $input['products'], $input['location_id']);
-                $contact = $this->contactUtil->getContactInfo($business_id, $contact_id);
-                $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
-                // dd($input['payment'][0]["account_id"], $deposit_to->id); 
-                // dd($deposit_to->id); 
-                 // restriction Service 
-                $this->restrictionService->create($input['type'], $transaction->id, $user_id, $business_id,  $deposit_to->id, $input['payment'][0]["account_id"]);
+                // dd($input['payment'][0]["account_id"]);
+                // if (array_key_exists('account_id', $input['payment']) ) {
+                //     $contact = $this->contactUtil->getContactInfo($business_id, $contact_id);
+                //     $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
+                //     $account_id = $input["account_id"];
+                //     // dd($deposit_to , $input['payment'][0]["account_id"] , $account_id);
+                //     $this->restrictionService->create($input['type'] ?? 'sell', $transaction->id, $user_id, $business_id,  $deposit_to->id, $account_id);
+                // }
+                
 
                 
                 $change_return['amount'] = $input['change_return'] ?? 0;

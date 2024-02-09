@@ -64,13 +64,13 @@
                 </div>
             </div>
 
-
+ 
             <div class="col-md-4">
                 <div class="form-group">
                 {!! Form::label('account_parent', __( 'accounting::lang.account_parent' ) . ':*') !!}
                   <div class="input-group">
                       <span class="input-group-addon">
-                          <i class="fas fa-money-bill-alt"></i>
+                          <i class="fas fa-money-bill-alt"></i> 
                       </span> 
                         <select class="form-control accounts-dropdown select2" name="account_id" id="account_sub_type" required>
                             <option value="">@lang('messages.please_select')</option>

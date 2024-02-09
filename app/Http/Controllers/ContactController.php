@@ -566,7 +566,7 @@ class ContactController extends Controller
         return view('contact.create')
             ->with(compact('types', 'customer_groups', 'selected_type', 'module_form_parts', 'users','account_types'));
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -753,9 +753,8 @@ class ContactController extends Controller
 
             //Added check because $users is of no use if enable_contact_assign if false
             $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
-            $account_types = MainAccount::where('business_id',$business_id)->whereDoesntHave('accountingAccountsTransactions')->orderBy('id','DESC')->get();
             return view('contact.edit')
-                ->with(compact('contact', 'types', 'customer_groups', 'opening_balance', 'users','account_types'));
+                ->with(compact('contact', 'types', 'customer_groups', 'opening_balance', 'users'));
         }
     }
 

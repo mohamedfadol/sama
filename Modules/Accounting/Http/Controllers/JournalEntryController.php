@@ -48,7 +48,7 @@ class JournalEntryController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        if (request()->ajax()) {
+        if (request()->ajax()) { 
             $journal = AccountingAccTransMapping::where('accounting_acc_trans_mappings.business_id', $business_id)
                         ->join('users as u', 'accounting_acc_trans_mappings.created_by', 'u.id')
                         ->where('type', 'journal_entry')
@@ -170,7 +170,10 @@ class JournalEntryController extends Controller
             $acc_trans_mapping->business_id = $business_id;
             $acc_trans_mapping->ref_no = $ref_no;
             // $acc_trans_mapping->note = $request->get('note');
-            $acc_trans_mapping->type = 'journal_entry';
+            $type = $request->get('type');
+            // dd( $type);
+            $acc_trans_mapping->type = $type  ?? 'journal_entry';
+            
             $acc_trans_mapping->created_by = $user_id;
             $acc_trans_mapping->operation_date = $this->util->uf_date($journal_date, true);
             $acc_trans_mapping->save();
@@ -195,7 +198,7 @@ class JournalEntryController extends Controller
 
                     $transaction_row['created_by'] = $user_id;
                     $transaction_row['operation_date'] = $this->util->uf_date($journal_date, true);
-                    $transaction_row['sub_type'] = 'journal_entry';
+                    $transaction_row['sub_type'] = $type  ?? 'journal_entry';
                     $transaction_row['acc_trans_mapping_id'] = $acc_trans_mapping->id;
 
                     $accounts_transactions = new AccountingAccountsTransaction();
@@ -298,7 +301,7 @@ class JournalEntryController extends Controller
             $note = $request->get('note');
 
             $acc_trans_mapping = AccountingAccTransMapping::where('business_id', $business_id)
-                        ->where('type', 'journal_entry')
+                        ->where('type', $type)
                         ->where('id', $id)
                         ->firstOrFail();
             $acc_trans_mapping->note = $request->get('note');
@@ -325,7 +328,7 @@ class JournalEntryController extends Controller
 
                     $transaction_row['created_by'] = $user_id;
                     $transaction_row['operation_date'] = $this->util->uf_date($journal_date, true);
-                    $transaction_row['sub_type'] = 'journal_entry';
+                    $transaction_row['sub_type'] = $type ?? 'journal_entry';
                     $transaction_row['acc_trans_mapping_id'] = $acc_trans_mapping->id;
 
                     if (! empty($accounts_transactions_id[$index])) {

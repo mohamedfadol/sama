@@ -119,26 +119,8 @@
             </div>
             <div class="clearfix"></div>
         @endif
-	@if(!empty($account_types))
-		<div class="{{$col_class}}">
-			<div class="form-group @if($readonly) hide @endif">
-				{!! Form::label("account_$row_index" , __('lang_v1.payment_account') . ':') !!}
-				<div class="input-group">
-					<span class="input-group-addon">
-						<i class="fas fa-money-bill-alt"></i>
-					</span>
-					<select class="form-control accounts-dropdown select2" name="account_id" required>
-                            <option value="">@lang('messages.please_select')</option>
-                            @forelse($account_types as $account)
-                                <option value="{{$account->id}}">{{$account->name_ar}}</option>
-								<input type="hidden" name="payment[{{$row_index}}][account_id]" value="{{$account->id}}">
-                                @empty
-                            @endforelse
-                    </select>
- 				</div>
-			</div>
-		</div>
-	@endif
+		 
+ 
 	<div class="clearfix"></div>
 		@include('sale_pos.partials.payment_type_details')
 	<div class="col-md-12">

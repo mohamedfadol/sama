@@ -8,18 +8,24 @@
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>@lang( 'accounting::lang.journal_entry' )</h1>
+    @if(request()->get('type') == 'journal-entry')
+        <h1>@lang( 'accounting::lang.journal_entry' )</h1>
+
+        @elseif(request()->get('type') == 'journal-opening')
+        <h1>@lang( 'accounting::lang.journal_entry_2' )</h1>
+        @else
+        <h1>@lang( 'accounting::lang.journal_entry_3' )</h1>
+    @endif
+    
 </section>
 <section class="content no-print">
 <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             @component('components.filters', ['title' => __('report.filters')])
                 <div class="col-md-4">
                     <div class="form-group">
                         {!! Form::label('journal_entry_date_range_filter', __('report.date_range') . ':') !!}
-                        {!! Form::text('journal_entry_date_range_filter', null, 
-                            ['placeholder' => __('lang_v1.select_a_date_range'), 
-                            'class' => 'form-control', 'readonly']); !!}
+                        {!! Form::text('journal_entry_date_range_filter', null, ['placeholder' => __('lang_v1.select_a_date_range'), 'class' => 'form-control', 'readonly']); !!}
                     </div>
                 </div>
             @endcomponent
@@ -30,7 +36,7 @@
             @slot('tool')
                 <div class="box-tools">
                     <a class="btn btn-block btn-primary" 
-                        href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'create'])}}">
+                        href="{{action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'create'],['type' => request()->get('type')])}}">
                         <i class="fas fa-plus"></i> @lang( 'messages.add' )</a>
                 </div>
             @endslot
@@ -59,23 +65,25 @@
 <script type="text/javascript">
 
     $(document).ready( function(){
-        
+        let params = new URLSearchParams(window.location.search);
+        let type = params.get('type');
+        console.log(type);
+
         //Journal table
         journal_table = $('#journal_table').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
                 url: '/accounting/journal-entry',
+                data: {
+                    type: type
+                },
                 data: function(d) {
                     var start = '';
                     var end = '';
                     if ($('#journal_entry_date_range_filter').val()) {
-                        start = $('input#journal_entry_date_range_filter')
-                            .data('daterangepicker')
-                            .startDate.format('YYYY-MM-DD');
-                        end = $('input#journal_entry_date_range_filter')
-                            .data('daterangepicker')
-                            .endDate.format('YYYY-MM-DD');
+                        start = $('input#journal_entry_date_range_filter').data('daterangepicker').startDate.format('YYYY-MM-DD');
+                        end = $('input#journal_entry_date_range_filter').data('daterangepicker').endDate.format('YYYY-MM-DD');
                     }
                     d.start_date = start;
                     d.end_date = end;

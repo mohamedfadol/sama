@@ -1,32 +1,35 @@
-@extends('layouts.app')
 
-@section('title', __('accounting::lang.journal_entry'))
 
-@section('content')
+<?php $__env->startSection('title', __('accounting::lang.journal_entry')); ?>
 
-@include('accounting::layouts.nav')
+<?php $__env->startSection('content'); ?>
+
+<?php echo $__env->make('accounting::layouts.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>@lang( 'accounting::lang.journal_entry' ) - {{$journal->ref_no}}</h1>
+    <h1><?php echo app('translator')->get( 'accounting::lang.journal_entry' ); ?> - <?php echo e($journal->ref_no, false); ?></h1>
 </section>
 <section class="content">
 
-{!! Form::open(['url' => action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'update'], $journal->id), 
-    'method' => 'PUT', 'id' => 'journal_add_form']) !!}
+<?php echo Form::open(['url' => action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'update'], $journal->id), 
+    'method' => 'PUT', 'id' => 'journal_add_form']); ?>
 
-	@component('components.widget', ['class' => 'box-primary'])
+
+	<?php $__env->startComponent('components.widget', ['class' => 'box-primary']); ?>
 
         <div class="row">
-        <input type="hidden" name="type" value="{{request()->query('type')}}">
+            
             <div class="col-sm-3">
 				<div class="form-group">
-					{!! Form::label('journal_date', __('accounting::lang.journal_date') . ':*') !!}
+					<?php echo Form::label('journal_date', __('accounting::lang.journal_date') . ':*'); ?>
+
 					<div class="input-group">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</span>
-						{!! Form::text('journal_date', @format_datetime($journal->operation_date), ['class' => 'form-control datetimepicker', 'readonly', 'required']); !!}
+						<?php echo Form::text('journal_date', \Carbon::createFromTimestamp(strtotime($journal->operation_date))->format(session('business.date_format') . ' ' . 'h:i A'), ['class' => 'form-control datetimepicker', 'readonly', 'required']); ?>
+
 					</div>
 				</div>
 			</div>
@@ -36,8 +39,10 @@
         <!-- <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    {!! Form::label('note', __('lang_v1.additional_notes')) !!}
-                    {!! Form::textarea('note', $journal->note, ['class' => 'form-control', 'rows' => 3]); !!}
+                    <?php echo Form::label('note', __('lang_v1.additional_notes')); ?>
+
+                    <?php echo Form::textarea('note', $journal->note, ['class' => 'form-control', 'rows' => 3]); ?>
+
                 </div>
             </div>
         </div> -->
@@ -49,27 +54,27 @@
                 <thead>
                     <tr>
                         <th class="col-md-1">#</th>
-                        <th class="col-md-3">@lang( 'accounting::lang.account' )</th>
-                        <th class="col-md-2">@lang( 'accounting::lang.debit' )</th>
-                        <th class="col-md-2">@lang( 'accounting::lang.credit' )</th>
-                        <th class="col-md-3">@lang( 'accounting::lang.note' )</th>
+                        <th class="col-md-3"><?php echo app('translator')->get( 'accounting::lang.account' ); ?></th>
+                        <th class="col-md-2"><?php echo app('translator')->get( 'accounting::lang.debit' ); ?></th>
+                        <th class="col-md-2"><?php echo app('translator')->get( 'accounting::lang.credit' ); ?></th>
+                        <th class="col-md-3"><?php echo app('translator')->get( 'accounting::lang.note' ); ?></th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    @for($i = 1; $i <= 10; $i++)
+                    <?php for($i = 1; $i <= 10; $i++): ?>
                         <tr>
 
-                            @php
+                            <?php
                                 $account_id = '';
                                 $debit = '';
                                 $credit = '';
                                 $note = '';
                                 $default_array = [];
-                            @endphp
+                            ?>
 
-                            @if(isset($accounts_transactions[$i-1]))
-                                @php
+                            <?php if(isset($accounts_transactions[$i-1])): ?>
+                                <?php
 
                                     $account_id = $accounts_transactions[$i-1]['accounting_account_id'];
                                     $debit = ($accounts_transactions[$i-1]['type'] == 'debit') ? $accounts_transactions[$i-1]['amount'] : '';
@@ -78,36 +83,41 @@
                                     $default_array = [$account_id => $accounts_transactions[$i-1]['account']['name_ar']];
                                     
 
-                                @endphp
+                                ?>
 
-                                {!! Form::hidden('accounts_transactions_id[' . $i . ']', $accounts_transactions[$i-1]['id']); !!}
-                            @endif
+                                <?php echo Form::hidden('accounts_transactions_id[' . $i . ']', $accounts_transactions[$i-1]['id']); ?>
+
+                            <?php endif; ?>
                         
-                            <td>{{$i}}</td>
+                            <td><?php echo e($i, false); ?></td>
                             <td>
-                                {!! Form::select('account_id[' . $i . ']', $default_array, $account_id, 
+                                <?php echo Form::select('account_id[' . $i . ']', $default_array, $account_id, 
                                             ['class' => 'form-control accounts-dropdown account_id', 
-                                            'placeholder' => __('messages.please_select'), 'style' => 'width: 100%;']); !!}
+                                            'placeholder' => __('messages.please_select'), 'style' => 'width: 100%;']); ?>
+
                             </td>
 
                             <td>
-                                {!! Form::text('debit[' . $i . ']', $debit, ['class' => 'form-control input_number debit']); !!}
+                                <?php echo Form::text('debit[' . $i . ']', $debit, ['class' => 'form-control input_number debit']); ?>
+
                             </td>
 
                             <td>
-                                {!! Form::text('credit[' . $i . ']', $credit, ['class' => 'form-control input_number credit']); !!}
+                                <?php echo Form::text('credit[' . $i . ']', $credit, ['class' => 'form-control input_number credit']); ?>
+
                             </td>
                             <td>
-                                {!! Form::textarea('note[' . $i . ']', $note, ['class' => 'form-control note', 'rows' => 2, 'cols'=> 50]); !!}
+                                <?php echo Form::textarea('note[' . $i . ']', $note, ['class' => 'form-control note', 'rows' => 2, 'cols'=> 50]); ?>
+
                             </td>
                         </tr>
-                    @endfor
+                    <?php endfor; ?>
                 </tbody>
 
                 <tfoot>
                     <tr>
                         <th></th>
-                        <th class="text-center">@lang( 'accounting::lang.total' )</th>
+                        <th class="text-center"><?php echo app('translator')->get( 'accounting::lang.total' ); ?></th>
                         <th><input type="hidden" class="total_debit_hidden"><span class="total_debit"></span></th>
                         <th><input type="hidden" class="total_credit_hidden"><span class="total_credit"></span></th>
                     </tr>
@@ -119,19 +129,20 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <button type="button" class="btn btn-primary pull-right btn-flat journal_add_btn">@lang('messages.save')</button>
+                <button type="button" class="btn btn-primary pull-right btn-flat journal_add_btn"><?php echo app('translator')->get('messages.save'); ?></button>
             </div>
         </div>
         
-    @endcomponent
+    <?php echo $__env->renderComponent(); ?>
 
-    {!! Form::close() !!}
+    <?php echo Form::close(); ?>
+
 </section>
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('javascript')
-@include('accounting::accounting.common_js')
+<?php $__env->startSection('javascript'); ?>
+<?php echo $__env->make('accounting::accounting.common_js', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <script type="text/javascript">
     $(document).ready(function(){
         calculate_total();
@@ -145,7 +156,7 @@
             //check if same or not
             if($('.total_credit_hidden').val() != $('.total_debit_hidden').val()){
                 is_valid = false;
-                alert("@lang('accounting::lang.credit_debit_equal')");
+                alert("<?php echo app('translator')->get('accounting::lang.credit_debit_equal'); ?>");
             }
 
             //check if all account selected or not
@@ -156,7 +167,7 @@
                 if(credit != 0 || debit != 0){
                     if($(tr).find('.account_id').val() == ''){
                         is_valid = false;
-                        alert("@lang('accounting::lang.select_all_accounts')");
+                        alert("<?php echo app('translator')->get('accounting::lang.select_all_accounts'); ?>");
                     }
                 }
             });
@@ -201,4 +212,5 @@
     }
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pos\Modules\Accounting\Providers/../Resources/views/journal_entry/edit.blade.php ENDPATH**/ ?>

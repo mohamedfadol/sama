@@ -11,68 +11,68 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 <div class="row">
     <div class="col-lg-6 col-md-4 col-xs-6 order_div">
         <h1 class="ready_order text-center">
-            @lang('restaurant.ready_orders')
+            <?php echo app('translator')->get('restaurant.ready_orders'); ?>
         </h1>
         <hr style="border-bottom: 2px solid black; ">
-        @forelse($orders as $order)
+        <?php $__empty_1 = true; $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <div class="col-md-3 col-xs-3">
                 <div class="small-box bg-gray">
                     <div class="inner">
                     <table>
                             <thead>
                             <tr class="text-center clock-time">
-                                <td class="clock"> #{{$order->invoice_no}} </td>
+                                <td class="clock"> #<?php echo e($order->invoice_no, false); ?> </td>
                             </tr>
                             </thead>
                         </table>
                     </div> 
                 </div>
             </div>
-            @if($loop->iteration % 4 == 0)
+            <?php if($loop->iteration % 4 == 0): ?>
                 <div class="hidden-xs">
                     <div class="clearfix"></div>
                 </div>
-            @endif
-            @if($loop->iteration % 2 == 0)
+            <?php endif; ?>
+            <?php if($loop->iteration % 2 == 0): ?>
                 <div class="visible-xs">
                     <div class="clearfix"></div>
                 </div>
-            @endif
-        @empty
-        @endforelse
+            <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+        <?php endif; ?>
     </div>
 
     <div class="vl"></div>
 
     <div class="col-lg-6 col-md-4 col-xs-6 order_div">
-        <h1 class="ready_order text-center">@lang('restaurant.orders_are_being_prepared')</h1>
+        <h1 class="ready_order text-center"><?php echo app('translator')->get('restaurant.orders_are_being_prepared'); ?></h1>
         <hr style="border-bottom: 2px solid black; ">
-        @forelse($resrvedOrders as $order)
+        <?php $__empty_1 = true; $__currentLoopData = $resrvedOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <div class="col-md-3 col-xs-3">
                 <div class="small-box bg-gray">
                     <div class="inner">
                         <table>
                             <thead>
                             <tr class="text-center clock-time ">
-                                <td class="clock">  #{{$order->invoice_no}} </td>
+                                <td class="clock">  #<?php echo e($order->invoice_no, false); ?> </td>
                             </tr>
                             </thead>
                         </table>
                     </div> 
                 </div>
             </div>
-            @if($loop->iteration % 4 == 0)
+            <?php if($loop->iteration % 4 == 0): ?>
                 <div class="hidden-xs">
                     <div class="clearfix"></div>
                 </div>
-            @endif
-            @if($loop->iteration % 2 == 0)
+            <?php endif; ?>
+            <?php if($loop->iteration % 2 == 0): ?>
                 <div class="visible-xs">
                     <div class="clearfix"></div>
                 </div>
-            @endif
-        @empty
-        @endforelse
+            <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -80,4 +80,4 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
 
  
 
- 
+ <?php /**PATH C:\xampp\htdocs\pos\resources\views/restaurant/partials/hole_view_details.blade.php ENDPATH**/ ?>

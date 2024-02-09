@@ -16,7 +16,8 @@
     'method' => 'post', 'id' => 'journal_add_form']) !!}
  
 	@component('components.widget', ['class' => 'box-primary'])
-
+         
+        <input type="hidden" name="type" value="{{request()->query('type')}}">
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">

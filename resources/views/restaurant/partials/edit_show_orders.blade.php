@@ -122,7 +122,7 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                                 @endif
                             </tr> 
                             @empty 
-                        @endforelse
+                        @endforelse 
                     </tbody>
                 </table>  
                 </div>

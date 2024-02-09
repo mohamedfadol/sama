@@ -8,19 +8,25 @@
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1><?php echo app('translator')->get( 'accounting::lang.journal_entry' ); ?></h1>
+    <?php if(request()->get('type') == 'journal-entry'): ?>
+        <h1><?php echo app('translator')->get( 'accounting::lang.journal_entry' ); ?></h1>
+
+        <?php elseif(request()->get('type') == 'journal-opening'): ?>
+        <h1><?php echo app('translator')->get( 'accounting::lang.journal_entry_2' ); ?></h1>
+        <?php else: ?>
+        <h1><?php echo app('translator')->get( 'accounting::lang.journal_entry_3' ); ?></h1>
+    <?php endif; ?>
+    
 </section>
 <section class="content no-print">
 <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             <?php $__env->startComponent('components.filters', ['title' => __('report.filters')]); ?>
                 <div class="col-md-4">
                     <div class="form-group">
                         <?php echo Form::label('journal_entry_date_range_filter', __('report.date_range') . ':'); ?>
 
-                        <?php echo Form::text('journal_entry_date_range_filter', null, 
-                            ['placeholder' => __('lang_v1.select_a_date_range'), 
-                            'class' => 'form-control', 'readonly']); ?>
+                        <?php echo Form::text('journal_entry_date_range_filter', null, ['placeholder' => __('lang_v1.select_a_date_range'), 'class' => 'form-control', 'readonly']); ?>
 
                     </div>
                 </div>
@@ -32,7 +38,7 @@
             <?php $__env->slot('tool'); ?>
                 <div class="box-tools">
                     <a class="btn btn-block btn-primary" 
-                        href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'create']), false); ?>">
+                        href="<?php echo e(action([\Modules\Accounting\Http\Controllers\JournalEntryController::class, 'create'],['type' => request()->get('type')]), false); ?>">
                         <i class="fas fa-plus"></i> <?php echo app('translator')->get( 'messages.add' ); ?></a>
                 </div>
             <?php $__env->endSlot(); ?>
@@ -61,23 +67,25 @@
 <script type="text/javascript">
 
     $(document).ready( function(){
-        
+        let params = new URLSearchParams(window.location.search);
+        let type = params.get('type');
+        console.log(type);
+
         //Journal table
         journal_table = $('#journal_table').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
                 url: '/accounting/journal-entry',
+                data: {
+                    type: type
+                },
                 data: function(d) {
                     var start = '';
                     var end = '';
                     if ($('#journal_entry_date_range_filter').val()) {
-                        start = $('input#journal_entry_date_range_filter')
-                            .data('daterangepicker')
-                            .startDate.format('YYYY-MM-DD');
-                        end = $('input#journal_entry_date_range_filter')
-                            .data('daterangepicker')
-                            .endDate.format('YYYY-MM-DD');
+                        start = $('input#journal_entry_date_range_filter').data('daterangepicker').startDate.format('YYYY-MM-DD');
+                        end = $('input#journal_entry_date_range_filter').data('daterangepicker').endDate.format('YYYY-MM-DD');
                     }
                     d.start_date = start;
                     d.end_date = end;

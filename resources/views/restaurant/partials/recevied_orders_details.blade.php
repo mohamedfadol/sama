@@ -40,10 +40,10 @@ table thead, table tbody tr {display: table;width: 100%;table-layout: fixed;}
                         <tr>
                             <td>{{ __('restaurant.table_no') }}{{ $order->table_name }} </td>
                             <td>#{{$order->invoice_no}}</td>
-                             
+                            <td>OR{{$order->id}}</td>
                         </tr>
                     </thead>
-                    <thead>
+                    <thead> 
                         <tr @if(empty($for_ledger)) class="bg-green" @endif>
                             <th>{{ __('sale.product') }}</th>
                             <th>{{ __('sale.qty') }}</th>

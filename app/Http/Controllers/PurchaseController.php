@@ -393,7 +393,6 @@ class PurchaseController extends Controller
             }
 
             DB::beginTransaction();
-
             //Update reference count
             $ref_count = $this->productUtil->setAndGetReferenceCount($transaction_data['type']);
             //Generate reference number
@@ -402,14 +401,10 @@ class PurchaseController extends Controller
             }
 
             $transaction = Transaction::create($transaction_data);
+            $contact = $this->contactUtil->getContactInfo($business_id, $request->contact_id);
+            $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
 
-               $contact = $this->contactUtil->getContactInfo($business_id, $request->contact_id);
-                $deposit_to = MainAccount::where('business_id',$business_id)->where('contact_id', $contact->id)->first();
-                // dd($input['payment'][0]["account_id"], $deposit_to->id); 
-                // dd($deposit_to->id); 
-                //  restriction Service 
-                $this->restrictionService->create($transaction_data['type'], $transaction->id, $user_id, $business_id,  $deposit_to->id, $transaction_data["account_id"]);
-
+            $this->restrictionService->create($transaction_data['type'] ?? 'purchase', $transaction->id, $user_id, $business_id,  $deposit_to->id, $transaction_data["account_id"]);
 
             $purchase_lines = [];
             $purchases = $request->input('purchases');
@@ -428,9 +423,7 @@ class PurchaseController extends Controller
 
             //Adjust stock over selling if found
             $this->productUtil->adjustStockOverSelling($transaction);
-
             $this->transactionUtil->activityLog($transaction, 'added');
-
             PurchaseCreatedOrModified::dispatch($transaction);
 
             DB::commit();
