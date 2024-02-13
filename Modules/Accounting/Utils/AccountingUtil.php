@@ -2,12 +2,14 @@
 
 namespace Modules\Accounting\Utils;
 
+use DB; 
 use App\Business;
+use App\Utils\Util;
 use App\Transaction;
 use App\TransactionPayment;
-use App\Utils\Util;
-use DB; 
+use Modules\Accounting\Entities\AccountingAccTransMapping;
 use Modules\Accounting\Entities\AccountingAccountsTransaction;
+use Carbon\Carbon;
 
 class AccountingUtil extends Util
 {
@@ -155,19 +157,44 @@ class AccountingUtil extends Util
             ->where('transaction_payment_id', $transaction_payment_id)
             ->delete();
     }
-
+    
     /** 
      * Function to save a mapping
      */   
     public function saveMap($type, $id, $user_id, $business_id, $deposit_to, $payment_account){
         // dd($type, $id, $user_id, $business_id, $deposit_to, $payment_account);
         if ($type == 'sell' || $type == 'sales_order') {
+
+            // dd('yes');
             $transaction = Transaction::where('business_id', $business_id)->where('id', $id)->firstorFail();
+
+            $now = Carbon::now();
+            $journal_date =  $now->format('d/m/Y h:i A'); 
+
+            $accounting_settings = $this->getAccountingSettings($business_id);
+
+            $ref_no = '';  
+            $ref_count = $this->setAndGetReferenceCount('journal_entry');
+            if (empty($ref_no)) {
+                $prefix = ! empty($accounting_settings['journal_entry_prefix']) ?
+                $accounting_settings['journal_entry_prefix'] : '';
+                //Generate reference number
+                $ref_no = $this->generateReferenceNumber('journal_entry', $ref_count, $business_id, $prefix);
+            } 
+
+            $acc_trans_mapping = new AccountingAccTransMapping();
+            $acc_trans_mapping->business_id = $business_id;
+            $acc_trans_mapping->ref_no = $ref_no;
+            $acc_trans_mapping->type = "journal_entry";
+            $acc_trans_mapping->created_by = $user_id;
+            $acc_trans_mapping->operation_date = $this->uf_date($journal_date, true);
+            $acc_trans_mapping->save();
 
             //$payment_account will increase = sales = credit
             $payment_data = [
                 'accounting_account_id' => $payment_account,
                 'transaction_id' => $id,
+                'acc_trans_mapping_id' => $acc_trans_mapping->id,
                 'transaction_payment_id' => null,
                 'amount' => $transaction->final_total,
                 'type' => 'credit',
@@ -181,6 +208,7 @@ class AccountingUtil extends Util
             $deposit_data = [
                 'accounting_account_id' => $deposit_to,
                 'transaction_id' => $id,
+                'acc_trans_mapping_id' => $acc_trans_mapping->id,
                 'transaction_payment_id' => null,
                 'amount' => $transaction->final_total,
                 'type' => 'debit',
@@ -188,11 +216,9 @@ class AccountingUtil extends Util
                 'map_type' => 'deposit_to',
                 'created_by' => $user_id,
                 'operation_date' => \Carbon::now(),
-            ];
+            ]; 
         } elseif (in_array($type, ['purchase_payment', 'sell_payment'])) {
-            $transaction_payment = TransactionPayment::where('id', $id)->where('business_id', $business_id)
-                            ->firstorFail();
-
+            $transaction_payment = TransactionPayment::where('id', $id)->where('business_id', $business_id)->firstorFail();
             //$payment_account will increase = sales = credit
             $payment_data = [
                 'accounting_account_id' => $payment_account,
@@ -247,6 +273,8 @@ class AccountingUtil extends Util
                 'operation_date' => \Carbon::now(),
             ];
         }
+
+        
 
         AccountingAccountsTransaction::updateOrCreateMapTransaction($payment_data);
         AccountingAccountsTransaction::updateOrCreateMapTransaction($deposit_data);

@@ -58,7 +58,7 @@ class TransactionController extends Controller
             if (request()->input('datatable') == 'purchase') {
                 return $this->_allPurchases();
             }
-        }
+        } 
 
         $business_id = request()->session()->get('user.business_id');
 
@@ -82,7 +82,7 @@ class TransactionController extends Controller
         $sales_order_statuses = Transaction::sales_order_statuses();
 
         $datatable = Datatables::of($sells)
-                ->addColumn(
+                ->addColumn( 
                     'action',
                     function ($row) {
                         $html = '';

@@ -235,7 +235,7 @@ class SellPosController extends Controller
         //Accounts
         $accounts = [];
         if ($this->moduleUtil->isModuleEnabled('account')) {
-            $accounts = Account::forDropdown($business_id, true, false, true);
+            $accounts = MainAccount::forDropdownAcc($business_id, true, false, true);
         }
 
         //Selling Price Group Dropdown

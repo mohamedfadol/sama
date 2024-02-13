@@ -704,7 +704,7 @@ class SellController extends Controller
         //Accounts
         $accounts = [];
         if ($this->moduleUtil->isModuleEnabled('account')) {
-            $accounts = Account::forDropdown($business_id, true, false);
+            $accounts = MainAccount::forDropdownAcc($business_id, true, false);
         }
         // dd($accounts);
         $status = request()->get('status', '');
@@ -726,7 +726,7 @@ class SellController extends Controller
                 $is_order_request_enabled = true;
             }
         }
-
+   
         //Added check because $users is of no use if enable_contact_assign if false
         $users = config('constants.enable_contact_assign') ? User::forDropdown($business_id, false, false, false, true) : [];
         // dd($sale_type);

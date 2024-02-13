@@ -131,18 +131,14 @@ class BusinessLocationController extends Controller
         //Accounts
         $accounts = [];
         if ($this->commonUtil->isModuleEnabled('account')) {
-            $accounts = Account::forDropdown($business_id, true, false);
+            $accounts = MainAccount::forDropdownAcc($business_id, true, false);
         }
-        $account_types = MainAccount::where('business_id', $business_id)->whereNotNull('parent_id')
-                                ->whereDoesntHave('child_accounts')
-                                    ->where('status', 'active')->orderBy('id','DESC')->get();
         return view('business_location.create')
                     ->with(compact(
                         'invoice_layouts',
                         'invoice_schemes',
                         'price_groups',
                         'payment_types',
-                        'account_types',
                         'accounts'
                     ));
     }
@@ -242,12 +238,8 @@ class BusinessLocationController extends Controller
         //Accounts
         $accounts = [];
         if ($this->commonUtil->isModuleEnabled('account')) {
-            $accounts = Account::forDropdown($business_id, true, false);
+            $accounts = MainAccount::forDropdownAcc($business_id, true, false);
         }
-
-        $account_types = MainAccount::where('business_id', $business_id)->whereNotNull('parent_id')
-            ->whereDoesntHave('child_accounts')
-            ->where('status', 'active')->orderBy('id','DESC')->get();
 
         $featured_products = $location->getFeaturedProducts(true, false);
         
@@ -259,7 +251,6 @@ class BusinessLocationController extends Controller
                     'price_groups',
                     'payment_types',
                     'accounts',
-                    'account_types',
                     'featured_products'
                 ));
     }

@@ -135,6 +135,7 @@ class JournalEntryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $business_id = request()->session()->get('user.business_id');
 
         if (! (auth()->user()->can('superadmin') ||
@@ -156,7 +157,7 @@ class JournalEntryController extends Controller
 
             $accounting_settings = $this->accountingUtil->getAccountingSettings($business_id);
 
-            $ref_no = $request->get('ref_no');
+            $ref_no = $request->get('ref_no');  
             $ref_count = $this->util->setAndGetReferenceCount('journal_entry');
             if (empty($ref_no)) {
                 $prefix = ! empty($accounting_settings['journal_entry_prefix']) ?

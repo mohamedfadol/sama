@@ -35,7 +35,7 @@ class AccountingAccountsTransaction extends Model
         return $transaction->save();
     }
 
-    /**
+    /**   
      * Creates/updates account transaction
      *
      * @return obj
@@ -43,12 +43,19 @@ class AccountingAccountsTransaction extends Model
     public static function updateOrCreateMapTransaction($data)
     {
         $transaction = AccountingAccountsTransaction::updateOrCreate(
-            ['transaction_id' => $data['transaction_id'],
+            [
+                'transaction_id' => $data['transaction_id'],
                 'map_type' => $data['map_type'],
                 'transaction_payment_id' => $data['transaction_payment_id'],
             ],
-            ['accounting_account_id' => $data['accounting_account_id'], 'amount' => $data['amount'],
-                'type' => $data['type'], 'sub_type' => $data['sub_type'], 'created_by' => $data['created_by'], 'operation_date' => $data['operation_date'],
+            [
+                'accounting_account_id' => $data['accounting_account_id'],
+                'acc_trans_mapping_id' => $data['acc_trans_mapping_id'] ?? null,
+                 'amount' => $data['amount'],
+                'type' => $data['type'], 
+                'sub_type' => $data['sub_type'], 
+                'created_by' => $data['created_by'],
+                 'operation_date' => $data['operation_date'],
             ]
         );
     }

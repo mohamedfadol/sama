@@ -54,7 +54,7 @@
 	</div>
 </div>
 <?php endif; ?>
-
+ 
 <?php
 	$custom_labels = json_decode(session('business.custom_labels'), true);
 	$common_settings = session()->get('business.common_settings');
@@ -994,7 +994,8 @@
 
 								</div>
 							</div>
-						</div>
+						</div>    
+						
 						<?php if(!empty($accounts)): ?>
 						<div class="col-md-4">
 							<div class="form-group">

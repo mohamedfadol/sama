@@ -77,7 +77,9 @@ use App\Http\Controllers\CombinedPurchaseReturnController;
 |
 */
     Route::get('clear', function() {
+        Artisan::call('config:cache');
         Artisan::call('cache:clear');
+        Artisan::call('optimize:clear');
         Artisan::call('route:cache');
     })->name('clear');
 include_once 'install_r.php';

@@ -49,7 +49,7 @@
 	</div>
 </div>
 @endif
-
+ 
 @php
 	$custom_labels = json_decode(session('business.custom_labels'), true);
 	$common_settings = session()->get('business.common_settings');
@@ -865,7 +865,8 @@
 									{!! Form::select("payment[change_return][method]", $_payment_types, $_payment_method, ['class' => 'form-control col-md-12 payment_types_dropdown', 'id' => 'change_return_method', 'style' => 'width:100%;']); !!}
 								</div>
 							</div>
-						</div>
+						</div>    
+						
 						@if(!empty($accounts))
 						<div class="col-md-4">
 							<div class="form-group">

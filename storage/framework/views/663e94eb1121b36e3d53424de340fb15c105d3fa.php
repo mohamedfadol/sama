@@ -269,13 +269,8 @@
                                     <td class="text-center"><?php echo e($value, false); ?></td>
                                     <td class="text-center"><?php echo Form::checkbox('default_payment_accounts[' . $key . '][is_enabled]', 1, !empty($default_payment_accounts[$key]['is_enabled'])); ?></td>
                                     <td class="text-center <?php if(empty($accounts)): ?> hide <?php endif; ?>">
-                                    <!-- <?php echo Form::label('parent_id', __( 'accounting::lang.parent_type' ) . ':*'); ?> -->
-                                    <select class="form-control" style="width: 100%;" name="parent_id" id="parent_id">
-                                        <option value=""><?php echo app('translator')->get('messages.please_select'); ?></option>
-                                        <?php $__currentLoopData = $account_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $account): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($account->id, false); ?>"><?php echo e($account->name_ar, false); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
+                                        <?php echo Form::select('default_payment_accounts[' . $key . '][account]', $accounts, !empty($default_payment_accounts[$key]['account']) ? $default_payment_accounts[$key]['account'] : null, ['class' => 'form-control input-sm']); ?>
+
                                     </td>
                                 </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
